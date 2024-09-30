@@ -14,31 +14,37 @@ public class PlayerController : MonoBehaviour
 
     //player movement values
     [SerializeField] private float speed;
-    [SerializeField] private float smoothTime = 0.05f;
-    private float currentVelocity;
+    [SerializeField] private float rotationSpeed = 500f; //smoothtime
+    //private float currentVelocity;
     private float gravity = -9.81f;
     [SerializeField] private float gravityMultiplier = 3.0f;
     [SerializeField] private float jumpPower;
     private float velocity;
 
+    private Camera mainCamera;
+
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
+        mainCamera = Camera.main;
     }
 
     private void Update()
     {
-        ApplyGravity();
         ApplyRotation();
+        ApplyGravity();
         ApplyMovement();
     }
 
     private void ApplyRotation()
     {
         if (input.sqrMagnitude == 0) return;
-        var targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-        var angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref currentVelocity, smoothTime);
-        transform.rotation = Quaternion.Euler(0.0f, angle, 0.0f);
+        direction = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0.0f) * new Vector3(input.x, 0.0f, input.y);
+        var targetRotation = Quaternion.LookRotation(direction, Vector3.up);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed *Time.deltaTime);
+        //var targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+        //var angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref currentVelocity, smoothTime);
+        //transform.rotation = Quaternion.Euler(0.0f, angle, 0.0f);
     }
 
     private void ApplyMovement()
