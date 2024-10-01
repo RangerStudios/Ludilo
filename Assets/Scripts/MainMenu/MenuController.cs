@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour
 {
@@ -31,8 +33,8 @@ public class MenuController : MonoBehaviour
         GameManager.Instance.LoadScene("MainMenu");
     }
 
-    //Code for adding on as many menus as we want as children of the MenuController GameObject
-    public Transform GetNextMenu(Transform currentMenu)
+    //Code for adding tabs to a given menu as children of the parent menu
+    public Transform GetNextMenuTab(Transform currentMenu)
     {
         if(currentMenu == null)
         {
@@ -51,7 +53,7 @@ public class MenuController : MonoBehaviour
             return transform.GetChild(0);
         }
     }
-    public Transform GetPreviousMenu(Transform currentMenu)
+    public Transform GetPreviousMenuTab(Transform currentMenu)
     {
         if(currentMenu == null)
         {
@@ -71,7 +73,11 @@ public class MenuController : MonoBehaviour
         }
     }
 
-
+    /*TODO: Implement a proper failsafe for getting out of any menu with Escape*/
+    void ForceCloseMenus()
+    {
+        //Immediately closes the given menu and unpauses the game
+    }
 
 
     
