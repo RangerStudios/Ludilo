@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,8 @@ public class MenuController : MonoBehaviour
     //Options
     //Main Menu
     //Quit
+
+    public static Action<string> TryLoadNewScene;
 
 
 
@@ -31,6 +34,11 @@ public class MenuController : MonoBehaviour
         //Should be an event so the player's game is saved whenever they go back to menu or quit the game
         //Event OnReturnToMenu >> Store most recent checkpoint
         GameManager.Instance.LoadScene("MainMenu");
+    }
+
+    public void TryLoadScene(string sceneToLoad)
+    {
+        GameManager.Instance.LoadScene(sceneToLoad);
     }
 
     //Code for adding tabs to a given menu as children of the parent menu
