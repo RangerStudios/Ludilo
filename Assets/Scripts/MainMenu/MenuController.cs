@@ -31,6 +31,46 @@ public class MenuController : MonoBehaviour
         GameManager.Instance.LoadScene("MainMenu");
     }
 
+    //Code for adding on as many menus as we want as children of the MenuController GameObject
+    public Transform GetNextMenu(Transform currentMenu)
+    {
+        if(currentMenu == null)
+        {
+            //If there is not a valid point, default to the starting waypoint
+            return transform.GetChild(0);
+        }
+
+        if(currentMenu.GetSiblingIndex() < transform.childCount -1)
+        {
+            //If there are still waypoints in the object, get the next one in series through the siblings
+            return transform.GetChild(currentMenu.GetSiblingIndex()+1);  
+        }
+        else
+        {
+            //If all else fails, default to the first waypoint in the index
+            return transform.GetChild(0);
+        }
+    }
+    public Transform GetPreviousMenu(Transform currentMenu)
+    {
+        if(currentMenu == null)
+        {
+            //If there is not a valid point, default to the starting waypoint
+            return transform.GetChild(0);
+        }
+
+        if(currentMenu.GetSiblingIndex() > 0)
+        {
+            //If there are still waypoints in the object, get the next one in series through the siblings
+            return transform.GetChild(currentMenu.GetSiblingIndex()-1);  
+        }
+        else
+        {
+            //If all else fails, default to the first waypoint in the index
+            return transform.GetChild(transform.childCount-1);
+        }
+    }
+
 
 
 
