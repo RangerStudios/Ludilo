@@ -22,6 +22,16 @@ public class MenuController : MonoBehaviour
     }
 
 
+    public void GoToMainMenu()
+    {
+        //Popup for "Are you sure?" before heading to main menu
+
+        //Should be an event so the player's game is saved whenever they go back to menu or quit the game
+        //Event OnReturnToMenu >> Store most recent checkpoint
+        GameManager.Instance.LoadScene("MainMenu");
+    }
+
+
 
 
     
