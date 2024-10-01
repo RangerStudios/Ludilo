@@ -760,7 +760,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0.07519531, y: 47, z: 11, w: 0}
+  m_BoundingSphereOverride: {x: 1.83693e-40, y: 1.5585406e-19, z: 2.0500513e-19, w: 2.2e-44}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -948,7 +948,7 @@ Transform:
   m_GameObject: {fileID: 884748865}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.33, y: -1.1153533, z: -9.38}
+  m_LocalPosition: {x: 7.74, y: -1.1153533, z: -9.38}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1140,7 +1140,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.02e-43, y: 0, z: NaN, w: 64}
+  m_BoundingSphereOverride: {x: -1.4546743e-37, y: 9.188e-41, z: 4.59177e-40, w: -1.0062232e-35}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -4166,8 +4166,8 @@ ReflectionProbe:
   m_TimeSlicingMode: 0
   m_Resolution: 128
   m_UpdateFrequency: 0
-  m_BoxSize: {x: 11.769383, y: 5.781092, z: 11.867872}
-  m_BoxOffset: {x: -0.025419712, y: 1.5340354, z: -0.09251499}
+  m_BoxSize: {x: 39.96514, y: 17.852697, z: 39.875153}
+  m_BoxOffset: {x: 0.35619736, y: 7.5698385, z: 0.15976334}
   m_NearClip: 0.3
   m_FarClip: 1000
   m_ShadowDistance: 100
