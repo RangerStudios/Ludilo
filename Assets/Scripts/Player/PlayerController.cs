@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         characterController = GetComponent<CharacterController>();
         playerHealth = GetComponent<HealthController>();
+        playerStuffing = GetComponent<StuffingController>();
         mainCamera = Camera.main;
     }
 
