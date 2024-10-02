@@ -2,6 +2,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,6 +11,8 @@ public class PlayerController : MonoBehaviour
     //setup
     private Vector2 input;
     private CharacterController characterController;
+    public HealthController playerHealth;
+    public PlayerHealthScriptableObject savedPlayerHealth;
     private Vector3 direction;
 
     //player movement values
@@ -26,7 +29,14 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
+        playerHealth = GetComponent<HealthController>();
         mainCamera = Camera.main;
+    }
+
+    private void Start()
+    {
+        playerHealth.health = savedPlayerHealth.currentHealth;
+        Debug.Log("Player Health is: " + playerHealth.health);
     }
 
     private void Update()
@@ -80,4 +90,10 @@ public class PlayerController : MonoBehaviour
     }
 
     private bool IsGrounded() => characterController.isGrounded;
+
+    public void Die()
+    {
+        Debug.Log("Player Dies");
+        this.gameObject.SetActive(false);
+    }
 }
