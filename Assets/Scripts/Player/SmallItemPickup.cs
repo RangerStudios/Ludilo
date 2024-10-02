@@ -5,7 +5,7 @@ using UnityEngine;
 
 //Code by Anthony C.
 //Apply this script to the player for picking up small items
-public class SmallItemPickup : MonoBehaviour
+public class PickupTest : MonoBehaviour
 {
     [SerializeField] bool activated = false;
     public GameObject heldObject;
