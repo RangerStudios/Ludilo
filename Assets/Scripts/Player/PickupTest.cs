@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Code by Anthony C.
+//Apply this script to the player for picking up small items
 public class PickupTest : MonoBehaviour
 {
     [SerializeField] bool activated = false;
