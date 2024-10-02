@@ -2,16 +2,19 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamageable
 {
     //setup
     private Vector2 input;
     private CharacterController characterController;
     public HealthController playerHealth;
+    public StuffingController playerStuffing;
     public PlayerHealthScriptableObject savedPlayerHealth;
     private Vector3 direction;
     private Camera mainCamera;
@@ -28,6 +31,8 @@ public class PlayerController : MonoBehaviour
     public delegate void Interact();
     public event Interact OnInteraction;
 
+    public UnityEvent<int> onDamage;
+
 
     private void Awake()
     {
@@ -39,6 +44,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         playerHealth.health = savedPlayerHealth.currentHealth;
+        playerStuffing.stuffingCount = savedPlayerHealth.currentStuffing;
         Debug.Log("Player Health is: " + playerHealth.health);
     }
 
@@ -95,6 +101,11 @@ public class PlayerController : MonoBehaviour
 
     private bool IsGrounded() => characterController.isGrounded;
 
+    public void Damage(int damageValue)
+    {
+        playerHealth.Damage(damageValue);
+        onDamage.Invoke(damageValue);
+    }
 
     public void Die()
     {

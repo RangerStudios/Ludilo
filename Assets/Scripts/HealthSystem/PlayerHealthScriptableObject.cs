@@ -4,4 +4,5 @@ using UnityEngine;
 public class PlayerHealthScriptableObject : ScriptableObject
 {
     public int currentHealth = 6;
+    public int currentStuffing = 0;
 }

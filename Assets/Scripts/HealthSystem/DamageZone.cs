@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class DamageZone : MonoBehaviour
 {
-    void OnTriggerStay (Collider other)
+    void OnTriggerEnter (Collider other)
     {
-        if(other.gameObject.GetComponent<HealthController>() != null)
+        if(other.gameObject.GetComponent<IDamageable>() != null)
         {
-            other.gameObject.GetComponent<HealthController>().Damage();
+            other.gameObject.GetComponent<IDamageable>().Damage(1);
         }
     }
 }
