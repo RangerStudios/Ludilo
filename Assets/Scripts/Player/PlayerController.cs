@@ -14,17 +14,20 @@ public class PlayerController : MonoBehaviour
     public HealthController playerHealth;
     public PlayerHealthScriptableObject savedPlayerHealth;
     private Vector3 direction;
+    private Camera mainCamera;
 
     //player movement values
     [SerializeField] private float speed;
     [SerializeField] private float rotationSpeed = 500f; //smoothtime
-    //private float currentVelocity;
     private float gravity = -9.81f;
     [SerializeField] private float gravityMultiplier = 3.0f;
     [SerializeField] private float jumpPower;
     private float velocity;
 
-    private Camera mainCamera;
+    //interaction
+    public delegate void Interact();
+    public event Interact OnInteraction;
+
 
     private void Awake()
     {
@@ -83,6 +86,7 @@ public class PlayerController : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
+        //Debug.Log("Jump");
         if (!context.started) return;
         if (!IsGrounded()) return;
 
@@ -91,9 +95,19 @@ public class PlayerController : MonoBehaviour
 
     private bool IsGrounded() => characterController.isGrounded;
 
+
     public void Die()
     {
         Debug.Log("Player Dies");
         this.gameObject.SetActive(false);
+    }
+    
+
+    public void Interaction(InputAction.CallbackContext context)
+    {
+        
+        OnInteraction?.Invoke();
+        Debug.Log("Interaction");
+        //if(!context.started) return;
     }
 }
