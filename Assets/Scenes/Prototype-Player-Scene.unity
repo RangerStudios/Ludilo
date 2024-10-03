@@ -345,6 +345,11 @@ PrefabInstance:
       propertyPath: interaction.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 858903176}
+    - target: {fileID: 7187113132326787133, guid: dea7a0f6779e25446947f4c8ebd0b317,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7775415068202134051, guid: dea7a0f6779e25446947f4c8ebd0b317,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -439,7 +444,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 11
+  m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 858903173}
   m_Follow: {fileID: 0}
@@ -492,12 +497,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CollideAgainst:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   m_IgnoreTag: Player
   m_TransparentLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_MinimumDistanceFromTarget: 0.1
+  m_MinimumDistanceFromTarget: 2
   m_AvoidObstacles: 1
   m_DistanceLimit: 0
   m_MinimumOcclusionTime: 0
@@ -505,7 +510,7 @@ MonoBehaviour:
   m_Strategy: 1
   m_MaximumEffort: 4
   m_SmoothingTime: 0
-  m_Damping: 0
+  m_Damping: 2
   m_DampingWhenOccluded: 0
   m_OptimalTargetDistance: 0
 --- !u!1 &558386700
@@ -1154,7 +1159,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1849868569}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.017701078, y: 0.9607275, z: -0.06306628, w: -0.2696515}
+  m_LocalRotation: {x: -0.038017634, y: 0.90898466, z: -0.0850573, w: -0.40628424}
   m_LocalPosition: {x: 12.7, y: 6.14, z: 10.76}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1176,12 +1181,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CollideAgainst:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   m_IgnoreTag: Player
   m_TransparentLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_MinimumDistanceFromTarget: 0.1
+  m_MinimumDistanceFromTarget: 2
   m_AvoidObstacles: 1
   m_DistanceLimit: 0
   m_MinimumOcclusionTime: 0
@@ -1189,7 +1194,7 @@ MonoBehaviour:
   m_Strategy: 1
   m_MaximumEffort: 4
   m_SmoothingTime: 0
-  m_Damping: 0
+  m_Damping: 2
   m_DampingWhenOccluded: 0
   m_OptimalTargetDistance: 0
 --- !u!1 &1975619219
