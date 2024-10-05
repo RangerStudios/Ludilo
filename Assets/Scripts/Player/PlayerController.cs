@@ -2,31 +2,51 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamageable
 {
     //setup
     private Vector2 input;
     private CharacterController characterController;
+    public HealthController playerHealth;
+    public StuffingController playerStuffing;
+    public PlayerHealthScriptableObject savedPlayerHealth;
     private Vector3 direction;
+    private Camera mainCamera;
 
     //player movement values
     [SerializeField] private float speed;
     [SerializeField] private float rotationSpeed = 500f; //smoothtime
-    //private float currentVelocity;
     private float gravity = -9.81f;
     [SerializeField] private float gravityMultiplier = 3.0f;
     [SerializeField] private float jumpPower;
     private float velocity;
 
-    private Camera mainCamera;
+    //interaction
+    public delegate void Interact();
+    public event Interact OnInteraction;
+
+    public UnityEvent<int> onDamage;
+
 
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
+        playerHealth = GetComponent<HealthController>();
+        playerStuffing = GetComponent<StuffingController>();
         mainCamera = Camera.main;
+    }
+
+    private void Start()
+    {
+        playerHealth.health = savedPlayerHealth.currentHealth;
+        playerStuffing.stuffingCount = savedPlayerHealth.currentStuffing;
+        Debug.Log("Player Health is: " + playerHealth.health);
     }
 
     private void Update()
@@ -73,6 +93,7 @@ public class PlayerController : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
+        //Debug.Log("Jump");
         if (!context.started) return;
         if (!IsGrounded()) return;
 
@@ -80,4 +101,25 @@ public class PlayerController : MonoBehaviour
     }
 
     private bool IsGrounded() => characterController.isGrounded;
+
+    public void Damage(int damageValue)
+    {
+        playerHealth.Damage(damageValue);
+        onDamage.Invoke(damageValue);
+    }
+
+    public void Die()
+    {
+        Debug.Log("Player Dies");
+        this.gameObject.SetActive(false);
+    }
+    
+
+    public void Interaction(InputAction.CallbackContext context)
+    {
+        
+        OnInteraction?.Invoke();
+        Debug.Log("Interaction");
+        //if(!context.started) return;
+    }
 }
