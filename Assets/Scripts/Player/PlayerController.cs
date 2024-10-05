@@ -20,8 +20,8 @@ public class PlayerController : MonoBehaviour, IDamageable
     private Camera mainCamera;
 
     //player movement values
-    [SerializeField] private float speed;
-    [SerializeField] private float rotationSpeed = 500f; //smoothtime
+    [SerializeField] public float speed;
+    [SerializeField] public float rotationSpeed = 500f; //smoothtime
     private float gravity = -9.81f;
     [SerializeField] private float gravityMultiplier = 3.0f;
     [SerializeField] private float jumpPower;
@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     //interaction
     public delegate void Interact();
     public event Interact OnInteraction;
+    public bool isDragging;
 
     public UnityEvent<int> onDamage;
 
@@ -96,6 +97,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         //Debug.Log("Jump");
         if (!context.started) return;
         if (!IsGrounded()) return;
+        if (isDragging) return;
 
         velocity += jumpPower;
     }
@@ -119,7 +121,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         
         OnInteraction?.Invoke();
+        if(!context.started) return;
         Debug.Log("Interaction");
-        //if(!context.started) return;
     }
 }
