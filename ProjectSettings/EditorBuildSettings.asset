@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CR LIGHTING.unity
     guid: e28b130d92ded5940a9b681d3cc242d1
+  - enabled: 1
+    path: Assets/Scenes/Art_Prototype.unity
+    guid: 962ba6c0cd2b1304f9b7e15ddde1c829
   m_configObjects: {}

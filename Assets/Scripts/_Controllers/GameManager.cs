@@ -7,7 +7,12 @@ using UnityEngine.SceneManagement;
 public class GameManager : Singleton<GameManager>
 {
 
+    //Events other scripts can invoke for GameManager access
+    public static Action GamePause;
+    public static Action GameUnpause;
+    public static Action GameQuit;
 
+    //Events the Game Manager sends out
     public static Action<bool> OnGamePause;
     public enum GameState{
         Running,
@@ -19,6 +24,19 @@ public class GameManager : Singleton<GameManager>
 
     public static GameState currentGameState;
     public GameState previousGameState;
+
+    void OnEnable()
+    {
+        GamePause += PauseGame;
+        GameUnpause += UnpauseGame;
+        GameQuit += QuitGame;
+    }
+    void OnDisable()
+    {
+        GamePause -= PauseGame;
+        GameUnpause -= UnpauseGame;
+        GameQuit -= QuitGame;
+    }
     
     //Set to public so it can be called be triggers placed in the map
     //Can be set to additive so the loading is seemless between areas if needed
@@ -29,11 +47,15 @@ public class GameManager : Singleton<GameManager>
 
     void PauseGame()
     {
-        
+        gameIsPaused = true;
+        OnGamePause.Invoke(gameIsPaused);
+        Time.timeScale = 0.0f;
     }
     void UnpauseGame()
     {
-
+        gameIsPaused = false;
+        OnGamePause.Invoke(gameIsPaused);
+        Time.timeScale = 1.0f;
     }
 
     void QuitGame()
