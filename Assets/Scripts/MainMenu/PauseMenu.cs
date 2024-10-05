@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
+
+    [SerializeField] AudioClip selectSound;
     Button[] buttons;
 
    private void OnEnable()
@@ -19,6 +21,20 @@ public class PauseMenu : MonoBehaviour
    void Awake()
    {
         buttons = GetComponentsInChildren<Button>();
+        foreach(Button button in buttons)
+        {
+            var pointerEvents = button.GetComponent<PointerEventsController>();
+
+            if(pointerEvents == null)
+            {
+                Debug.LogWarning(button.name + " does not have a PointerEventsController. Cannot connect events.");
+                continue;
+            }
+            //Subscribe all the buttons when they click to the AudioManager.Instance to play a oneshot of the selectSound
+            //pointerEvents.PointerEnter
+            
+
+        }
         
    }
 
