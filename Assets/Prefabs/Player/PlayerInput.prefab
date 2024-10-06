@@ -126,6 +126,26 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: f73bde4c-5bb2-43f9-b4b8-3cfbeccc198f
     m_ActionName: Player/Ragdoll[/Keyboard/c,/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: HealthController, Assembly-CSharp
+        m_MethodName: Heal
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9d7b068f-3a23-4d34-915b-fb3ea1e5f3e3
+    m_ActionName: Player/Heal[/Keyboard/r,/XInputControllerWindows/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8b7ea317-9f14-494c-8f63-384f8df8c510
+    m_ActionName: Player/Pause[/Keyboard/escape,/XInputControllerWindows/start]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
