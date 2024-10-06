@@ -33,4 +33,9 @@ public class StuffingController : MonoBehaviour
             instance.GetComponent<Rigidbody>().velocity = (randomForce * 5f) + (Vector3.up * 2f);
         }
     }
+
+    public void UseStuffing()
+    {
+        stuffingCount = 0;
+    }
 }

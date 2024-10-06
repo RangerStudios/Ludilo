@@ -6,7 +6,11 @@ using UnityEngine.Events;
 public class HealthController : MonoBehaviour
 {
     public int health;
+    public bool canHeal;
     public UnityEvent onDeath;
+    public UnityEvent onHeal;
+    public StuffingController stuffingController;
+    
 
     public void Damage()
     {
@@ -29,5 +33,15 @@ public class HealthController : MonoBehaviour
     public void Kill()
     {
         onDeath.Invoke();
+    }
+
+    public void Heal()
+    {
+        if(canHeal == true)
+        {
+            this.health += GetComponent<StuffingController>().stuffingCount;
+            onHeal.Invoke();
+            canHeal = false;
+        }
     }
 }

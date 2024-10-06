@@ -686,6 +686,18 @@ Transform:
   - {fileID: 1849868571}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1043882822 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4963913879843685906, guid: 04040e2a1c5cdcd4aad85ceb646d1555,
+    type: 3}
+  m_PrefabInstance: {fileID: 1799062298599730625}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 170b6c885bfebc04f9b303f574e6febd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1329303643
 GameObject:
   m_ObjectHideFlags: 0
@@ -1419,6 +1431,11 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 858903169}
+    - target: {fileID: 3848388990627526065, guid: 3dcf25ce72f598b4682a4e73670356a9,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1043882822}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
