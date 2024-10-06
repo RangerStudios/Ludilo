@@ -12,12 +12,13 @@ public class PlayerController : MonoBehaviour, IDamageable
 {
     //setup
     private Vector2 input;
-    private CharacterController characterController;
+    public CharacterController characterController;
     public HealthController playerHealth;
     public StuffingController playerStuffing;
     public PlayerHealthScriptableObject savedPlayerHealth;
     private Vector3 direction;
     private Camera mainCamera;
+    [SerializeField] bool ragdolling = false;
 
     //player movement values
     [SerializeField] public float speed;
@@ -55,6 +56,18 @@ public class PlayerController : MonoBehaviour, IDamageable
         ApplyRotation();
         ApplyGravity();
         ApplyMovement();
+
+        if(ragdolling)
+        {
+            characterController.enabled = false;
+            input = Vector2.zero;
+            GetComponent<Rigidbody>().isKinematic = false;
+        }
+        if(!ragdolling)
+        {
+            characterController.enabled = true;
+            GetComponent<Rigidbody>().isKinematic = true;
+        }
     }
 
     private void ApplyRotation()
@@ -70,7 +83,11 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void ApplyMovement()
     {
-        characterController.Move(direction * speed * Time.deltaTime);
+        if(!ragdolling)
+        {
+            characterController.Move(direction * speed * Time.deltaTime);
+        }
+        
     }
 
     private void ApplyGravity()
@@ -88,8 +105,11 @@ public class PlayerController : MonoBehaviour, IDamageable
     }
     public void Move(InputAction.CallbackContext context)
     {
-        input = context.ReadValue<Vector2>();
-        direction = new Vector3(input.x, 0.0f, input.y);
+        if(characterController.enabled)
+        {
+            input = context.ReadValue<Vector2>();
+            direction = new Vector3(input.x, 0.0f, input.y);
+        }  
     }
 
     public void Jump(InputAction.CallbackContext context)
@@ -97,6 +117,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         //Debug.Log("Jump");
         if (!context.started) return;
         if (!IsGrounded()) return;
+        if (ragdolling) return;
         if (isDragging) return;
 
         velocity += jumpPower;
@@ -123,5 +144,16 @@ public class PlayerController : MonoBehaviour, IDamageable
         OnInteraction?.Invoke();
         if(!context.started) return;
         Debug.Log("Interaction");
+    }
+
+    public void Ragdoll(InputAction.CallbackContext context)
+    {
+        Debug.Log("ButtonPress");
+        RagdollState();
+    }
+
+    public void RagdollState()
+    {
+        ragdolling = !ragdolling;
     }
 }
