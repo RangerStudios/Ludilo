@@ -13183,6 +13183,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Prop_quadBox
       objectReference: {fileID: 0}
+    - target: {fileID: 5212629662626193279, guid: 8872e5eb7e8101240a5c5e008496aac3,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6004995396476092074, guid: 8872e5eb7e8101240a5c5e008496aac3,
+        type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
