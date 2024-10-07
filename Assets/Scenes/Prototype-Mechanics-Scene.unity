@@ -1147,6 +1147,76 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7721132905409715806, guid: 02ce941b9cbeb3f439e7e8de23591264,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7721132905409715806, guid: 02ce941b9cbeb3f439e7e8de23591264,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7721132905409715806, guid: 02ce941b9cbeb3f439e7e8de23591264,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1802997392}
+    - target: {fileID: 7721132905409715806, guid: 02ce941b9cbeb3f439e7e8de23591264,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7721132905409715806, guid: 02ce941b9cbeb3f439e7e8de23591264,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Quit
+      objectReference: {fileID: 0}
+    - target: {fileID: 7721132905409715806, guid: 02ce941b9cbeb3f439e7e8de23591264,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PauseMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7721132905409715806, guid: 02ce941b9cbeb3f439e7e8de23591264,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8329139028809726392, guid: 02ce941b9cbeb3f439e7e8de23591264,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8329139028809726392, guid: 02ce941b9cbeb3f439e7e8de23591264,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8329139028809726392, guid: 02ce941b9cbeb3f439e7e8de23591264,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1802997392}
+    - target: {fileID: 8329139028809726392, guid: 02ce941b9cbeb3f439e7e8de23591264,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8329139028809726392, guid: 02ce941b9cbeb3f439e7e8de23591264,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BackToMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 8329139028809726392, guid: 02ce941b9cbeb3f439e7e8de23591264,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PauseMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8329139028809726392, guid: 02ce941b9cbeb3f439e7e8de23591264,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5595032702273064620, guid: 02ce941b9cbeb3f439e7e8de23591264, type: 3}
     m_RemovedGameObjects: []
@@ -1844,7 +1914,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1744712891}
   - component: {fileID: 1744712890}
-  - component: {fileID: 1744712889}
   - component: {fileID: 1744712892}
   - component: {fileID: 1744712893}
   m_Layer: 0
@@ -1854,14 +1923,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1744712889
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1744712888}
-  m_Enabled: 1
 --- !u!20 &1744712890
 Camera:
   m_ObjectHideFlags: 0
