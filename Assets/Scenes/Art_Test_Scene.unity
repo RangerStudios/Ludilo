@@ -17144,6 +17144,11 @@ PrefabInstance:
       objectReference: {fileID: 1445792354}
     - target: {fileID: 3848388990627526065, guid: 3dcf25ce72f598b4682a4e73670356a9,
         type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1445792367}
+    - target: {fileID: 3848388990627526065, guid: 3dcf25ce72f598b4682a4e73670356a9,
+        type: 3}
       propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Move
       objectReference: {fileID: 0}
@@ -17156,6 +17161,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Interaction
+      objectReference: {fileID: 0}
+    - target: {fileID: 3848388990627526065, guid: 3dcf25ce72f598b4682a4e73670356a9,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PauseActivate
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -18526,6 +18536,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 673013658}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1445792367 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6774392582253477178, guid: 04040e2a1c5cdcd4aad85ceb646d1555,
+    type: 3}
+  m_PrefabInstance: {fileID: 673013658}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a6e4e05afafca24db699bbb1371e156, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &1448430009
 Mesh:
   m_ObjectHideFlags: 0
