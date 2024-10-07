@@ -11,6 +11,6 @@ public class PauseGame : MonoBehaviour
     }
     public void PauseActivate()
     {
-        GameManager.Instance.GamePause.Invoke();
+        GameManager.GamePause?.Invoke();
     }
 }
