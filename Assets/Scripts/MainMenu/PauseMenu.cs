@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
 
+    public  GameObject menu;
     [SerializeField] AudioClip selectSound;
     Button[] buttons;
 
@@ -20,7 +22,7 @@ public class PauseMenu : MonoBehaviour
 
    void Awake()
    {
-        buttons = GetComponentsInChildren<Button>();
+        buttons = menu.GetComponentsInChildren<Button>();
         foreach(Button button in buttons)
         {
             var pointerEvents = button.GetComponent<PointerEventsController>();
@@ -41,7 +43,7 @@ public class PauseMenu : MonoBehaviour
 
    public void UpdatePauseMenu(bool gamePaused)
    {
-        gameObject.SetActive(gamePaused);        
+        menu.SetActive(gamePaused);        
         Cursor.visible = gamePaused;
         if(gamePaused)
         {
@@ -57,5 +59,15 @@ public class PauseMenu : MonoBehaviour
    public void ResumeGame()
    {
         GameManager.GameUnpause.Invoke();
+   }
+
+   public void BackToMenu()
+   {
+     SceneManager.LoadScene("MainMenu");
+   }
+
+   public void Quit()
+   {
+     GameManager.GameQuit.Invoke();
    }
 }

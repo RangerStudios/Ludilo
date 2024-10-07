@@ -20,7 +20,7 @@ public class GameManager : Singleton<GameManager>
         Cutscene
     }
 
-    bool gameIsPaused;
+    bool gameIsPaused = false;
 
     public static GameState currentGameState;
     public GameState previousGameState;
@@ -48,13 +48,13 @@ public class GameManager : Singleton<GameManager>
     void PauseGame()
     {
         gameIsPaused = true;
-        OnGamePause.Invoke(gameIsPaused);
+        OnGamePause?.Invoke(gameIsPaused);
         Time.timeScale = 0.0f;
     }
     void UnpauseGame()
     {
         gameIsPaused = false;
-        OnGamePause.Invoke(gameIsPaused);
+        OnGamePause?.Invoke(gameIsPaused);
         Time.timeScale = 1.0f;
     }
 

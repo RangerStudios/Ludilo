@@ -19,7 +19,8 @@ GameObject:
   - component: {fileID: 3429032689556512233}
   - component: {fileID: 7413054823504788109}
   - component: {fileID: 3438774931221163145}
-  m_Layer: 0
+  - component: {fileID: 733879792604624944}
+  m_Layer: 6
   m_Name: PlayerPrototype
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -299,6 +300,14 @@ MonoBehaviour:
   radius: 2
   distance: 1.4
   playerController: {fileID: 0}
+--- !u!81 &733879792604624944
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3836063803591100535}
+  m_Enabled: 1
 --- !u!1 &7101073449557316992
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,7 +320,7 @@ GameObject:
   - component: {fileID: 136773793898938595}
   - component: {fileID: 5227509837814187165}
   - component: {fileID: 1176923792063493573}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Player
   m_Icon: {fileID: 0}
