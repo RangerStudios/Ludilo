@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 3429032689556512233}
   - component: {fileID: 7413054823504788109}
   - component: {fileID: 3438774931221163145}
+  - component: {fileID: 6774392582253477178}
   - component: {fileID: 733879792604624944}
   m_Layer: 6
   m_Name: PlayerPrototype
@@ -300,6 +301,18 @@ MonoBehaviour:
   radius: 2
   distance: 1.4
   playerController: {fileID: 0}
+--- !u!114 &6774392582253477178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3836063803591100535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a6e4e05afafca24db699bbb1371e156, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!81 &733879792604624944
 AudioListener:
   m_ObjectHideFlags: 0
