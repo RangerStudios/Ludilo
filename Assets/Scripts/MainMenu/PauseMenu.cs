@@ -56,6 +56,6 @@ public class PauseMenu : MonoBehaviour
 
    public void ResumeGame()
    {
-        GameManager.GameUnpause.Invoke();
+        GameManager.Instance.GameUnpause.Invoke();
    }
 }

@@ -8,9 +8,9 @@ public class GameManager : Singleton<GameManager>
 {
 
     //Events other scripts can invoke for GameManager access
-    public static Action GamePause;
-    public static Action GameUnpause;
-    public static Action GameQuit;
+    public Action GamePause;
+    public Action GameUnpause;
+    public Action GameQuit;
 
     //Events the Game Manager sends out
     public static Action<bool> OnGamePause;
@@ -20,7 +20,7 @@ public class GameManager : Singleton<GameManager>
         Cutscene
     }
 
-    bool gameIsPaused;
+    bool gameIsPaused = false;
 
     public static GameState currentGameState;
     public GameState previousGameState;
