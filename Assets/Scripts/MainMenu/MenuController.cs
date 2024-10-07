@@ -18,6 +18,10 @@ public class MenuController : MonoBehaviour
     public static Action<string> TryLoadNewScene;
 
 
+    public void Awake()
+    {
+        GameManager.GameUnpause?.Invoke();
+    }
 
     void SwitchMenu()
     {
