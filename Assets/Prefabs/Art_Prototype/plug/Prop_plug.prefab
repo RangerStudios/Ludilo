@@ -60,11 +60,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2690134187693510071, guid: 8e14dc2d24177a14ab33c3829673723b,
         type: 3}
-      propertyPath: m_StaticShadowCaster
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -2690134187693510071, guid: 8e14dc2d24177a14ab33c3829673723b,
-        type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: fc93aa8fbe75a9143a95ce75f503564d, type: 2}
@@ -72,11 +67,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Prop_plug
-      objectReference: {fileID: 0}
-    - target: {fileID: 1733443889240148659, guid: 8e14dc2d24177a14ab33c3829673723b,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
