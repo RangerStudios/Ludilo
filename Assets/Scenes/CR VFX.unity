@@ -836,7 +836,7 @@ Light:
   m_Intensity: 20
   m_Range: 6
   m_SpotAngle: 70.27928
-  m_InnerSpotAngle: 47.183456
+  m_InnerSpotAngle: 38.296593
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -1171,7 +1171,7 @@ PrefabInstance:
     - target: {fileID: 3789161292133395010, guid: d514d6ed48c3c7644a052d0b0476b9c6,
         type: 3}
       propertyPath: looping
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8295943292235844554, guid: d514d6ed48c3c7644a052d0b0476b9c6,
         type: 3}
