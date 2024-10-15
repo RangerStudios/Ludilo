@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     private Vector3 direction;
     private Camera mainCamera;
     [SerializeField] bool ragdolling = false;
+    // crouching: GetComponent<CapsuleCollider>? CapsuleCollider.height value change? I've also learned the CC is a collider. Maybe try ditching the C. Collider and work with CC?
 
     //player movement values
     [SerializeField] public float speed;
@@ -122,6 +123,9 @@ public class PlayerController : MonoBehaviour, IDamageable
 
         velocity += jumpPower;
     }
+
+    //public void Crouch(InputAction.CallbackContext context)
+    //characterController.height(?)
 
     private bool IsGrounded() => characterController.isGrounded;
 
