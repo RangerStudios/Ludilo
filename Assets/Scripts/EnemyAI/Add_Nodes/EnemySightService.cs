@@ -22,6 +22,9 @@ public class EnemySightService : Service
     [Tooltip("Transform representing enemy self.")]
     public TransformReference self = new TransformReference();
 
+    /*[Tooltip("Angle at which the player can 'see' the enemy.")]
+    public float viewAngle = 60f;*/
+
     public override void Task()
     {
         // Find Target in radius. Send target transform back to blackboard as long as raycast to target is not interrupted by wall.
@@ -35,8 +38,17 @@ public class EnemySightService : Service
             {
                 if (hit.collider.CompareTag("Player"))
                 {
-                    targetToSet.Value = colliders[0].transform;
-                    Debug.Log("Set");
+                    float dotProduct = Vector3.Dot(hit.transform.forward, direction);
+                    if (dotProduct < 0)
+                    {
+                        targetToSet.Value = hit.transform;
+                        Debug.Log("Set");
+                    }
+                    else
+                    {
+                        targetToSet.Value = null;
+                        Debug.Log(dotProduct);
+                    }
                 }
                 else
                 {
