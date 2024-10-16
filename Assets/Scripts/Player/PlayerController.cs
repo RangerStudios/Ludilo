@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour, IDamageable
     private Vector3 direction;
     private Camera mainCamera;
     [SerializeField] bool ragdolling = false;
+    [SerializeField] bool crouching = false;
+    // crouching: Gonna need to disable the basic capsule collider unless ragdolling, and move the CController center to y: -0.4 and the height to 1 while active
 
     //player movement values
     [SerializeField] public float speed;
@@ -48,6 +50,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         playerHealth.health = savedPlayerHealth.currentHealth;
         playerStuffing.stuffingCount = savedPlayerHealth.currentStuffing;
+        gameObject.GetComponent<CapsuleCollider>().enabled = false;
         Debug.Log("Player Health is: " + playerHealth.health);
     }
 
@@ -59,14 +62,27 @@ public class PlayerController : MonoBehaviour, IDamageable
 
         if(ragdolling)
         {
+            gameObject.GetComponent<CapsuleCollider>().enabled = true;
             characterController.enabled = false;
             input = Vector2.zero;
             GetComponent<Rigidbody>().isKinematic = false;
         }
         if(!ragdolling)
         {
+            gameObject.GetComponent<CapsuleCollider>().enabled = false;
             characterController.enabled = true;
             GetComponent<Rigidbody>().isKinematic = true;
+        }
+
+        if(crouching)
+        {
+            characterController.height = 1.0f;
+            characterController.center = new Vector3(0f, -0.4f, 0f);
+        }
+        if(!crouching)
+        {
+            characterController.height = 2.0f;
+            characterController.center = new Vector3(0f, 0f, 0f);
         }
     }
 
@@ -123,6 +139,17 @@ public class PlayerController : MonoBehaviour, IDamageable
         velocity += jumpPower;
     }
 
+    public void Crouch(InputAction.CallbackContext context)
+    {
+        Debug.Log("ButtonPress");
+        CrouchState();
+    }
+
+    public void CrouchState()
+    {
+        crouching = !crouching;
+    }
+
     private bool IsGrounded() => characterController.isGrounded;
 
     public void Damage(int damageValue)
@@ -148,7 +175,6 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     public void Ragdoll(InputAction.CallbackContext context)
     {
-        Debug.Log("ButtonPress");
         RagdollState();
     }
 
