@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class MediumItemPickup : MonoBehaviour
 {
-  [SerializeField] bool activated = false;
+    public bool activated;
     public GameObject heldObject;
     public float radius = 2f;
     public float distance = 1.4f;
@@ -20,7 +20,14 @@ public class MediumItemPickup : MonoBehaviour
 
     public void DragState()
     {
-        activated = !activated;
+        if(activated == false)
+        {
+            activated = true;
+        }
+        else
+        {
+            activated = false;
+        }
     }
 
     // Update is called once per frame
@@ -30,13 +37,17 @@ public class MediumItemPickup : MonoBehaviour
         var t = transform;
         if(heldObject)
         {
-            heldObject.transform.position = t.position + distance * t.forward;
-            playerController.isDragging = true;
-            playerController.speed = 2;
-            playerController.rotationSpeed = 50f;
+            
+            playerController.isDraggingMedium = true;
+            playerController.speed = 3;
+            playerController.rotationSpeed = 250f;
             if(!activated)
             {
-                playerController.isDragging = false;
+                var rigidbody = heldObject.GetComponent<Rigidbody>();
+                playerController.isDraggingMedium = false;
+                rigidbody.drag = 1f;
+                rigidbody.useGravity = true;
+                rigidbody.constraints = RigidbodyConstraints.None;
                 heldObject = null;
                 playerController.speed = 5;
                 playerController.rotationSpeed = 500f;
@@ -53,12 +64,29 @@ public class MediumItemPickup : MonoBehaviour
                 {
                     var hitObject = hits[hitIndex].transform.gameObject;
                     heldObject = hitObject;
+                    var rigidbody = heldObject.GetComponent<Rigidbody>();
+                    rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+                    rigidbody.drag = 25f;
+                    rigidbody.useGravity = false;
                 }
             }
         else
         {
           
         }
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        var t = transform;
+        if(heldObject)
+        {
+            var rigidbody = heldObject.GetComponent<Rigidbody>();
+            var moveTo = t.position + distance * t.forward;
+            var difference = moveTo - heldObject.transform.position;
+            rigidbody.AddForce(difference * 500);
+            heldObject.transform.rotation = t.rotation;
         }
     }
 }

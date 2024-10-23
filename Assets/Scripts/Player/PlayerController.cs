@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     //interaction
     public delegate void Interact();
     public event Interact OnInteraction;
-    public bool isDragging;
+    public bool isDraggingMedium;
     public bool hanging;
 
     public UnityEvent<int> onDamage;
@@ -90,16 +90,19 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void ApplyRotation()
     {
-        if(!hanging)
+        if(!hanging)//&& !isDraggingLarge
         {
             if (input.sqrMagnitude == 0) return;
             direction = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0.0f) * new Vector3(input.x, 0.0f, input.y);
             var targetRotation = Quaternion.LookRotation(direction, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed *Time.deltaTime);
         }
-        //var targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-        //var angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref currentVelocity, smoothTime);
-        //transform.rotation = Quaternion.Euler(0.0f, angle, 0.0f);
+
+        //if(isDraggingLarge)
+        //{
+            //if (input.sqrMagnitude == 0) return;
+            //direction = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0.0f) * new Vector3(input.x, 0.0f, input.y);
+        //}
     }
 
     private void ApplyMovement()
@@ -138,7 +141,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         //Debug.Log("Jump");
         if (!context.started) return;
         if (ragdolling) return;
-        if (isDragging) return;
+        if (isDraggingMedium) return;
 
         if (hanging)
         {
@@ -185,7 +188,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         
         OnInteraction?.Invoke();
         if(!context.started) return;
-        Debug.Log("Interaction");
+        //Debug.Log("Interaction");
     }
 
     public void Ragdoll(InputAction.CallbackContext context)

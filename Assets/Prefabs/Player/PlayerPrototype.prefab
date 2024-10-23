@@ -134,11 +134,13 @@ MonoBehaviour:
   playerStuffing: {fileID: 7413054823504788109}
   savedPlayerHealth: {fileID: 11400000, guid: f2889d2d8f6aa204f9dc06cec0712ac3, type: 2}
   ragdolling: 0
+  crouching: 0
   speed: 5
   rotationSpeed: 500
   gravityMultiplier: 2
   jumpPower: 4
-  isDragging: 0
+  isDraggingMedium: 0
+  hanging: 0
   onDamage:
     m_PersistentCalls:
       m_Calls:
