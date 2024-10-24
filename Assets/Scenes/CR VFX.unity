@@ -1230,6 +1230,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: God Rays VFX
       objectReference: {fileID: 0}
+    - target: {fileID: 6467355013549530924, guid: f8d32300ced25b24d9b2f15fcf33b4d4,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7670889499286569315, guid: f8d32300ced25b24d9b2f15fcf33b4d4,
         type: 3}
       propertyPath: m_LocalPosition.x
