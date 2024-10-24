@@ -38,6 +38,8 @@ public class CamTriggerVolume : MonoBehaviour
         if(other.gameObject.CompareTag("Player"))
         {
             if (CamSwitcher.ActiveCamera != cam) CamSwitcher.SwitchCamera(cam);
+            //cam.Follow = player
+            //cam.LookAt = player
         }
     }
 }

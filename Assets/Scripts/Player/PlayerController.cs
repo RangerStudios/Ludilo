@@ -239,5 +239,12 @@ public class PlayerController : MonoBehaviour, IDamageable
             }
         }
     }
-    
+
+    void Attack(InputAction.CallbackContext context)
+    {
+        //insert attack code here
+        //Logic, anim trigger, etc.
+    }
+
+
 }
