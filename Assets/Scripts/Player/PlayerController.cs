@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     public delegate void Interact();
     public event Interact OnInteraction;
     public bool isDraggingMedium;
+    public bool isDraggingLarge;
     public bool hanging;
 
     public UnityEvent<int> onDamage;
@@ -90,7 +91,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void ApplyRotation()
     {
-        if(!hanging)//&& !isDraggingLarge
+        if(!hanging && !isDraggingLarge)
         {
             if (input.sqrMagnitude == 0) return;
             direction = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0.0f) * new Vector3(input.x, 0.0f, input.y);
@@ -98,11 +99,11 @@ public class PlayerController : MonoBehaviour, IDamageable
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed *Time.deltaTime);
         }
 
-        //if(isDraggingLarge)
-        //{
-            //if (input.sqrMagnitude == 0) return;
-            //direction = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0.0f) * new Vector3(input.x, 0.0f, input.y);
-        //}
+        if(isDraggingLarge)
+        {
+            if (input.sqrMagnitude == 0) return;
+            direction = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0.0f) * new Vector3(input.x, 0.0f, input.y);
+        }
     }
 
     private void ApplyMovement()
