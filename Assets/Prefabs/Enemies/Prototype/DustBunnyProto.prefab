@@ -19,8 +19,8 @@ GameObject:
   - component: {fileID: 3839727070356662784}
   - component: {fileID: 5208770702750896621}
   - component: {fileID: 2540332720477315620}
-  - component: {fileID: 7330681559154563050}
   - component: {fileID: 9014506825040830647}
+  - component: {fileID: 4153585942079627437}
   m_Layer: 0
   m_Name: DustBunnyBehavior
   m_TagString: Untagged
@@ -160,8 +160,7 @@ MonoBehaviour:
     width: 160
     height: 45
   parent: {fileID: 6034178616756867574}
-  children:
-  - {fileID: 7330681559154563050}
+  children: []
   behaviourTree: {fileID: 0}
   runtimePriority: 0
   breakpoint: 0
@@ -231,7 +230,7 @@ MonoBehaviour:
     y: 340
     width: 160
     height: 45
-  parent: {fileID: 7330681559154563050}
+  parent: {fileID: 0}
   children: []
   behaviourTree: {fileID: 0}
   runtimePriority: 0
@@ -366,33 +365,6 @@ MonoBehaviour:
   agent: {fileID: 6296315569988532991}
   stopDistance: 2
   updateInterval: 1
---- !u!114 &7330681559154563050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2705898914821891190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08540605df275034fafc8e05c6704214, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  title: Selector
-  rect:
-    serializedVersion: 2
-    x: 540
-    y: 260
-    width: 160
-    height: 45
-  parent: {fileID: 8303452222659816343}
-  children:
-  - {fileID: 5208770702750896621}
-  - {fileID: 9014506825040830647}
-  behaviourTree: {fileID: 0}
-  runtimePriority: 0
-  breakpoint: 0
-  random: 0
 --- !u!114 &9014506825040830647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -412,7 +384,7 @@ MonoBehaviour:
     y: 340
     width: 160
     height: 45
-  parent: {fileID: 7330681559154563050}
+  parent: {fileID: 0}
   children: []
   behaviourTree: {fileID: 0}
   runtimePriority: 0
@@ -425,6 +397,33 @@ MonoBehaviour:
     constantValue: 2
   randomDeviation: 0
   continueOnRestart: 0
+--- !u!114 &4153585942079627437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2705898914821891190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c78c7da6b00e1b46bad07949050f82f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Sequence
+  rect:
+    serializedVersion: 2
+    x: 540
+    y: 260
+    width: 160
+    height: 45
+  parent: {fileID: 8303452222659816343}
+  children:
+  - {fileID: 5208770702750896621}
+  - {fileID: 9014506825040830647}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  random: 0
 --- !u!1 &8014575458442653612
 GameObject:
   m_ObjectHideFlags: 0
