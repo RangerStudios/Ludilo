@@ -1,0 +1,82 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.InputSystem;
+
+
+public class PlayerInput : MonoBehaviour, PlayerControls.IPlayerActions
+{
+    private PlayerControls playerControls;
+    public static UnityAction<Vector2> onMove = delegate { };
+    public static UnityAction onJump = delegate { };
+    public static UnityAction onCrouch = delegate { };
+    public static UnityAction onRagdoll = delegate { };
+    public static UnityAction onInteract = delegate { };
+    public static UnityAction onPause = delegate { };
+    public static UnityAction onHeal = delegate { };
+
+    void OnEnable()
+    {
+        if (playerControls == null)
+        {
+            playerControls = new PlayerControls();
+            playerControls.Player.SetCallbacks(this);
+        }
+        playerControls.Player.Enable();
+    }
+
+    void OnDisable()
+    {
+        playerControls.Player.Disable();
+    }
+
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        onMove(context.ReadValue<Vector2>());
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if(context.started)
+        {
+            onJump();
+        }
+        if (!context.started) return;
+    }
+    
+    public void OnRun(InputAction.CallbackContext context)
+    {
+
+    }
+    
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+
+    }
+    
+    public void OnRagdoll(InputAction.CallbackContext context)
+    {
+
+    }
+    
+    public void OnHeal(InputAction.CallbackContext context)
+    {
+
+    }
+    
+    public void OnPause(InputAction.CallbackContext context)
+    {
+
+    }
+    
+    public void OnCrouch(InputAction.CallbackContext context)
+    {
+
+    }
+    
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+
+    }
+}

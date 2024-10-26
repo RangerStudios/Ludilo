@@ -11,7 +11,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour, IDamageable
 {
     //setup
-    private Vector2 input;
+    private Vector2 movementVector;
     public CharacterController characterController;
     public HealthController playerHealth;
     public StuffingController playerStuffing;
@@ -40,6 +40,17 @@ public class PlayerController : MonoBehaviour, IDamageable
     public UnityEvent<int> onDamage;
 
 
+    void OnEnable()
+    {
+        PlayerInput.onMove += MovementInput;
+        PlayerInput.onJump += Jump;
+    }
+
+    void OnDisable()
+    {
+        PlayerInput.onMove -= MovementInput;
+        PlayerInput.onJump -= Jump;
+    }
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
@@ -67,7 +78,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         {
             gameObject.GetComponent<CapsuleCollider>().enabled = true;
             characterController.enabled = false;
-            input = Vector2.zero;
+            movementVector = Vector2.zero;
             GetComponent<Rigidbody>().isKinematic = false;
         }
         if(!ragdolling)
@@ -93,16 +104,16 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         if(!hanging && !isDraggingLarge)
         {
-            if (input.sqrMagnitude == 0) return;
-            direction = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0.0f) * new Vector3(input.x, 0.0f, input.y);
+            if (movementVector.sqrMagnitude == 0) return;
+            direction = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0.0f) * new Vector3(movementVector.x, 0.0f, movementVector.y);
             var targetRotation = Quaternion.LookRotation(direction, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed *Time.deltaTime);
         }
 
         if(isDraggingLarge)
         {
-            if (input.sqrMagnitude == 0) return;
-            direction = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0.0f) * new Vector3(input.x, 0.0f, input.y);
+            if (movementVector.sqrMagnitude == 0) return;
+            direction = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0.0f) * new Vector3(movementVector.x, 0.0f, movementVector.y);
         }
     }
 
@@ -128,19 +139,19 @@ public class PlayerController : MonoBehaviour, IDamageable
         
         direction.y = velocity;
     }
-    public void Move(InputAction.CallbackContext context)
+    public void MovementInput(Vector2 input)
     {
+        movementVector = input;
         if(characterController.enabled)
         {
-            input = context.ReadValue<Vector2>();
-            direction = new Vector3(input.x, 0.0f, input.y);
+            direction = new Vector3(movementVector.x, 0.0f, movementVector.y);
         }  
     }
 
-    public void Jump(InputAction.CallbackContext context)
+    public void Jump()
     {
         //Debug.Log("Jump");
-        if (!context.started) return;
+        //if (!context.started) return;
         if (ragdolling) return;
         if (isDraggingMedium) return;
 

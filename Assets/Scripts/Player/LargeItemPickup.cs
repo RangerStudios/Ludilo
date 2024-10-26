@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class LargeItemPickup : MonoBehaviour
 {
@@ -88,5 +89,12 @@ public bool activated;
             rigidbody.AddForce(difference * 500);
             heldObject.transform.rotation = t.rotation;
         }
+    }
+
+    public void Interaction(InputAction.CallbackContext context)
+    {
+        DragState();
+        if(!context.started) return;
+        Debug.Log("Interact");
     }
 }
