@@ -38,5 +38,6 @@ public class InteractionUnityEvent : MonoBehaviour
     private void InteractionEvent()
     {
         interaction?.Invoke();
+        //Debug.Log("Interaction");
     }
 }
