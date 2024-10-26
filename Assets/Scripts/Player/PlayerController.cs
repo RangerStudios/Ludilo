@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     public PlayerHealthScriptableObject savedPlayerHealth;
     private Vector3 direction;
     private Camera mainCamera;
+    Rigidbody rb;
     [SerializeField] bool ragdolling = false;
     [SerializeField] bool crouching = false;
     // crouching: Gonna need to disable the basic capsule collider unless ragdolling, and move the CController center to y: -0.4 and the height to 1 while active
@@ -44,12 +45,16 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         PlayerInput.onMove += MovementInput;
         PlayerInput.onJump += Jump;
+        PlayerInput.onRagdoll += Ragdoll;
+        PlayerInput.onCrouch += Crouch;
     }
 
     void OnDisable()
     {
         PlayerInput.onMove -= MovementInput;
         PlayerInput.onJump -= Jump;
+        PlayerInput.onRagdoll -= Ragdoll;
+        PlayerInput.onCrouch -= Crouch;
     }
     private void Awake()
     {
@@ -57,6 +62,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         playerHealth = GetComponent<HealthController>();
         playerStuffing = GetComponent<StuffingController>();
         mainCamera = Camera.main;
+        rb = GetComponent<Rigidbody>();
     }
 
     private void Start()
@@ -102,7 +108,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void ApplyRotation()
     {
-        if(!hanging && !isDraggingLarge)
+        if(!hanging && !isDraggingLarge && !ragdolling)
         {
             if (movementVector.sqrMagnitude == 0) return;
             direction = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0.0f) * new Vector3(movementVector.x, 0.0f, movementVector.y);
@@ -121,7 +127,13 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         if(!ragdolling && !hanging)
         {
+            PlayerInput.onMove += MovementInput;
             characterController.Move(direction * speed * Time.deltaTime);
+        }
+        if(ragdolling)
+        {
+            rb.AddForce(transform.forward);
+            PlayerInput.onMove -= MovementInput;
         }
         
     }
@@ -169,9 +181,9 @@ public class PlayerController : MonoBehaviour, IDamageable
         
     }
 
-    public void Crouch(InputAction.CallbackContext context)
+    public void Crouch()
     {
-        Debug.Log("ButtonPress");
+        //Debug.Log("ButtonPress");
         CrouchState();
     }
 
@@ -203,7 +215,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         //Debug.Log("Interaction");
     }
 
-    public void Ragdoll(InputAction.CallbackContext context)
+    public void Ragdoll()
     {
         RagdollState();
     }

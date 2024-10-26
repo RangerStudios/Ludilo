@@ -57,22 +57,37 @@ public class PlayerInput : MonoBehaviour, PlayerControls.IPlayerActions
     
     public void OnRagdoll(InputAction.CallbackContext context)
     {
-
+        if(context.started)
+        {
+            onRagdoll();
+        }
+        if(!context.started) return;
     }
     
     public void OnHeal(InputAction.CallbackContext context)
     {
-
+        if(context.started)
+        {
+            onHeal();
+        }
+        if(!context.started) return;
     }
     
     public void OnPause(InputAction.CallbackContext context)
     {
-
+        if(context.started)
+        {
+            onPause();
+        }
+        if(!context.started) return;
     }
     
     public void OnCrouch(InputAction.CallbackContext context)
     {
-
+        if(context.started)
+        {
+            onCrouch();
+        }
     }
     
     public void OnAttack(InputAction.CallbackContext context)
