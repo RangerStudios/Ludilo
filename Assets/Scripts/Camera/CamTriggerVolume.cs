@@ -5,7 +5,7 @@ using Cinemachine;
 using UnityEngine.UIElements;
 
 //[RequireComponent(typeof(BoxCollider))]
-[RequireComponent(typeof(Rigidbody))]
+//[RequireComponent(typeof(Rigidbody))]
 public class CamTriggerVolume : TriggerVolume
 {
     [SerializeField] private CinemachineVirtualCamera cam;
