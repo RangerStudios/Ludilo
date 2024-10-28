@@ -8,14 +8,16 @@ using UnityEngine.Events;
 public class TriggerVolume : Interactable
 {
 
-    public UnityAction<Collider> OnEnterTrigger;
-    public UnityAction<Collider> OnExitTrigger;
-    BoxCollider box;
+    public UnityEvent<Collider> OnEnterTrigger;
+    public UnityEvent<Collider> OnExitTrigger;
+    protected BoxCollider box;
+    [SerializeField] private Vector3 boxSize;
 
-    void Awake()
+    protected virtual void Awake()
     {
         box = GetComponent<BoxCollider>();
         box.isTrigger = true;
+        box.size = boxSize;
     }
 
 
@@ -26,6 +28,12 @@ public class TriggerVolume : Interactable
     public virtual void OnTriggerExit(Collider collider)
     {
         OnExitTrigger?.Invoke(collider);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube(transform.position, boxSize); 
     }
 
 }

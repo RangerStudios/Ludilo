@@ -6,7 +6,7 @@ public class Interactable : MonoBehaviour
 {
    
     [SerializeField]
-    public UnityAction OnInteract;
+    public UnityEvent OnInteract;
 
     protected void Interact()
     {
