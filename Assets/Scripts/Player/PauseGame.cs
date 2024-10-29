@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class PauseGame : MonoBehaviour
 {
+    void OnEnable()
+    {
+        PlayerInput.onPause += PauseActivate;
+    }
+
+    void OnDisable()
+    {
+        PlayerInput.onPause -= PauseActivate;
+    }
 
     void Start()
     {
