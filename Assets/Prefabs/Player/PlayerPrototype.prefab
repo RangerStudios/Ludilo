@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 2967530441918963424}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0.51}
+  m_LocalPosition: {x: 0, y: -0.198, z: 0.898}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -46,9 +46,6 @@ GameObject:
   - component: {fileID: 3586275181437846000}
   - component: {fileID: 4963913879843685906}
   - component: {fileID: 7413054823504788109}
-  - component: {fileID: 2810735528351297152}
-  - component: {fileID: 3438774931221163145}
-  - component: {fileID: 5699392460904728094}
   - component: {fileID: 6774392582253477178}
   - component: {fileID: 733879792604624944}
   - component: {fileID: 3138588615103539705}
@@ -125,6 +122,8 @@ MonoBehaviour:
   isDraggingMedium: 0
   isDraggingLarge: 0
   hanging: 0
+  isGrabbed: 0
+  isHoldingItem: 0
   onDamage:
     m_PersistentCalls:
       m_Calls:
@@ -207,36 +206,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   canHeal: 0
-  onDeath:
+  OnDeath:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4773192885318573420}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: Die
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onHeal:
+      m_Calls: []
+  OnHeal:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7413054823504788109}
-        m_TargetAssemblyTypeName: StuffingController, Assembly-CSharp
-        m_MethodName: UseStuffing
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   stuffingController: {fileID: 7413054823504788109}
 --- !u!114 &7413054823504788109
 MonoBehaviour:
@@ -253,66 +228,6 @@ MonoBehaviour:
   stuffingCount: 0
   stuffing: {fileID: 2396445950656292051, guid: 1c83288f45bd2424aa3cee47d7294f98,
     type: 3}
---- !u!114 &2810735528351297152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3836063803591100535}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d03c7016815bccd4ab907218470b4a35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
-  activated: 0
-  heldObject: {fileID: 0}
-  radius: 2
-  distance: 1.2
-  height: 0.3
---- !u!114 &3438774931221163145
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3836063803591100535}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea560c1011f942e4395d6b6229073b4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
-  activated: 0
-  heldObject: {fileID: 0}
-  radius: 2
-  distance: 1.4
-  playerController: {fileID: 0}
---- !u!114 &5699392460904728094
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3836063803591100535}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d94a48ff2ac9cff4f8ecb0b490af5525, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
-  activated: 0
-  heldObject: {fileID: 0}
-  radius: 2
-  distance: 1.6
-  playerController: {fileID: 0}
 --- !u!114 &6774392582253477178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,7 +273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionPoint: {fileID: 984351181537012156}
-  interactionPointRadius: 0.5
+  interactionPointRadius: 0.66
   interactableMask:
     serializedVersion: 2
     m_Bits: 512

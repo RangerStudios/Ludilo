@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class LargeItemPickup : Interactable
 {
-public bool activated = false;
+    public bool activated = false;
     public GameObject heldObject;
     public float radius;
     public float distance;
