@@ -12,7 +12,11 @@ public class GameManager : Singleton<GameManager>
     public static Action GameUnpause;
     public static Action GameQuit;
 
+    public Action<int> AddNumber;
     //Events the Game Manager sends out
+
+    public Action SpawnPlayer;
+
     public static Action<bool> OnGamePause;
     public enum GameState{
         Running,
@@ -25,8 +29,12 @@ public class GameManager : Singleton<GameManager>
     public static GameState currentGameState;
     public GameState previousGameState;
 
+    public GameObject player;
+
     void OnEnable()
     {
+        //player.GetComponent<PlayerController>().OnDeath += PauseGame;
+        //Plsyer.OnDeath += OnPlayerDied;
         GamePause += PauseGame;
         GameUnpause += UnpauseGame;
         GameQuit += QuitGame;
@@ -37,6 +45,12 @@ public class GameManager : Singleton<GameManager>
         GameUnpause -= UnpauseGame;
         GameQuit -= QuitGame;
     }
+
+    void Start()
+    {
+        
+    }
+
     
     //Set to public so it can be called be triggers placed in the map
     //Can be set to additive so the loading is seemless between areas if needed
