@@ -2,10 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 //Code by Anthony C.
 //Apply this script to the player for picking up small items
-public class PickUpTest : MonoBehaviour
+public class SmallItemPickup : Interactable
 {
     [SerializeField] bool activated = false;
     public GameObject heldObject;
@@ -55,6 +56,13 @@ public class PickUpTest : MonoBehaviour
         }
         }
     }
+
+    //public void Interaction(InputAction.CallbackContext context)
+    //{
+        //HoldState();
+        //if(!context.started) return;
+        //Debug.Log("Interact");
+    //}
 
     
 

@@ -15,6 +15,7 @@ public class PlayerInput : MonoBehaviour, PlayerControls.IPlayerActions
     public static UnityAction onInteract = delegate { };
     public static UnityAction onPause = delegate { };
     public static UnityAction onHeal = delegate { };
+    public static UnityAction onAttack = delegate { };
 
     void OnEnable()
     {
@@ -52,7 +53,11 @@ public class PlayerInput : MonoBehaviour, PlayerControls.IPlayerActions
     
     public void OnInteract(InputAction.CallbackContext context)
     {
-
+        if(context.started)
+        {
+            onInteract();
+        }
+        if (!context.started) return;
     }
     
     public void OnRagdoll(InputAction.CallbackContext context)
@@ -92,6 +97,10 @@ public class PlayerInput : MonoBehaviour, PlayerControls.IPlayerActions
     
     public void OnAttack(InputAction.CallbackContext context)
     {
-
+        if(context.started)
+        {
+            onAttack();
+        }
+        if(!context.started) return;
     }
 }
