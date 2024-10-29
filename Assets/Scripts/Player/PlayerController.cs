@@ -11,13 +11,14 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour, IDamageable
 {
     //setup
-    private Vector2 input;
+    private Vector2 movementVector;
     public CharacterController characterController;
     public HealthController playerHealth;
     public StuffingController playerStuffing;
     public PlayerHealthScriptableObject savedPlayerHealth;
     private Vector3 direction;
     private Camera mainCamera;
+    Rigidbody rb;
     [SerializeField] bool ragdolling = false;
     [SerializeField] bool crouching = false;
     // crouching: Gonna need to disable the basic capsule collider unless ragdolling, and move the CController center to y: -0.4 and the height to 1 while active
@@ -32,19 +33,39 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     //interaction
     public delegate void Interact();
-    public event Interact OnInteraction;
     public bool isDraggingMedium;
+    public bool isDraggingLarge;
     public bool hanging;
+    public bool isGrabbed;
+    public bool isHoldingItem;
 
     public UnityEvent<int> onDamage;
 
 
+    void OnEnable()
+    {
+        PlayerInput.onMove += MovementInput;
+        PlayerInput.onJump += Jump;
+        PlayerInput.onRagdoll += Ragdoll;
+        PlayerInput.onCrouch += Crouch;
+        PlayerInput.onAttack += Attack;
+    }
+
+    void OnDisable()
+    {
+        PlayerInput.onMove -= MovementInput;
+        PlayerInput.onJump -= Jump;
+        PlayerInput.onRagdoll -= Ragdoll;
+        PlayerInput.onCrouch -= Crouch;
+        PlayerInput.onAttack -= Attack;
+    }
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
         playerHealth = GetComponent<HealthController>();
         playerStuffing = GetComponent<StuffingController>();
         mainCamera = Camera.main;
+        rb = GetComponent<Rigidbody>();
     }
 
     private void Start()
@@ -66,7 +87,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         {
             gameObject.GetComponent<CapsuleCollider>().enabled = true;
             characterController.enabled = false;
-            input = Vector2.zero;
+            movementVector = Vector2.zero;
             GetComponent<Rigidbody>().isKinematic = false;
         }
         if(!ragdolling)
@@ -90,26 +111,32 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void ApplyRotation()
     {
-        if(!hanging)//&& !isDraggingLarge
+        if(!hanging && !isDraggingLarge && !ragdolling)
         {
-            if (input.sqrMagnitude == 0) return;
-            direction = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0.0f) * new Vector3(input.x, 0.0f, input.y);
+            if (movementVector.sqrMagnitude == 0) return;
+            direction = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0.0f) * new Vector3(movementVector.x, 0.0f, movementVector.y);
             var targetRotation = Quaternion.LookRotation(direction, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed *Time.deltaTime);
         }
 
-        //if(isDraggingLarge)
-        //{
-            //if (input.sqrMagnitude == 0) return;
-            //direction = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0.0f) * new Vector3(input.x, 0.0f, input.y);
-        //}
+        if(isDraggingLarge)
+        {
+            if (movementVector.sqrMagnitude == 0) return;
+            direction = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0.0f) * new Vector3(movementVector.x, 0.0f, movementVector.y);
+        }
     }
 
     private void ApplyMovement()
     {
         if(!ragdolling && !hanging)
         {
+            PlayerInput.onMove += MovementInput;
             characterController.Move(direction * speed * Time.deltaTime);
+        }
+        if(ragdolling)
+        {
+            rb.AddForce(transform.forward);
+            PlayerInput.onMove -= MovementInput;
         }
         
     }
@@ -127,19 +154,19 @@ public class PlayerController : MonoBehaviour, IDamageable
         
         direction.y = velocity;
     }
-    public void Move(InputAction.CallbackContext context)
+    public void MovementInput(Vector2 input)
     {
+        movementVector = input;
         if(characterController.enabled)
         {
-            input = context.ReadValue<Vector2>();
-            direction = new Vector3(input.x, 0.0f, input.y);
+            direction = new Vector3(movementVector.x, 0.0f, movementVector.y);
         }  
     }
 
-    public void Jump(InputAction.CallbackContext context)
+    public void Jump()
     {
         //Debug.Log("Jump");
-        if (!context.started) return;
+        //if (!context.started) return;
         if (ragdolling) return;
         if (isDraggingMedium) return;
 
@@ -157,9 +184,9 @@ public class PlayerController : MonoBehaviour, IDamageable
         
     }
 
-    public void Crouch(InputAction.CallbackContext context)
+    public void Crouch()
     {
-        Debug.Log("ButtonPress");
+        //Debug.Log("ButtonPress");
         CrouchState();
     }
 
@@ -183,15 +210,15 @@ public class PlayerController : MonoBehaviour, IDamageable
     }
     
 
-    public void Interaction(InputAction.CallbackContext context)
-    {
+    //public void Interaction(InputAction.CallbackContext context)
+    //{
         
-        OnInteraction?.Invoke();
-        if(!context.started) return;
+        //OnInteraction?.Invoke();
+        //if(!context.started) return;
         //Debug.Log("Interaction");
-    }
+    //}
 
-    public void Ragdoll(InputAction.CallbackContext context)
+    public void Ragdoll()
     {
         RagdollState();
     }
@@ -239,5 +266,16 @@ public class PlayerController : MonoBehaviour, IDamageable
             }
         }
     }
-    
+
+    void Attack()
+    {
+        if (!isGrabbed)
+        {
+            //insert attack code here
+            //Logic, anim trigger, etc.
+            Debug.Log("Attack Go");
+        }
+    }
+
+
 }

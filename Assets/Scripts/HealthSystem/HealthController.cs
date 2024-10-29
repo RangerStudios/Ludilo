@@ -12,6 +12,15 @@ public class HealthController : MonoBehaviour
     public StuffingController stuffingController;
     
 
+    void OnEnable()
+    {
+        PlayerInput.onHeal += Heal;
+    }
+
+    void OnDisable()
+    {
+        PlayerInput.onHeal += Heal;
+    }
     public void Damage()
     {
         this.health--;
