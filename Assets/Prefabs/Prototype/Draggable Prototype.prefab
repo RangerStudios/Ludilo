@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5499606253058471605}
   - component: {fileID: 1959344420116773538}
   - component: {fileID: 2381045574105825887}
-  - component: {fileID: 747254350172626204}
+  - component: {fileID: 8210652019707643556}
   m_Layer: 9
   m_Name: Draggable Prototype
   m_TagString: LargePickUp
@@ -134,7 +134,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &747254350172626204
+--- !u!114 &8210652019707643556
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,14 +143,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8521420059041227674}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c8d3ff7eba64a94493254094325e346, type: 3}
+  m_Script: {fileID: 11500000, guid: d94a48ff2ac9cff4f8ecb0b490af5525, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   OnInteract:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5699392460904728094, guid: 04040e2a1c5cdcd4aad85ceb646d1555,
-          type: 3}
+      - m_Target: {fileID: 8210652019707643556}
         m_TargetAssemblyTypeName: LargeItemPickup, Assembly-CSharp
         m_MethodName: DragState
         m_Mode: 1
@@ -162,3 +161,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  activated: 0
+  heldObject: {fileID: 0}
+  radius: 0
+  distance: 0
+  playerController: {fileID: 0}
+  playerTransform: {fileID: 0}

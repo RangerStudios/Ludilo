@@ -7,14 +7,16 @@ public class Interactable : MonoBehaviour
    
     public UnityEvent OnInteract;
 
-    protected void Interact()
+    protected bool Interact()
     {
         OnInteract?.Invoke();
+        return true;
     }
 
-    public virtual void Interact(Interactor interactor)
+    public virtual bool Interact(Interactor interactor)
     {
         Interact();
+        return true; 
     }
 
 }

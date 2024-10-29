@@ -11,23 +11,29 @@ public bool activated = false;
     public float radius;
     public float distance;
     //public float height = 0.3f;
-    public PlayerController playerController;    
+    public PlayerController playerController;
+    public GameObject player;
+    public Transform playerTransform;
     
     // Start is called before the first frame update
     void Start()
     {
-        playerController = GetComponent<PlayerController>();
+        player = GameObject.FindWithTag("Player");
+        playerController = player.GetComponent<PlayerController>();
+        playerTransform = GameObject.FindWithTag("Player").transform;
     }
 
     public void DragState()
     {
-        if(activated == false)
+        if(activated == false && playerController.isHoldingItem == false)
         {
             activated = true;
+            playerController.isHoldingItem = true;
         }
         else
         {
             activated = false;
+            playerController.isHoldingItem = false;
         }
     }
 
@@ -35,7 +41,7 @@ public bool activated = false;
     void Update()
     {
     
-        var t = transform;
+        var t = playerTransform;
         if(heldObject)
         {
             
@@ -80,8 +86,8 @@ public bool activated = false;
 
     private void FixedUpdate()
     {
-        var t = transform;
-        if(heldObject)
+        var t = playerTransform;
+        if (heldObject)
         {
             var rigidbody = heldObject.GetComponent<Rigidbody>();
             var moveTo = t.position + distance * t.forward;

@@ -33,10 +33,10 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     //interaction
     public delegate void Interact();
-    //public event Interact OnInteraction;
     public bool isDraggingMedium;
     public bool isDraggingLarge;
     public bool hanging;
+    public bool isHoldingItem;
 
     public UnityEvent<int> onDamage;
 
