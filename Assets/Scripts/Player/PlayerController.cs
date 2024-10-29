@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     public bool isDraggingMedium;
     public bool isDraggingLarge;
     public bool hanging;
+    public bool isGrabbed;
 
     public UnityEvent<int> onDamage;
 
@@ -47,6 +48,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         PlayerInput.onJump += Jump;
         PlayerInput.onRagdoll += Ragdoll;
         PlayerInput.onCrouch += Crouch;
+        PlayerInput.onAttack += Attack;
     }
 
     void OnDisable()
@@ -55,6 +57,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         PlayerInput.onJump -= Jump;
         PlayerInput.onRagdoll -= Ragdoll;
         PlayerInput.onCrouch -= Crouch;
+        PlayerInput.onAttack -= Attack;
     }
     private void Awake()
     {
@@ -264,10 +267,14 @@ public class PlayerController : MonoBehaviour, IDamageable
         }
     }
 
-    void Attack(InputAction.CallbackContext context)
+    void Attack()
     {
-        //insert attack code here
-        //Logic, anim trigger, etc.
+        if (!isGrabbed)
+        {
+            //insert attack code here
+            //Logic, anim trigger, etc.
+            Debug.Log("Attack Go");
+        }
     }
 
 
