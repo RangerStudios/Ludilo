@@ -1,14 +1,28 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
 // MOVE TO GAMEMANAGER
-public class RespawnTracker : MonoBehaviour
+public class RespawnManager : MonoBehaviour
 {
     public Transform recentCheckpoint;
     public Transform recentSave;
     public GameObject player;
+
+    void OnEnable()
+    {
+        GameManager.Instance.SpawnPlayer += OnSpawnPlayer;
+    }
+
+    private void OnSpawnPlayer()
+    {
+
+        //if(SpawnCondition.RespawnFromDeath
+        // RespawnAtCheckpoint)
+        throw new NotImplementedException();
+    }
 
     public void Awake()
     {

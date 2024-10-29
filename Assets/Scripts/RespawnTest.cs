@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class RespawnTest : MonoBehaviour
 {
     public UnityEvent onRespawn;
-    public RespawnTracker respawnTracker;
+    public RespawnManager respawnManager;
 
     public void OnTriggerEnter(Collider other)
     {
