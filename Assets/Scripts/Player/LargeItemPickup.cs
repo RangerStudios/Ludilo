@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class LargeItemPickup : MonoBehaviour
+public class LargeItemPickup : Interactable
 {
-public bool activated;
+public bool activated = false;
     public GameObject heldObject;
     public float radius;
     public float distance;
@@ -91,10 +91,10 @@ public bool activated;
         }
     }
 
-    public void Interaction(InputAction.CallbackContext context)
-    {
-        DragState();
-        if(!context.started) return;
-        Debug.Log("Interact");
-    }
+    //public void Interaction(InputAction.CallbackContext context)
+    //{
+        //DragState();
+        //if(!context.started) return;
+        ///Debug.Log("Interact");
+    //}
 }

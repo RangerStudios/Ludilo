@@ -33,7 +33,7 @@ public class CamTriggerVolume : TriggerVolume
         {
             if (CamSwitcher.ActiveCamera != cam) CamSwitcher.SwitchCamera(cam);
             //cam.Follow = player
-            //cam.LookAt = player
+            cam.LookAt = collider.transform;
         }
     }
 }

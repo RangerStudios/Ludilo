@@ -2,8 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class MediumItemPickup : MonoBehaviour
+public class MediumItemPickup : Interactable
 {
     public bool activated;
     public GameObject heldObject;
@@ -89,4 +90,11 @@ public class MediumItemPickup : MonoBehaviour
             heldObject.transform.rotation = t.rotation;
         }
     }
+
+     //public void Interaction(InputAction.CallbackContext context)
+    //{
+        //DragState();
+        //if(!context.started) return;
+        //Debug.Log("Interact");
+    //}
 }

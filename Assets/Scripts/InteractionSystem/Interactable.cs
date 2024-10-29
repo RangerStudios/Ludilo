@@ -5,7 +5,6 @@ using UnityEngine.Events;
 public class Interactable : MonoBehaviour
 {
    
-    [SerializeField]
     public UnityEvent OnInteract;
 
     protected void Interact()

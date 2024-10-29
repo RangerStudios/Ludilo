@@ -23,7 +23,7 @@ public class InteractionUnityEvent : MonoBehaviour
     {
         if(other.TryGetComponent(out PlayerController player))
         {
-            player.OnInteraction += InteractionEvent;
+            //player.OnInteraction += InteractionEvent;
         }
     }
 
@@ -31,13 +31,13 @@ public class InteractionUnityEvent : MonoBehaviour
     {
         if(other.TryGetComponent(out PlayerController player))
         {
-            player.OnInteraction -= InteractionEvent;
+            //player.OnInteraction -= InteractionEvent;
         }
     }
 
     private void InteractionEvent()
     {
-        interaction?.Invoke();
+        //interaction?.Invoke();
         //Debug.Log("Interaction");
     }
 }
