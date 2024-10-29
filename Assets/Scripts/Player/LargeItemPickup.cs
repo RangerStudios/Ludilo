@@ -4,30 +4,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class LargeItemPickup : MonoBehaviour
+public class LargeItemPickup : Interactable
 {
-public bool activated;
+public bool activated = false;
     public GameObject heldObject;
     public float radius;
     public float distance;
     //public float height = 0.3f;
-    public PlayerController playerController;    
+    public PlayerController playerController;
+    public GameObject player;
+    public Transform playerTransform;
     
     // Start is called before the first frame update
     void Start()
     {
-        playerController = GetComponent<PlayerController>();
+        player = GameObject.FindWithTag("Player");
+        playerController = player.GetComponent<PlayerController>();
+        playerTransform = GameObject.FindWithTag("Player").transform;
     }
 
     public void DragState()
     {
-        if(activated == false)
+        if(activated == false && playerController.isHoldingItem == false)
         {
             activated = true;
+            playerController.isHoldingItem = true;
         }
         else
         {
             activated = false;
+            playerController.isHoldingItem = false;
         }
     }
 
@@ -35,7 +41,7 @@ public bool activated;
     void Update()
     {
     
-        var t = transform;
+        var t = playerTransform;
         if(heldObject)
         {
             
@@ -80,8 +86,8 @@ public bool activated;
 
     private void FixedUpdate()
     {
-        var t = transform;
-        if(heldObject)
+        var t = playerTransform;
+        if (heldObject)
         {
             var rigidbody = heldObject.GetComponent<Rigidbody>();
             var moveTo = t.position + distance * t.forward;
@@ -91,10 +97,10 @@ public bool activated;
         }
     }
 
-    public void Interaction(InputAction.CallbackContext context)
-    {
-        DragState();
-        if(!context.started) return;
-        Debug.Log("Interact");
-    }
+    //public void Interaction(InputAction.CallbackContext context)
+    //{
+        //DragState();
+        //if(!context.started) return;
+        ///Debug.Log("Interact");
+    //}
 }
