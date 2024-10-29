@@ -33,10 +33,10 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     //interaction
     public delegate void Interact();
-    public event Interact OnInteraction;
     public bool isDraggingMedium;
     public bool isDraggingLarge;
     public bool hanging;
+    public bool isHoldingItem;
 
     public UnityEvent<int> onDamage;
 
@@ -207,13 +207,13 @@ public class PlayerController : MonoBehaviour, IDamageable
     }
     
 
-    public void Interaction(InputAction.CallbackContext context)
-    {
+    //public void Interaction(InputAction.CallbackContext context)
+    //{
         
-        OnInteraction?.Invoke();
-        if(!context.started) return;
+        //OnInteraction?.Invoke();
+        //if(!context.started) return;
         //Debug.Log("Interaction");
-    }
+    //}
 
     public void Ragdoll()
     {

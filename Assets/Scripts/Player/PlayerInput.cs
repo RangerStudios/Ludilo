@@ -52,7 +52,11 @@ public class PlayerInput : MonoBehaviour, PlayerControls.IPlayerActions
     
     public void OnInteract(InputAction.CallbackContext context)
     {
-
+        if(context.started)
+        {
+            onInteract();
+        }
+        if (!context.started) return;
     }
     
     public void OnRagdoll(InputAction.CallbackContext context)
