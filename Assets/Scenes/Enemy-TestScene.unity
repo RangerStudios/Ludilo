@@ -122,6 +122,38 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &254842131
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 254842132}
+  m_Layer: 0
+  m_Name: ---Checkpoints---
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &254842132
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 254842131}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 702404291}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &266627304
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,6 +344,53 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 9.28, y: 5.93, z: 1.7288084}
   m_LocalScale: {x: 25.82, y: 10.4, z: 0.4}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &303153961
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 303153963}
+  - component: {fileID: 303153962}
+  m_Layer: 0
+  m_Name: RespawnTracker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &303153962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 303153961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cff242a182053b4fb53aac1d014407d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recentCheckpoint: {fileID: 702404291}
+  recentSave: {fileID: 0}
+  player: {fileID: 2016305094}
+--- !u!4 &303153963
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 303153961}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -664,7 +743,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 482328558}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.036263417, y: -0.7981222, z: 0.04828099, w: 0.5994622}
+  m_LocalRotation: {x: 0.018645203, y: -0.8415241, z: 0.02910409, w: 0.53911275}
   m_LocalPosition: {x: 13.232984, y: 4.6191435, z: -5.985538}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -774,6 +853,37 @@ MonoBehaviour:
   m_BiasX: 0
   m_BiasY: 0
   m_CenterOnActivate: 1
+--- !u!1 &702404290
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 702404291}
+  m_Layer: 0
+  m_Name: Checkpoint1
+  m_TagString: Checkpoint
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &702404291
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 702404290}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2, y: 3, z: -9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 254842132}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &817650387
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -836,6 +946,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EnemyWaypoints
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830352447482720898, guid: a15595a13d36bd542977e106d1a1f6de,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1661,7 +1776,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1744712888}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.036263406, y: -0.7981222, z: 0.048280995, w: 0.5994622}
+  m_LocalRotation: {x: 0.018645203, y: -0.8415241, z: 0.02910409, w: 0.53911275}
   m_LocalPosition: {x: 13.232984, y: 4.6191435, z: -5.985538}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1966,9 +2081,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 1763320158}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7560625093306a243bd6f7f2482f686b, type: 3}
+  m_Script: {fileID: 11500000, guid: fc7c1050e87fa1e458a85a08b02026ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onRespawn:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 303153962}
+        m_TargetAssemblyTypeName: RespawnTracker, Assembly-CSharp
+        m_MethodName: RespawnAtCheckpoint
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  respawnTracker: {fileID: 303153962}
 --- !u!1 &1764608284
 GameObject:
   m_ObjectHideFlags: 0
@@ -2138,7 +2269,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1849868569}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.038017634, y: 0.9089846, z: -0.08505731, w: -0.40628424}
+  m_LocalRotation: {x: -0.024634153, y: 0.9027986, z: -0.052184448, w: -0.4261745}
   m_LocalPosition: {x: 12.7, y: 6.14, z: 10.76}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2262,15 +2393,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3586275181437846000, guid: 04040e2a1c5cdcd4aad85ceb646d1555,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3836063803591100535, guid: 04040e2a1c5cdcd4aad85ceb646d1555,
         type: 3}
       propertyPath: m_Name
       value: PlayerPrototype
       objectReference: {fileID: 0}
+    - target: {fileID: 4019160133836726586, guid: 04040e2a1c5cdcd4aad85ceb646d1555,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6410329551478724025, guid: 04040e2a1c5cdcd4aad85ceb646d1555,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.19
+      value: -8.4
       objectReference: {fileID: 0}
     - target: {fileID: 6410329551478724025, guid: 04040e2a1c5cdcd4aad85ceb646d1555,
         type: 3}
@@ -2280,7 +2421,7 @@ PrefabInstance:
     - target: {fileID: 6410329551478724025, guid: 04040e2a1c5cdcd4aad85ceb646d1555,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9.77
+      value: -15.94
       objectReference: {fileID: 0}
     - target: {fileID: 6410329551478724025, guid: 04040e2a1c5cdcd4aad85ceb646d1555,
         type: 3}
@@ -2603,6 +2744,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mouse Trap
       objectReference: {fileID: 0}
+    - target: {fileID: 7549703261902321776, guid: ceaa3f95ec77ffa4181b19fb9868895c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2810,3 +2956,5 @@ SceneRoots:
   - {fileID: 266627307}
   - {fileID: 8822580059001336068}
   - {fileID: 6910802877441242067}
+  - {fileID: 303153963}
+  - {fileID: 254842132}
