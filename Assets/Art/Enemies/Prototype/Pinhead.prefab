@@ -718,7 +718,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5642337316930173174
 Transform:
   m_ObjectHideFlags: 0
@@ -877,6 +877,8 @@ MonoBehaviour:
   player: {fileID: 0}
   grabTimer: 5
   waitTimer: 3
+  currentGrabTimer: 0
+  currentWaitTimer: 0
 --- !u!114 &660500842093318588
 MonoBehaviour:
   m_ObjectHideFlags: 0

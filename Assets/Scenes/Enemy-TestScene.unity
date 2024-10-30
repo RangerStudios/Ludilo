@@ -2459,11 +2459,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pinhead
       objectReference: {fileID: 0}
-    - target: {fileID: 4490347785410036035, guid: feab8d30325a3494faaa3c116f558807,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5642337316930173174, guid: feab8d30325a3494faaa3c116f558807,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2645,21 +2640,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 475998360684588141, guid: ceaa3f95ec77ffa4181b19fb9868895c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 655342162652473349, guid: ceaa3f95ec77ffa4181b19fb9868895c,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2351253587344690836, guid: ceaa3f95ec77ffa4181b19fb9868895c,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4785168654524619132, guid: ceaa3f95ec77ffa4181b19fb9868895c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2879,11 +2859,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DustBunny
-      objectReference: {fileID: 0}
-    - target: {fileID: 8014575458442653612, guid: d75dd11c8a6829647b625170fc071416,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

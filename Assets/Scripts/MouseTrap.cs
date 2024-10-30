@@ -12,13 +12,17 @@ public class MouseTrap : MonoBehaviour
             Snap();
         }
 
-        //Code for if the droppable object for disabling the trap touches the trap goes here. 
+        if (other.CompareTag("PickUp"))
+        {
+            this.transform.parent.gameObject.GetComponent<Rigidbody>().AddForce(transform.up * 3f);
+            this.gameObject.SetActive(false);
+        }
     }
 
     public void Snap()
     {
         //Play sound
         //Play animation on parent object
-        this.transform.parent.gameObject.SetActive(false);
+        this.transform.gameObject.SetActive(false);
     }
 }
