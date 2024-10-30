@@ -169,6 +169,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         //if (!context.started) return;
         if (ragdolling) return;
         if (isDraggingMedium) return;
+        if (isDraggingLarge) return;
 
         if (hanging)
         {
@@ -209,14 +210,6 @@ public class PlayerController : MonoBehaviour, IDamageable
         this.gameObject.SetActive(false);
     }
     
-
-    //public void Interaction(InputAction.CallbackContext context)
-    //{
-        
-        //OnInteraction?.Invoke();
-        //if(!context.started) return;
-        //Debug.Log("Interaction");
-    //}
 
     public void Ragdoll()
     {

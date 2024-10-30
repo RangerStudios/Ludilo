@@ -12,22 +12,28 @@ public class MediumItemPickup : Interactable
     public float distance = 1.4f;
     //public float height = 0.3f;
     public PlayerController playerController;    
+    public GameObject player;
+    public Transform playerTransform;
     
     // Start is called before the first frame update
     void Start()
     {
-        playerController = GetComponent<PlayerController>();
+        player = GameObject.FindWithTag("Player");
+        playerController = player.GetComponent<PlayerController>();
+        playerTransform = GameObject.FindWithTag("Player").transform;
     }
 
     public void DragState()
     {
-        if(activated == false)
+        if(activated == false && playerController.isHoldingItem == false)
         {
             activated = true;
+            playerController.isHoldingItem = true;
         }
         else
         {
             activated = false;
+            playerController.isHoldingItem = false;
         }
     }
 
@@ -35,7 +41,7 @@ public class MediumItemPickup : Interactable
     void Update()
     {
     
-        var t = transform;
+        var t = playerTransform;
         if(heldObject)
         {
             
@@ -80,7 +86,7 @@ public class MediumItemPickup : Interactable
 
     private void FixedUpdate()
     {
-        var t = transform;
+        var t = playerTransform;
         if(heldObject)
         {
             var rigidbody = heldObject.GetComponent<Rigidbody>();
