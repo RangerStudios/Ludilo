@@ -17,7 +17,7 @@ public class TriggerVolume : Interactable
     {
         box = GetComponent<BoxCollider>();
         box.isTrigger = true;
-        box.size = boxSize;
+        //box.size = boxSize;
     }
 
 
