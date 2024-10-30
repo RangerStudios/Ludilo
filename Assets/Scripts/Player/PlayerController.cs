@@ -31,12 +31,16 @@ public class PlayerController : MonoBehaviour, IDamageable
     [SerializeField] private float jumpPower;
     private float velocity;
 
+    public float dustTimer;
+    public float currentDustTimer;
+
     //interaction
     public delegate void Interact();
     public bool isDraggingMedium;
     public bool isDraggingLarge;
     public bool hanging;
     public bool isGrabbed;
+    public bool isDusted;
     public int grabIncrement;
     public bool isHoldingItem;
 
@@ -52,6 +56,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         PlayerInput.onAttack += Attack;
         Pinhead.GrabPlayer += Grabbed;
         Pinhead.ReleasePlayer += Released;
+        DustExplode.DustPlayer += Dusted;
     }
 
     void OnDisable()
@@ -63,6 +68,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         PlayerInput.onAttack -= Attack;
         Pinhead.GrabPlayer -= Grabbed;
         Pinhead.ReleasePlayer -= Released;
+        DustExplode.DustPlayer -= Dusted;
     }
     private void Awake()
     {
@@ -83,6 +89,14 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void Update()
     {
+        if (isDusted)
+        {
+            currentDustTimer -= Time.deltaTime;
+            if (currentDustTimer <= 0)
+            {
+                isDusted = false;
+            }
+        }
         ApplyRotation();
         ApplyGravity();
         ApplyMovement();
@@ -136,7 +150,14 @@ public class PlayerController : MonoBehaviour, IDamageable
         if(!ragdolling && !hanging)
         {
             PlayerInput.onMove += MovementInput;
-            characterController.Move(direction * speed * Time.deltaTime);
+            if (!isDusted)
+            {
+                characterController.Move(direction * (speed / (grabIncrement + 1)) * Time.deltaTime);
+            }
+            else
+            {
+                characterController.Move(direction * ((speed * 0.8f) / (grabIncrement + 1)) * Time.deltaTime);
+            }
         }
         if(ragdolling)
         {
@@ -298,5 +319,10 @@ public class PlayerController : MonoBehaviour, IDamageable
         }
     }
 
-
+    void Dusted()
+    {
+        Debug.Log("Hello I am Active");
+        isDusted = true;
+        currentDustTimer = dustTimer;
+    }
 }

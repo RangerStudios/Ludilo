@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -8,6 +9,7 @@ public class DustExplode : MonoBehaviour
 {
     public float explodeTimer = 0.5f;
     float currentTimer;
+    public static Action DustPlayer;
 
     public void OnEnable()
     {
@@ -27,6 +29,7 @@ public class DustExplode : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Player hit by Dust!");
+            DustPlayer();
         }
     }
 }

@@ -43,7 +43,6 @@ public class Pinhead : MonoBehaviour, IDamageable
             {
                 hasReleased = false;
                 behaviorObject.SetActive(true);
-                ReleasePlayer();
             }
         }
     }
@@ -61,12 +60,12 @@ public class Pinhead : MonoBehaviour, IDamageable
     public void GrabAction()
     {
         onGrab.Invoke();
-        GrabPlayer();
     }
 
     public void Grab()
     {
         Debug.Log("Grabbed!");
+        GrabPlayer();
         currentGrabTimer = grabTimer;
         hasGrabbed = true;
         behaviorObject.SetActive(false);
@@ -77,6 +76,7 @@ public class Pinhead : MonoBehaviour, IDamageable
     public void Release()
     {
         Debug.Log("Released!");
+        ReleasePlayer();
         currentWaitTimer = waitTimer;
         hasGrabbed = false;
         hasReleased = true;
