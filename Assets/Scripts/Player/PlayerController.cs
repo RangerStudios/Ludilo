@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     public bool isDraggingLarge;
     public bool hanging;
     public bool isGrabbed;
+    public int grabIncrement;
     public bool isHoldingItem;
 
     public UnityEvent<int> onDamage;
@@ -49,6 +50,8 @@ public class PlayerController : MonoBehaviour, IDamageable
         PlayerInput.onRagdoll += Ragdoll;
         PlayerInput.onCrouch += Crouch;
         PlayerInput.onAttack += Attack;
+        Pinhead.GrabPlayer += Grabbed;
+        Pinhead.ReleasePlayer += Released;
     }
 
     void OnDisable()
@@ -58,6 +61,8 @@ public class PlayerController : MonoBehaviour, IDamageable
         PlayerInput.onRagdoll -= Ragdoll;
         PlayerInput.onCrouch -= Crouch;
         PlayerInput.onAttack -= Attack;
+        Pinhead.GrabPlayer -= Grabbed;
+        Pinhead.ReleasePlayer -= Released;
     }
     private void Awake()
     {
@@ -267,6 +272,29 @@ public class PlayerController : MonoBehaviour, IDamageable
             //insert attack code here
             //Logic, anim trigger, etc.
             Debug.Log("Attack Go");
+        }
+        else
+        {
+            Pinhead[] latchedPinheads = GetComponentsInChildren<Pinhead>();
+            foreach(Pinhead p in latchedPinheads)
+            {
+                p.currentGrabTimer -= 0.25f;
+            }
+        }
+    }
+
+    void Grabbed()
+    {
+        isGrabbed = true;
+        grabIncrement += 1;
+    }
+
+    void Released()
+    {
+        grabIncrement -= 1;
+        if (grabIncrement <= 0)
+        {
+            isGrabbed = false;
         }
     }
 

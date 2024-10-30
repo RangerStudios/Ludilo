@@ -23,52 +23,14 @@ public class EnemySeenService : Service
     public TransformReference self = new TransformReference();
 
     [Tooltip("Enemy target.")]
-    public TransformReference target = new TransformReference();
+    public TransformReference target;
 
     /*[Tooltip("Angle at which the player can 'see' the enemy.")]
     public float viewAngle = 60f;*/
 
     public override void Task()
     {
-        // Old Prototype version for reference
-        /*
-        Collider[] colliders = Physics.OverlapSphere(transform.position, range, rangeMask, QueryTriggerInteraction.Ignore);
-        if (colliders.Length > 0)
-        {
-            var direction = (colliders[0].transform.position - self.Value.transform.position).normalized;
-            var ray = new Ray(self.Value.transform.position, direction);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, sightMask))
-            {
-                if (hit.collider.CompareTag("Player"))
-                {
-                    float dotProduct = Vector3.Dot(hit.transform.forward, direction);
-                    if (dotProduct < 0)
-                    {
-                        seenBool.Value = true;
-                        Debug.Log("Set");
-                    }
-                    else
-                    {
-                        seenBool.Value = false;
-                        Debug.Log("Enenmy sees, but not player.");
-                    }
-                }
-                else
-                {
-                    seenBool.Value = false;
-                    Debug.Log("Enemy Cannot See");
-                }
-            }
-        }
-        
-        else
-        {
-            seenBool.Value = false;
-            Debug.Log("Enemy Cannot Find");
-        }
-        */
-
+        target.Value = GameObject.FindGameObjectWithTag("Player").transform;
         var direction = (target.Value.transform.position - self.Value.transform.position).normalized;
         var ray = new Ray(self.Value.transform.position, direction);
         RaycastHit hit;
