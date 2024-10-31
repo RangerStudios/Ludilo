@@ -119,10 +119,14 @@ MonoBehaviour:
   rotationSpeed: 500
   gravityMultiplier: 2
   jumpPower: 4
+  dustTimer: 7
+  currentDustTimer: 0
   isDraggingMedium: 0
   isDraggingLarge: 0
   hanging: 0
   isGrabbed: 0
+  isDusted: 0
+  grabIncrement: 0
   isHoldingItem: 0
   onDamage:
     m_PersistentCalls:
