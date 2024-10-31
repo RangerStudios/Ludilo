@@ -44,6 +44,12 @@ public class PlayerController : MonoBehaviour, IDamageable
     public int grabIncrement;
     public bool isHoldingItem;
 
+    //Ladder logic - Jacob D
+    [SerializeField] float climbSpeed = 10;
+    public bool onLadder;
+    Ladder activeLadder;
+    bool exitLadder;
+
     public UnityEvent<int> onDamage;
 
 
@@ -163,6 +169,19 @@ public class PlayerController : MonoBehaviour, IDamageable
         {
             rb.AddForce(transform.forward);
             PlayerInput.onMove -= MovementInput;
+        }
+
+        if(onLadder && !exitLadder)
+        {
+            float vertInput = movementVector.y;
+            direction = new Vector3(0, vertInput, 0);
+            characterController.Move(direction * climbSpeed * Time.deltaTime);
+        }
+        else if(onLadder && exitLadder)
+        {
+            //This is where all effects are applied when exiting a "ladder"
+            characterController.enabled = false;
+            //Set the animation trigger for 
         }
         
     }
@@ -304,11 +323,37 @@ public class PlayerController : MonoBehaviour, IDamageable
         }
     }
 
+
+    public void OnLadder(Vector3 position, Ladder currentLadder)
+    {
+        //Animation SetBool for being on ladder/ climbing a rope
+        //Animation SetFloat for the speed of the player
+        transform.position = position;
+        activeLadder = currentLadder;
+        onLadder = true;
+    }
+    public void ExitLadder()
+    {
+        exitLadder = true;
+        LadderExitComplete();
+    }
+
+    public void LadderExitComplete()
+    {
+        transform.position = activeLadder.GetEndPosition();
+        direction = Vector3.zero;
+        onLadder = false;
+        exitLadder = false;
+        characterController.enabled = true;
+    }
+
+
     void Grabbed()
     {
         isGrabbed = true;
         grabIncrement += 1;
     }
+
 
     void Released()
     {
