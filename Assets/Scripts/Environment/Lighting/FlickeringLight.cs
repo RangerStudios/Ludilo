@@ -60,9 +60,10 @@ public class FlickeringLight : MonoBehaviour
             if(timer > delay)
             {
                 SetFlameIntensity();
-                propLight.intensity = Mathf.Lerp(lastIntensity, targetIntensity, timer / delay);
-                transform.position = Vector3.Lerp(lastPosition, targetPosition, timer / delay);
+                
             }
+            propLight.intensity = Mathf.Lerp(lastIntensity, targetIntensity, timer / delay);
+                propLight.transform.position = Vector3.Lerp(lastPosition, targetPosition, timer / delay);
             break;
             case FlickerType.Burst:
             break;
@@ -100,7 +101,7 @@ public class FlickeringLight : MonoBehaviour
         delay = Random.Range(0, maxWait);
 
         targetPosition = origin + Random.insideUnitSphere * maxDisplacement;
-        lastPosition = transform.position;
+        lastPosition = propLight.transform.position;
     }
 
 }
