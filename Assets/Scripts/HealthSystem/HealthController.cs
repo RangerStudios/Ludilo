@@ -7,11 +7,20 @@ public class HealthController : MonoBehaviour
 {
     public int health;
     public bool canHeal;
-    public UnityEvent onDeath;
-    public UnityEvent onHeal;
+    public UnityEvent OnDeath;
+    public UnityEvent OnHeal;
     public StuffingController stuffingController;
     
 
+    void OnEnable()
+    {
+        PlayerInput.onHeal += Heal;
+    }
+
+    void OnDisable()
+    {
+        PlayerInput.onHeal += Heal;
+    }
     public void Damage()
     {
         this.health--;
@@ -32,7 +41,7 @@ public class HealthController : MonoBehaviour
 
     public void Kill()
     {
-        onDeath.Invoke();
+        OnDeath.Invoke();
     }
 
     public void Heal()
@@ -40,7 +49,7 @@ public class HealthController : MonoBehaviour
         if(canHeal == true)
         {
             this.health += GetComponent<StuffingController>().stuffingCount;
-            onHeal.Invoke();
+            OnHeal.Invoke();
             canHeal = false;
         }
     }

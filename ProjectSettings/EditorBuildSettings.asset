@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Prototype-Player-Scene.unity
     guid: 11e8dd92aea1640479c688cbf9870008
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Prototype-Mechanics-Scene.unity
     guid: 37f914b9ee9482a4f9ae47ccd2b0677b
   - enabled: 1
@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CR LIGHTING TEST.unity
     guid: 8c2ce945a54891f48b5ceec67ee16fea
+  - enabled: 1
+    path: Assets/Scenes/PrepRoom/Prep_Room_BlockOut.unity
+    guid: a156dac527ec562439ebe5e374119a17
   m_configObjects: {}
