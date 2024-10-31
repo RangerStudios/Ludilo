@@ -31,13 +31,24 @@ public class PlayerController : MonoBehaviour, IDamageable
     [SerializeField] private float jumpPower;
     private float velocity;
 
+    public float dustTimer;
+    public float currentDustTimer;
+
     //interaction
     public delegate void Interact();
     public bool isDraggingMedium;
     public bool isDraggingLarge;
     public bool hanging;
     public bool isGrabbed;
+    public bool isDusted;
+    public int grabIncrement;
     public bool isHoldingItem;
+
+    //Ladder logic - Jacob D
+    [SerializeField] float climbSpeed = 10;
+    public bool onLadder;
+    Ladder activeLadder;
+    bool exitLadder;
 
     public UnityEvent<int> onDamage;
 
@@ -49,6 +60,9 @@ public class PlayerController : MonoBehaviour, IDamageable
         PlayerInput.onRagdoll += Ragdoll;
         PlayerInput.onCrouch += Crouch;
         PlayerInput.onAttack += Attack;
+        Pinhead.GrabPlayer += Grabbed;
+        Pinhead.ReleasePlayer += Released;
+        DustExplode.DustPlayer += Dusted;
     }
 
     void OnDisable()
@@ -58,6 +72,9 @@ public class PlayerController : MonoBehaviour, IDamageable
         PlayerInput.onRagdoll -= Ragdoll;
         PlayerInput.onCrouch -= Crouch;
         PlayerInput.onAttack -= Attack;
+        Pinhead.GrabPlayer -= Grabbed;
+        Pinhead.ReleasePlayer -= Released;
+        DustExplode.DustPlayer -= Dusted;
     }
     private void Awake()
     {
@@ -78,6 +95,14 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void Update()
     {
+        if (isDusted)
+        {
+            currentDustTimer -= Time.deltaTime;
+            if (currentDustTimer <= 0)
+            {
+                isDusted = false;
+            }
+        }
         ApplyRotation();
         ApplyGravity();
         ApplyMovement();
@@ -131,12 +156,32 @@ public class PlayerController : MonoBehaviour, IDamageable
         if(!ragdolling && !hanging)
         {
             PlayerInput.onMove += MovementInput;
-            characterController.Move(direction * speed * Time.deltaTime);
+            if (!isDusted)
+            {
+                characterController.Move(direction * (speed / (grabIncrement + 1)) * Time.deltaTime);
+            }
+            else
+            {
+                characterController.Move(direction * ((speed * 0.8f) / (grabIncrement + 1)) * Time.deltaTime);
+            }
         }
         if(ragdolling)
         {
             rb.AddForce(transform.forward);
             PlayerInput.onMove -= MovementInput;
+        }
+
+        if(onLadder && !exitLadder)
+        {
+            float vertInput = movementVector.y;
+            direction = new Vector3(0, vertInput, 0);
+            characterController.Move(direction * climbSpeed * Time.deltaTime);
+        }
+        else if(onLadder && exitLadder)
+        {
+            //This is where all effects are applied when exiting a "ladder"
+            characterController.enabled = false;
+            //Set the animation trigger for 
         }
         
     }
@@ -268,7 +313,61 @@ public class PlayerController : MonoBehaviour, IDamageable
             //Logic, anim trigger, etc.
             Debug.Log("Attack Go");
         }
+        else
+        {
+            Pinhead[] latchedPinheads = GetComponentsInChildren<Pinhead>();
+            foreach(Pinhead p in latchedPinheads)
+            {
+                p.currentGrabTimer -= 0.25f;
+            }
+        }
     }
 
 
+    public void OnLadder(Vector3 position, Ladder currentLadder)
+    {
+        //Animation SetBool for being on ladder/ climbing a rope
+        //Animation SetFloat for the speed of the player
+        transform.position = position;
+        activeLadder = currentLadder;
+        onLadder = true;
+    }
+    public void ExitLadder()
+    {
+        exitLadder = true;
+        LadderExitComplete();
+    }
+
+    public void LadderExitComplete()
+    {
+        transform.position = activeLadder.GetEndPosition();
+        direction = Vector3.zero;
+        onLadder = false;
+        exitLadder = false;
+        characterController.enabled = true;
+    }
+
+
+    void Grabbed()
+    {
+        isGrabbed = true;
+        grabIncrement += 1;
+    }
+
+
+    void Released()
+    {
+        grabIncrement -= 1;
+        if (grabIncrement <= 0)
+        {
+            isGrabbed = false;
+        }
+    }
+
+    void Dusted()
+    {
+        Debug.Log("Hello I am Active");
+        isDusted = true;
+        currentDustTimer = dustTimer;
+    }
 }

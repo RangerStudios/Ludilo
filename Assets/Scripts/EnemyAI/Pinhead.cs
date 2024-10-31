@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,23 +6,31 @@ using UnityEngine.Events;
 
 public class Pinhead : MonoBehaviour, IDamageable
 {
-    public UnityEvent<int> onGrab;
+    public UnityEvent onGrab;
     public UnityEvent onRelease;
+    public static Action GrabPlayer;
+    public static Action ReleasePlayer;
     public HealthController EnemyHealth;
     public GameObject behaviorObject;
     public GameObject player;
     public float grabTimer = 5f;
     public float waitTimer = 3f;
-    private float currentTimer;
+    public float currentGrabTimer;
+    public float currentWaitTimer;
     private bool hasGrabbed = false;
     private bool hasReleased = false;
+
+    void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
 
     void Update()
     {
         if (hasGrabbed)
         {
-            currentTimer -= Time.deltaTime;
-            if (currentTimer < 0)
+            currentGrabTimer -= Time.deltaTime;
+            if (currentGrabTimer <= 0)
             {
                 onRelease.Invoke();
             }
@@ -29,9 +38,10 @@ public class Pinhead : MonoBehaviour, IDamageable
 
         if (hasReleased)
         {
-            currentTimer -= Time.deltaTime;
-            if (currentTimer < 0)
+            currentWaitTimer -= Time.deltaTime;
+            if (currentWaitTimer <= 0)
             {
+                hasReleased = false;
                 behaviorObject.SetActive(true);
             }
         }
@@ -49,13 +59,14 @@ public class Pinhead : MonoBehaviour, IDamageable
 
     public void GrabAction()
     {
-        onGrab.Invoke(1);
+        onGrab.Invoke();
     }
 
     public void Grab()
     {
         Debug.Log("Grabbed!");
-        currentTimer = grabTimer;
+        GrabPlayer();
+        currentGrabTimer = grabTimer;
         hasGrabbed = true;
         behaviorObject.SetActive(false);
         player.GetComponent<PlayerController>().Damage(1);
@@ -65,7 +76,8 @@ public class Pinhead : MonoBehaviour, IDamageable
     public void Release()
     {
         Debug.Log("Released!");
-        currentTimer = waitTimer;
+        ReleasePlayer();
+        currentWaitTimer = waitTimer;
         hasGrabbed = false;
         hasReleased = true;
         this.gameObject.transform.SetParent(null);
