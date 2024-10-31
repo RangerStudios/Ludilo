@@ -154,7 +154,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         else if(onLadder && exitLadder)
         {
             //This is where all effects are applied when exiting a "ladder"
-            //characterController.enabled = false;
+            characterController.enabled = false;
             //Set the animation trigger for 
         }
         
@@ -293,13 +293,23 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         //Animation SetBool for being on ladder/ climbing a rope
         //Animation SetFloat for the speed of the player
-        characterController.transform.position = position;
+        transform.position = position;
         activeLadder = currentLadder;
         onLadder = true;
     }
     public void ExitLadder()
     {
         exitLadder = true;
+        LadderExitComplete();
+    }
+
+    public void LadderExitComplete()
+    {
+        transform.position = activeLadder.GetEndPosition();
+        direction = Vector3.zero;
+        onLadder = false;
+        exitLadder = false;
+        characterController.enabled = true;
     }
 
 

@@ -48,10 +48,10 @@ public class Ladder : MonoBehaviour
             playerPresent= false;
         }
     }
-    // Update is called once per frame
-    void Update()
-    {
 
+    public Vector3 GetEndPosition()
+    {
+        return endPosition.position;
     }
 
 
