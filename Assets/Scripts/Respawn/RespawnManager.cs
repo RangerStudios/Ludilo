@@ -15,7 +15,7 @@ public class RespawnManager : MonoBehaviour
 
     void OnEnable()
     {
-        GameManager.Instance.SpawnPlayer += OnSpawnPlayer;
+        GameManager.SpawnPlayer += OnSpawnPlayer;
         ChangeCheckpoints.changeCheckpoint += OnChangeCheckpoint;
     }
 
