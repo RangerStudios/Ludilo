@@ -15,7 +15,7 @@ public class GameManager : Singleton<GameManager>
     public Action<int> AddNumber;
     //Events the Game Manager sends out
 
-    public Action<RespawnCondition> SpawnPlayer;
+    public static Action<RespawnCondition> SpawnPlayer;
 
     public static Action<bool> OnGamePause;
     public enum GameState{
