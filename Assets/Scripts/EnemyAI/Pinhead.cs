@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Events;
 
 public class Pinhead : MonoBehaviour, IDamageable
@@ -13,6 +14,7 @@ public class Pinhead : MonoBehaviour, IDamageable
     public HealthController EnemyHealth;
     public GameObject behaviorObject;
     public GameObject player;
+    public NavMeshAgent agent;
     public float grabTimer = 5f;
     public float waitTimer = 3f;
     public float currentGrabTimer;
@@ -23,6 +25,7 @@ public class Pinhead : MonoBehaviour, IDamageable
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        agent = GetComponent<NavMeshAgent>();
     }
 
     void Update()
@@ -81,5 +84,11 @@ public class Pinhead : MonoBehaviour, IDamageable
         hasGrabbed = false;
         hasReleased = true;
         this.gameObject.transform.SetParent(null);
+    }
+
+    public void ManualMove(Transform moveSpot)
+    {
+        agent.isStopped = false;
+        agent.SetDestination(moveSpot.position);
     }
 }
