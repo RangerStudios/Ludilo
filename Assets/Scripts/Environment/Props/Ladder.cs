@@ -20,6 +20,11 @@ public class Ladder : MonoBehaviour
         PlayerInput.onInteract += MountLadder;
     }
 
+    void OnDisable()
+    {
+        PlayerInput.onInteract -= MountLadder;
+    }
+
     private void MountLadder()
     {
         if(playerPresent)
@@ -38,14 +43,6 @@ public class Ladder : MonoBehaviour
             {
                 playerPresent= true;
             }
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if(other.tag == "Player")
-        {
-            playerPresent= false;
         }
     }
 

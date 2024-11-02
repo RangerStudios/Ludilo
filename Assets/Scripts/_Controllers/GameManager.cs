@@ -48,7 +48,7 @@ public class GameManager : Singleton<GameManager>
 
     void Start()
     {
-        SpawnPlayer(RespawnCondition.GAMESTART);
+        //SpawnPlayer(RespawnCondition.GAMESTART);
     }
 
     
