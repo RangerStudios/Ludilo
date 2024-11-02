@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour, IDamageable
     public float dustTimer;
     public float currentDustTimer;
 
+    PlayerMovementState currentState = PlayerMovementState.Default;
+
     //interaction
     public delegate void Interact();
     public bool isDraggingMedium;
@@ -154,23 +156,27 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void ApplyMovement()
     {
-        if(!ragdolling && !hanging)
+
+        //TODO: Add in an Enum to properly track the player's state with a switch case, rather than bools and a series of if statements
+
+        switch(currentState)
         {
-            PlayerInput.onMove += MovementInput;
-            if (!isDusted)
-            {
-                characterController.Move(direction * (speed / (grabIncrement + 1)) * Time.deltaTime);
-            }
-            else
-            {
-                characterController.Move(direction * ((speed * 0.8f) / (grabIncrement + 1)) * Time.deltaTime);
-            }
+            case PlayerMovementState.Ragdolling:
+                rb.AddForce(transform.forward);
+            break;
+            case PlayerMovementState.Hanging:
+            break;
+            case PlayerMovementState.Dusted:
+            break;
+            case PlayerMovementState.OnLadder:
+            break;
         }
-        if(ragdolling)
+
+        /*if(ragdolling)
         {
             rb.AddForce(transform.forward);
-            PlayerInput.onMove -= MovementInput;
-        }
+            //PlayerInput.onMove -= MovementInput;
+        }*/
 
         if(onLadder && !exitLadder)
         {
@@ -183,6 +189,21 @@ public class PlayerController : MonoBehaviour, IDamageable
             //This is where all effects are applied when exiting a "ladder"
             characterController.enabled = false;
             //Set the animation trigger for 
+        }
+        else
+        {
+            if(!ragdolling && !hanging)
+            {
+                //PlayerInput.onMove += MovementInput;
+                if (!isDusted)
+                {
+                    characterController.Move(direction * (speed / (grabIncrement + 1)) * Time.deltaTime);
+                }
+                else
+                {
+                    characterController.Move(direction * ((speed * 0.8f) / (grabIncrement + 1)) * Time.deltaTime);
+                }
+            }
         }
         
     }
@@ -336,7 +357,9 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         //Animation SetBool for being on ladder/ climbing a rope
         //Animation SetFloat for the speed of the player
-        transform.position = position;
+        characterController.enabled = false;
+        characterController.transform.position = position;
+        characterController.enabled = true;
         activeLadder = currentLadder;
         onLadder = true;
     }
@@ -348,7 +371,8 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     public void LadderExitComplete()
     {
-        transform.position = activeLadder.GetEndPosition();
+        characterController.enabled = false;
+        characterController.transform.position = activeLadder.GetEndPosition();
         direction = Vector3.zero;
         onLadder = false;
         exitLadder = false;
@@ -378,4 +402,15 @@ public class PlayerController : MonoBehaviour, IDamageable
         isDusted = true;
         currentDustTimer = dustTimer;
     }
+}
+
+public enum PlayerMovementState{
+    Default,
+    Ragdolling,
+    OnGround,
+    Dusted,
+    Hanging,
+    Dragging,
+    Grabbed,
+    OnLadder
 }

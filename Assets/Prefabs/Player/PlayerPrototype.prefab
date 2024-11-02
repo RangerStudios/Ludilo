@@ -149,6 +149,7 @@ MonoBehaviour:
   savedPlayerHealth: {fileID: 11400000, guid: f2889d2d8f6aa204f9dc06cec0712ac3, type: 2}
   ragdolling: 0
   crouching: 0
+  attackCooldown: 0
   speed: 5
   rotationSpeed: 500
   gravityMultiplier: 2
@@ -427,7 +428,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1893274305863764003, guid: 644d12999d2574041b6c4c1a5bdea49a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
