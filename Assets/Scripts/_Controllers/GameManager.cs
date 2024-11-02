@@ -31,6 +31,9 @@ public class GameManager : Singleton<GameManager>
 
     public GameObject player;
 
+    //Scenes For Asynchronous Scene Loading
+    public string m_Scene;
+
     void OnEnable()
     {
         //player.GetComponent<PlayerController>().OnDeath += PauseGame;
@@ -57,6 +60,25 @@ public class GameManager : Singleton<GameManager>
     public void LoadScene(string sceneToLoad)
     {
         SceneManager.LoadScene(sceneToLoad);
+    }
+
+    public void LoadSceneAsync()
+    {
+        StartCoroutine(LoadAsyncScene());
+    }
+
+    IEnumerator LoadAsyncScene() //Blueprint for sending player to additive scenes. Will need to somehow reference the next scene.
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(m_Scene, LoadSceneMode.Additive);
+
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+
+        SceneManager.MoveGameObjectToScene(player, SceneManager.GetSceneByName(m_Scene));
     }
 
     void PauseGame()
