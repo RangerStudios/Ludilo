@@ -18,8 +18,8 @@ TagManager:
   - Enemy
   - Ground
   - Interactable
-  - 
-  - 
+  - Trigger
+  - SavePoint
   - 
   - 
   - 

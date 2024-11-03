@@ -15,7 +15,7 @@ public class GameManager : Singleton<GameManager>
     public Action<int> AddNumber;
     //Events the Game Manager sends out
 
-    public Action SpawnPlayer;
+    public static Action<RespawnCondition> SpawnPlayer;
 
     public static Action<bool> OnGamePause;
     public enum GameState{
@@ -30,6 +30,9 @@ public class GameManager : Singleton<GameManager>
     public GameState previousGameState;
 
     public GameObject player;
+
+    //Scenes For Asynchronous Scene Loading
+    public string m_Scene;
 
     void OnEnable()
     {
@@ -48,7 +51,7 @@ public class GameManager : Singleton<GameManager>
 
     void Start()
     {
-        
+        //SpawnPlayer(RespawnCondition.GAMESTART);
     }
 
     
@@ -57,6 +60,25 @@ public class GameManager : Singleton<GameManager>
     public void LoadScene(string sceneToLoad)
     {
         SceneManager.LoadScene(sceneToLoad);
+    }
+
+    public void LoadSceneAsync()
+    {
+        StartCoroutine(LoadAsyncScene());
+    }
+
+    IEnumerator LoadAsyncScene() //Blueprint for sending player to additive scenes. Will need to somehow reference the next scene.
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(m_Scene, LoadSceneMode.Additive);
+
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+
+        SceneManager.MoveGameObjectToScene(player, SceneManager.GetSceneByName(m_Scene));
     }
 
     void PauseGame()
@@ -99,6 +121,14 @@ public class GameManager : Singleton<GameManager>
         currentGameState = newState;
     }
 
+    public void PlayerFell()
+    {
+        SpawnPlayer(RespawnCondition.FALL);
+    }
 
+    public void PlayerDied()
+    {
+        SpawnPlayer(RespawnCondition.DEATH);
+    }
     
 }
