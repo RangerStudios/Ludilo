@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PickUp
   - MediumPickUp
+  - LargePickUp
   layers:
   - Default
   - TransparentFX
@@ -16,9 +17,9 @@ TagManager:
   - Player
   - Enemy
   - Ground
-  - 
-  - 
-  - 
+  - Interactable
+  - Trigger
+  - SavePoint
   - 
   - 
   - 

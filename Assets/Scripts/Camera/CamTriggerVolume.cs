@@ -4,40 +4,36 @@ using UnityEngine;
 using Cinemachine;
 using UnityEngine.UIElements;
 
-[RequireComponent(typeof(BoxCollider))]
-[RequireComponent(typeof(Rigidbody))]
-public class CamTriggerVolume : MonoBehaviour
+//[RequireComponent(typeof(BoxCollider))]
+//[RequireComponent(typeof(Rigidbody))]
+public class CamTriggerVolume : TriggerVolume
 {
     [SerializeField] private CinemachineVirtualCamera cam;
-    [SerializeField] private Vector3 boxSize;
 
-    BoxCollider box;
+
+    //BoxCollider box;
     Rigidbody rb;
 
 
 
-    private void Awake()
+    protected override void Awake()
     {
-        box = GetComponent<BoxCollider>();
-        rb = GetComponent<Rigidbody>();
-
-        box.isTrigger = true;
-        box.size = boxSize;
-
-        rb.isKinematic = true;
+        //box = GetComponent<BoxCollider>();
+        //rb = GetComponent<Rigidbody>();
+        //box.isTrigger = true;
+        base.Awake();
+        //rb.isKinematic = true;
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireCube(transform.position, boxSize); 
-    }
 
-    private void OnTriggerEnter(Collider other)
+
+    public override void OnTriggerEnter(Collider collider)
     {
-        if(other.gameObject.CompareTag("Player"))
+        if(collider.gameObject.CompareTag("Player"))
         {
             if (CamSwitcher.ActiveCamera != cam) CamSwitcher.SwitchCamera(cam);
+            //cam.Follow = player
+            cam.LookAt = collider.transform;
         }
     }
 }

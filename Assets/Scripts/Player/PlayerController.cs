@@ -11,16 +11,18 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour, IDamageable
 {
     //setup
-    private Vector2 input;
+    private Vector2 movementVector;
     public CharacterController characterController;
     public HealthController playerHealth;
     public StuffingController playerStuffing;
+    public Attacker attackScript;
     public PlayerHealthScriptableObject savedPlayerHealth;
     private Vector3 direction;
     private Camera mainCamera;
+    Rigidbody rb;
     [SerializeField] bool ragdolling = false;
     [SerializeField] bool crouching = false;
-    // crouching: Gonna need to disable the basic capsule collider unless ragdolling, and move the CController center to y: -0.4 and the height to 1 while active
+    [SerializeField] bool attackCooldown;
 
     //player movement values
     [SerializeField] public float speed;
@@ -30,21 +32,60 @@ public class PlayerController : MonoBehaviour, IDamageable
     [SerializeField] private float jumpPower;
     private float velocity;
 
+    public float dustTimer;
+    public float currentDustTimer;
+
+    PlayerMovementState currentState = PlayerMovementState.Default;
+
     //interaction
     public delegate void Interact();
-    public event Interact OnInteraction;
-    public bool isDragging;
+    public bool isDraggingMedium;
+    public bool isDraggingLarge;
     public bool hanging;
+    public bool isGrabbed;
+    public bool isDusted;
+    public int grabIncrement;
+    public bool isHoldingItem;
+
+    //Ladder logic - Jacob D
+    [SerializeField] float climbSpeed = 10;
+    public bool onLadder;
+    Ladder activeLadder;
+    bool exitLadder;
 
     public UnityEvent<int> onDamage;
 
 
+    void OnEnable()
+    {
+        PlayerInput.onMove += MovementInput;
+        PlayerInput.onJump += Jump;
+        PlayerInput.onRagdoll += Ragdoll;
+        PlayerInput.onCrouch += Crouch;
+        PlayerInput.onAttack += Attack;
+        Pinhead.GrabPlayer += Grabbed;
+        Pinhead.ReleasePlayer += Released;
+        DustExplode.DustPlayer += Dusted;
+    }
+
+    void OnDisable()
+    {
+        PlayerInput.onMove -= MovementInput;
+        PlayerInput.onJump -= Jump;
+        PlayerInput.onRagdoll -= Ragdoll;
+        PlayerInput.onCrouch -= Crouch;
+        PlayerInput.onAttack -= Attack;
+        Pinhead.GrabPlayer -= Grabbed;
+        Pinhead.ReleasePlayer -= Released;
+        DustExplode.DustPlayer -= Dusted;
+    }
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
         playerHealth = GetComponent<HealthController>();
         playerStuffing = GetComponent<StuffingController>();
         mainCamera = Camera.main;
+        rb = GetComponent<Rigidbody>();
     }
 
     private void Start()
@@ -57,6 +98,14 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void Update()
     {
+        if (isDusted)
+        {
+            currentDustTimer -= Time.deltaTime;
+            if (currentDustTimer <= 0)
+            {
+                isDusted = false;
+            }
+        }
         ApplyRotation();
         ApplyGravity();
         ApplyMovement();
@@ -66,7 +115,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         {
             gameObject.GetComponent<CapsuleCollider>().enabled = true;
             characterController.enabled = false;
-            input = Vector2.zero;
+            movementVector = Vector2.zero;
             GetComponent<Rigidbody>().isKinematic = false;
         }
         if(!ragdolling)
@@ -90,23 +139,71 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void ApplyRotation()
     {
-        if(!hanging)
+        if(!hanging && !isDraggingLarge && !ragdolling)
         {
-            if (input.sqrMagnitude == 0) return;
-            direction = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0.0f) * new Vector3(input.x, 0.0f, input.y);
+            if (movementVector.sqrMagnitude == 0) return;
+            direction = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0.0f) * new Vector3(movementVector.x, 0.0f, movementVector.y);
             var targetRotation = Quaternion.LookRotation(direction, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed *Time.deltaTime);
         }
-        //var targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-        //var angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref currentVelocity, smoothTime);
-        //transform.rotation = Quaternion.Euler(0.0f, angle, 0.0f);
+
+        if(isDraggingLarge)
+        {
+            if (movementVector.sqrMagnitude == 0) return;
+            direction = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0.0f) * new Vector3(movementVector.x, 0.0f, movementVector.y);
+        }
     }
 
     private void ApplyMovement()
     {
-        if(!ragdolling && !hanging)
+
+        //TODO: Add in an Enum to properly track the player's state with a switch case, rather than bools and a series of if statements
+
+        switch(currentState)
         {
-            characterController.Move(direction * speed * Time.deltaTime);
+            case PlayerMovementState.Ragdolling:
+                rb.AddForce(transform.forward);
+            break;
+            case PlayerMovementState.Hanging:
+            break;
+            case PlayerMovementState.Dusted:
+            break;
+            case PlayerMovementState.OnLadder:
+            break;
+        }
+
+        /*if(ragdolling)
+        {
+            rb.AddForce(transform.forward);
+            //PlayerInput.onMove -= MovementInput;
+        }*/
+
+        if(onLadder && !exitLadder)
+        {
+            float vertInput = movementVector.y;
+            direction = new Vector3(0, vertInput, 0);
+            characterController.Move(direction * climbSpeed * Time.deltaTime);
+        }
+        else if(onLadder && exitLadder)
+        {
+            //This is where all effects are applied when exiting a "ladder"
+            characterController.enabled = false;
+            //Set the animation trigger for 
+        }
+        else
+        {
+            if(!ragdolling && !hanging)
+            {
+                //PlayerInput.onMove += MovementInput;
+                if (!isDusted)
+                {
+                    characterController.Move(direction * (speed / (grabIncrement + 1)) * Time.deltaTime);
+                }
+                else
+                {
+                    characterController.Move(direction * ((speed * 0.8f) / (grabIncrement + 1)) * Time.deltaTime);
+                }
+            }
         }
         
     }
@@ -124,21 +221,22 @@ public class PlayerController : MonoBehaviour, IDamageable
         
         direction.y = velocity;
     }
-    public void Move(InputAction.CallbackContext context)
+    public void MovementInput(Vector2 input)
     {
+        movementVector = input;
         if(characterController.enabled)
         {
-            input = context.ReadValue<Vector2>();
-            direction = new Vector3(input.x, 0.0f, input.y);
+            direction = new Vector3(movementVector.x, 0.0f, movementVector.y);
         }  
     }
 
-    public void Jump(InputAction.CallbackContext context)
+    public void Jump()
     {
         //Debug.Log("Jump");
-        if (!context.started) return;
+        //if (!context.started) return;
         if (ragdolling) return;
-        if (isDragging) return;
+        if (isDraggingMedium) return;
+        if (isDraggingLarge) return;
 
         if (hanging)
         {
@@ -154,9 +252,9 @@ public class PlayerController : MonoBehaviour, IDamageable
         
     }
 
-    public void Crouch(InputAction.CallbackContext context)
+    public void Crouch()
     {
-        Debug.Log("ButtonPress");
+        //Debug.Log("ButtonPress");
         CrouchState();
     }
 
@@ -180,15 +278,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     }
     
 
-    public void Interaction(InputAction.CallbackContext context)
-    {
-        
-        OnInteraction?.Invoke();
-        if(!context.started) return;
-        Debug.Log("Interaction");
-    }
-
-    public void Ragdoll(InputAction.CallbackContext context)
+    public void Ragdoll()
     {
         RagdollState();
     }
@@ -224,7 +314,6 @@ public class PlayerController : MonoBehaviour, IDamageable
                     velocity = 0.0f;
 
                     hanging = true;
-                    //NEED TO FORCE ABILITY TO JUMP DUE TO GROUNDED BEING FALSE
                     //Animator.SetTrigger("HangAnim")
 
                     Vector3 hangPos = new Vector3(fwdHit.point.x, downHit.point.y, fwdHit.point.z);
@@ -236,5 +325,92 @@ public class PlayerController : MonoBehaviour, IDamageable
             }
         }
     }
-    
+
+    void Attack()
+    {
+        if (!isGrabbed && !attackCooldown)
+        {
+            //Logic, anim trigger, etc.
+            attackCooldown = true;
+            attackScript.AttackCheck();
+            StartCoroutine(AttackCooldown());
+        }
+        else
+        {
+            Pinhead[] latchedPinheads = GetComponentsInChildren<Pinhead>();
+            foreach(Pinhead p in latchedPinheads)
+            {
+                p.currentGrabTimer -= 0.25f;
+            }
+        }
+    }
+
+    IEnumerator AttackCooldown()
+    {
+        yield return new WaitForSeconds(1.0f); //1 second is a little sluggish, I know. Planning on tuning it.
+        attackCooldown = false;
+
+    }
+
+
+    public void OnLadder(Vector3 position, Ladder currentLadder)
+    {
+        //Animation SetBool for being on ladder/ climbing a rope
+        //Animation SetFloat for the speed of the player
+        characterController.enabled = false;
+        characterController.transform.position = position;
+        characterController.enabled = true;
+        activeLadder = currentLadder;
+        onLadder = true;
+    }
+    public void ExitLadder()
+    {
+        exitLadder = true;
+        LadderExitComplete();
+    }
+
+    public void LadderExitComplete()
+    {
+        characterController.enabled = false;
+        characterController.transform.position = activeLadder.GetEndPosition();
+        direction = Vector3.zero;
+        onLadder = false;
+        exitLadder = false;
+        characterController.enabled = true;
+    }
+
+
+    void Grabbed()
+    {
+        isGrabbed = true;
+        grabIncrement += 1;
+    }
+
+
+    void Released()
+    {
+        grabIncrement -= 1;
+        if (grabIncrement <= 0)
+        {
+            isGrabbed = false;
+        }
+    }
+
+    void Dusted()
+    {
+        Debug.Log("Hello I am Active");
+        isDusted = true;
+        currentDustTimer = dustTimer;
+    }
+}
+
+public enum PlayerMovementState{
+    Default,
+    Ragdolling,
+    OnGround,
+    Dusted,
+    Hanging,
+    Dragging,
+    Grabbed,
+    OnLadder
 }
