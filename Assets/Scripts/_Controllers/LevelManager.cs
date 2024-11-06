@@ -20,11 +20,13 @@ public class LevelManager : MonoBehaviour
     // Hashset containing all previously activated events. Activated events from levelEvents get added here.
     public HashSet<string> previousLevelEvents = new HashSet<string>();
     // Hashset containing all remaining events.
-    public HashSet<string> remainingLevelEvents = new HashSet<string>();
+    public HashSet<string> remainingLevelEvents;
 
     void Start()
     {
         CreateLevelHashSet();
+        remainingLevelEvents = new HashSet<string>(levelEvents); // Set to values from levelEvents at start since the start has nothing fired.
+        DebugPrintHashSet(remainingLevelEvents);
     }
 
     // Creates the hashset of strings for elevel events based on the string array eventList.
@@ -44,6 +46,7 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    // Fires event if not already fired.
     public void TriggerLevelEvent(string levelEventToTrigger)
     {
         if(previousLevelEvents.Contains(levelEventToTrigger))
@@ -51,7 +54,23 @@ public class LevelManager : MonoBehaviour
             //Event has already happened
             return;
         }
+        else
+        {
+            remainingLevelEvents.Remove(levelEventToTrigger);
+            previousLevelEvents.Add(levelEventToTrigger);
+            mostRecentEvent = levelEventToTrigger;
+            // Needs to set checkpoint, if necessary.
+        }
         
+    }
+
+    // For Debug Purposes. Prints hashset to debug log in individual log messages.
+    void DebugPrintHashSet(HashSet<string> hashSetToPrint)
+    {
+        foreach (string eventName in hashSetToPrint)
+        {
+            Debug.Log("EventName: " + eventName);
+        }
     }
 
 

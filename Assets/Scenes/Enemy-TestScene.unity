@@ -678,7 +678,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a6ad68e759948640b67fc2f791ab80c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  publicEventList: []
+  publicEventList:
+  - LevelStart
+  - Event1
+  - Event2
   mostRecentEvent: 
   levelEventArray: []
   previousLevelEventArray: []
