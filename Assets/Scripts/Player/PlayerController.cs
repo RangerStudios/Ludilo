@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     [SerializeField] bool ragdolling = false;
     [SerializeField] bool crouching = false;
     [SerializeField] bool attackCooldown;
+    bool canJump = true;
 
     //player movement values
     [SerializeField] public float speed;
@@ -55,6 +56,10 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     public UnityEvent<int> onDamage;
 
+    public float defaultSpeedModifier = 1;
+
+    public float speedModifier;
+
 
     void OnEnable()
     {
@@ -81,6 +86,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     }
     private void Awake()
     {
+        speedModifier = defaultSpeedModifier;
         characterController = GetComponent<CharacterController>();
         playerHealth = GetComponent<HealthController>();
         playerStuffing = GetComponent<StuffingController>();
@@ -137,6 +143,22 @@ public class PlayerController : MonoBehaviour, IDamageable
         }
     }
 
+    void ChangePlayerState(PlayerMovementState newState)
+    {
+        currentState = newState;
+        switch (currentState)
+        {
+            case PlayerMovementState.Ragdolling:
+                rb.AddForce(transform.forward);
+                break;
+            case PlayerMovementState.Hanging:
+                break;
+            case PlayerMovementState.OnLadder:
+                
+                break;
+        }
+    }
+
     private void ApplyRotation()
     {
         if(!hanging && !isDraggingLarge && !ragdolling)
@@ -165,11 +187,28 @@ public class PlayerController : MonoBehaviour, IDamageable
                 rb.AddForce(transform.forward);
             break;
             case PlayerMovementState.Hanging:
-            break;
-            case PlayerMovementState.Dusted:
-            break;
+                //Debug.Log("Hang State");
+                //Hanging anim here
+                break;
             case PlayerMovementState.OnLadder:
-            break;
+                if (onLadder && !exitLadder)
+                {
+                    float vertInput = movementVector.y;
+                    direction = new Vector3(0, vertInput, 0);
+                    characterController.Move(direction * climbSpeed * Time.deltaTime);
+                }
+                else if (onLadder && exitLadder)
+                {
+                    //This is where all effects are applied when exiting a "ladder"
+                    characterController.enabled = false;
+                    //Set the animation trigger for 
+                }
+                break;
+
+            default:
+               characterController.Move(direction * (speed * speedModifier) * Time.deltaTime);
+                //Debug.Log("Default State");
+               break;
         }
 
         /*if(ragdolling)
@@ -178,33 +217,16 @@ public class PlayerController : MonoBehaviour, IDamageable
             //PlayerInput.onMove -= MovementInput;
         }*/
 
-        if(onLadder && !exitLadder)
-        {
-            float vertInput = movementVector.y;
-            direction = new Vector3(0, vertInput, 0);
-            characterController.Move(direction * climbSpeed * Time.deltaTime);
-        }
-        else if(onLadder && exitLadder)
-        {
-            //This is where all effects are applied when exiting a "ladder"
-            characterController.enabled = false;
-            //Set the animation trigger for 
-        }
-        else
-        {
             if(!ragdolling && !hanging)
             {
-                //PlayerInput.onMove += MovementInput;
-                if (!isDusted)
-                {
-                    characterController.Move(direction * (speed / (grabIncrement + 1)) * Time.deltaTime);
-                }
-                else
-                {
-                    characterController.Move(direction * ((speed * 0.8f) / (grabIncrement + 1)) * Time.deltaTime);
-                }
+            //PlayerInput.onMove += MovementInput;
+            if (isDusted)
+            {
+                characterController.Move(direction * ((speed * 0.8f) / (grabIncrement + 1)) * Time.deltaTime);
             }
-        }
+
+            }
+        
         
     }
 
@@ -232,6 +254,11 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     public void Jump()
     {
+
+        if (!canJump)
+        {
+            return;
+        }
         //Debug.Log("Jump");
         //if (!context.started) return;
         if (ragdolling) return;
@@ -243,6 +270,7 @@ public class PlayerController : MonoBehaviour, IDamageable
             gravity = -9.81f;
             hanging = false;
             velocity += jumpPower;
+            ChangePlayerState(PlayerMovementState.Default);
         }
         else
         {
@@ -314,7 +342,7 @@ public class PlayerController : MonoBehaviour, IDamageable
                     velocity = 0.0f;
 
                     hanging = true;
-                    //Animator.SetTrigger("HangAnim")
+                    ChangePlayerState(PlayerMovementState.Hanging);
 
                     Vector3 hangPos = new Vector3(fwdHit.point.x, downHit.point.y, fwdHit.point.z);
                     Vector3 offset = transform.forward * -0.1f + transform.up * -0.5f;
@@ -362,6 +390,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         characterController.enabled = true;
         activeLadder = currentLadder;
         onLadder = true;
+        ChangePlayerState(PlayerMovementState.OnLadder);
     }
     public void ExitLadder()
     {
@@ -408,7 +437,6 @@ public enum PlayerMovementState{
     Default,
     Ragdolling,
     OnGround,
-    Dusted,
     Hanging,
     Dragging,
     Grabbed,
