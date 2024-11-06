@@ -30,12 +30,10 @@ public class SmallItemPickup : Interactable
         if(activated == false && playerController.isHoldingItem == false)
         {
             activated = true;
-            playerController.isHoldingItem = true;
         }
         else
         {
             activated = false;
-            playerController.isHoldingItem = false;
         }
     }
 
@@ -52,6 +50,7 @@ public class SmallItemPickup : Interactable
                 var rigidbody = heldObject.GetComponent<Rigidbody>();
                 rigidbody.drag = 1f;
                 rigidbody.useGravity = true;
+                Physics.IgnoreLayerCollision(9, 6, false);
                 heldObject = null;
             }
         }
@@ -69,6 +68,7 @@ public class SmallItemPickup : Interactable
                     var rigidbody = heldObject.GetComponent<Rigidbody>();
                     rigidbody.drag = 25f;
                     rigidbody.useGravity = false;
+                    Physics.IgnoreLayerCollision(9, 6, true);
                 }
             }
         else
@@ -87,8 +87,19 @@ public class SmallItemPickup : Interactable
             var rigidbody = heldObject.GetComponent<Rigidbody>();
             var moveTo = t.position + distance * t.forward + height * t.up;
             var difference = moveTo - heldObject.transform.position;
-            rigidbody.AddForce(difference * 500);
+            rigidbody.AddForce(difference * 800);
             heldObject.transform.rotation = t.rotation;
+            playerController.isHoldingItem = true;
+            activated = true;
+        }
+    }
+
+    public void DropSmallItem()
+    {
+        if(heldObject)
+        {
+            activated = false;
+            playerController.isHoldingItem = false;
         }
     }
 
