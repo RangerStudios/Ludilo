@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -45,9 +46,12 @@ public class SmallItemPickup : Interactable
         var t = playerTransform;
         if(heldObject)
         {
-            heldObject.transform.position = t.position + distance * t.forward + height * t.up;
+            
             if(!activated)
             {
+                var rigidbody = heldObject.GetComponent<Rigidbody>();
+                rigidbody.drag = 1f;
+                rigidbody.useGravity = true;
                 heldObject = null;
             }
         }
@@ -62,12 +66,29 @@ public class SmallItemPickup : Interactable
                 {
                     var hitObject = hits[hitIndex].transform.gameObject;
                     heldObject = hitObject;
+                    var rigidbody = heldObject.GetComponent<Rigidbody>();
+                    rigidbody.drag = 25f;
+                    rigidbody.useGravity = false;
                 }
             }
         else
         {
           
         }
+        }
+    }
+
+    void FixedUpdate()
+    {
+        var t = playerTransform;
+
+        if(heldObject)
+        {
+            var rigidbody = heldObject.GetComponent<Rigidbody>();
+            var moveTo = t.position + distance * t.forward + height * t.up;
+            var difference = moveTo - heldObject.transform.position;
+            rigidbody.AddForce(difference * 500);
+            heldObject.transform.rotation = t.rotation;
         }
     }
 
