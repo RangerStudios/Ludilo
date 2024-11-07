@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     Rigidbody rb;
     [SerializeField] bool ragdolling = false;
     [SerializeField] bool crouching = false;
+    [SerializeField] bool canCrouch;
     [SerializeField] bool attackCooldown;
     public bool canJump = true;
 
@@ -36,7 +37,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     public float dustTimer;
     public float currentDustTimer;
 
-    PlayerMovementState currentState = PlayerMovementState.Default;
+    PlayerMovementState currentState;
 
     //interaction
     public delegate void Interact();
@@ -117,19 +118,6 @@ public class PlayerController : MonoBehaviour, IDamageable
         ApplyMovement();
         LedgeGrab();
 
-        //if(ragdolling)
-        //{
-            //gameObject.GetComponent<CapsuleCollider>().enabled = true;
-            //characterController.enabled = false;
-            //movementVector = Vector2.zero;
-            //GetComponent<Rigidbody>().isKinematic = false;
-        //}
-        //else
-        //{
-            //gameObject.GetComponent<CapsuleCollider>().enabled = false;
-            //characterController.enabled = true;
-            //GetComponent<Rigidbody>().isKinematic = true;
-        //}
 
 
         if(crouching)
@@ -199,10 +187,13 @@ public class PlayerController : MonoBehaviour, IDamageable
                 characterController.enabled = false;
                 movementVector = Vector2.zero;
                 GetComponent<Rigidbody>().isKinematic = false;
+                rb.AddForce(transform.forward);
                 canJump = false;
+                canCrouch = false;
                 Debug.Log("RagdollState");
             break;
             case PlayerMovementState.Hanging:
+                canCrouch = false;
                 Debug.Log("Hang State");
                 //Hanging anim here
                 break;
@@ -220,17 +211,24 @@ public class PlayerController : MonoBehaviour, IDamageable
                     //Set the animation trigger for 
                 }
                 break;
+            case PlayerMovementState.Dragging:
+                characterController.Move(direction * (speed * speedModifier) * Time.deltaTime);
+                canJump = false;
+                speedModifier = 0.2f;
+                rotationSpeed = 250f;
+                break;
 
             default:
-                if(!ragdolling && !hanging)
-                {
+                
                     characterController.Move(direction * (speed * speedModifier) * Time.deltaTime);
                     gameObject.GetComponent<CapsuleCollider>().enabled = false;
                     characterController.enabled = true;
                     GetComponent<Rigidbody>().isKinematic = true;
                     canJump = true;
+                    canCrouch = true;
+                    speedModifier = 1f;
                     //Debug.Log("Default State");
-                }
+                
                break;
         }
 
@@ -290,8 +288,12 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     public void Crouch()
     {
-        //Debug.Log("ButtonPress");
-        CrouchState();
+        if (canCrouch)
+        {
+            //Debug.Log("ButtonPress");
+            CrouchState();
+        }
+        
     }
 
     public void CrouchState()
@@ -316,21 +318,18 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     public void Ragdoll()
     {
-        ragdolling = !ragdolling;
         RagdollState();
     }
 
     public void RagdollState()
     {
-
-        if(ragdolling)
+        ragdolling = !ragdolling;
+        if (ragdolling)
         {
-            //PlayerInput.onMove -= MovementInput;
             ChangePlayerState(PlayerMovementState.Ragdolling);
         }
         else
         {
-            //PlayerInput.onMove += MovementInput;
             ChangePlayerState(PlayerMovementState.Default);
         }
     }
