@@ -100,6 +100,11 @@ public class SmallItemPickup : Interactable
         {
             activated = false;
             playerController.isHoldingItem = false;
+            //playerController.ChangePlayerState(PlayerMovementState.Default);
+        }
+        else
+        {
+            //playerController.ChangePlayerState(PlayerMovementState.HoldingSmall);
         }
     }
 
