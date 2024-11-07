@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     [SerializeField] bool ragdolling = false;
     [SerializeField] bool crouching = false;
     [SerializeField] bool attackCooldown;
-    bool canJump = true;
+    public bool canJump = true;
 
     //player movement values
     [SerializeField] public float speed;
@@ -117,63 +117,74 @@ public class PlayerController : MonoBehaviour, IDamageable
         ApplyMovement();
         LedgeGrab();
 
-        if(ragdolling)
-        {
-            gameObject.GetComponent<CapsuleCollider>().enabled = true;
-            characterController.enabled = false;
-            movementVector = Vector2.zero;
-            GetComponent<Rigidbody>().isKinematic = false;
-        }
-        if(!ragdolling)
-        {
-            gameObject.GetComponent<CapsuleCollider>().enabled = false;
-            characterController.enabled = true;
-            GetComponent<Rigidbody>().isKinematic = true;
-        }
+        //if(ragdolling)
+        //{
+            //gameObject.GetComponent<CapsuleCollider>().enabled = true;
+            //characterController.enabled = false;
+            //movementVector = Vector2.zero;
+            //GetComponent<Rigidbody>().isKinematic = false;
+        //}
+        //else
+        //{
+            //gameObject.GetComponent<CapsuleCollider>().enabled = false;
+            //characterController.enabled = true;
+            //GetComponent<Rigidbody>().isKinematic = true;
+        //}
+
 
         if(crouching)
         {
             characterController.height = 1.0f;
             characterController.center = new Vector3(0f, -0.4f, 0f);
         }
-        if(!crouching)
+        else
         {
             characterController.height = 2.0f;
             characterController.center = new Vector3(0f, 0f, 0f);
         }
     }
 
-    void ChangePlayerState(PlayerMovementState newState)
+    public void ChangePlayerState(PlayerMovementState newState)
     {
         currentState = newState;
         switch (currentState)
         {
             case PlayerMovementState.Ragdolling:
-                rb.AddForce(transform.forward);
                 break;
             case PlayerMovementState.Hanging:
                 break;
             case PlayerMovementState.OnLadder:
-                
                 break;
+            case PlayerMovementState.Dragging:
+                break;
+            case PlayerMovementState.Grabbed:
+                break;
+            case PlayerMovementState.OnGround:
+                break; 
         }
     }
 
     private void ApplyRotation()
     {
-        if(!hanging && !isDraggingLarge && !ragdolling)
+
+        switch(currentState)
         {
-            if (movementVector.sqrMagnitude == 0) return;
-            direction = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0.0f) * new Vector3(movementVector.x, 0.0f, movementVector.y);
-            var targetRotation = Quaternion.LookRotation(direction, Vector3.up);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed *Time.deltaTime);
+            case PlayerMovementState.Default:
+                if(!ragdolling && !hanging)
+                {
+                    if (movementVector.sqrMagnitude == 0) return;
+                    direction = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0.0f) * new Vector3(movementVector.x, 0.0f, movementVector.y);
+                    var targetRotation = Quaternion.LookRotation(direction, Vector3.up);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed *Time.deltaTime);
+                }
+                break;
+            case PlayerMovementState.Dragging:
+                if (movementVector.sqrMagnitude == 0) return;
+                direction = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0.0f) * new Vector3(movementVector.x, 0.0f, movementVector.y); 
+                Debug.Log("Drag State"); 
+                break;             
         }
 
-        if(isDraggingLarge)
-        {
-            if (movementVector.sqrMagnitude == 0) return;
-            direction = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0.0f) * new Vector3(movementVector.x, 0.0f, movementVector.y);
-        }
     }
 
     private void ApplyMovement()
@@ -184,10 +195,15 @@ public class PlayerController : MonoBehaviour, IDamageable
         switch(currentState)
         {
             case PlayerMovementState.Ragdolling:
-                rb.AddForce(transform.forward);
+                gameObject.GetComponent<CapsuleCollider>().enabled = true;
+                characterController.enabled = false;
+                movementVector = Vector2.zero;
+                GetComponent<Rigidbody>().isKinematic = false;
+                canJump = false;
+                Debug.Log("RagdollState");
             break;
             case PlayerMovementState.Hanging:
-                //Debug.Log("Hang State");
+                Debug.Log("Hang State");
                 //Hanging anim here
                 break;
             case PlayerMovementState.OnLadder:
@@ -206,26 +222,23 @@ public class PlayerController : MonoBehaviour, IDamageable
                 break;
 
             default:
-               characterController.Move(direction * (speed * speedModifier) * Time.deltaTime);
-                //Debug.Log("Default State");
+                if(!ragdolling && !hanging)
+                {
+                    characterController.Move(direction * (speed * speedModifier) * Time.deltaTime);
+                    gameObject.GetComponent<CapsuleCollider>().enabled = false;
+                    characterController.enabled = true;
+                    GetComponent<Rigidbody>().isKinematic = true;
+                    canJump = true;
+                    //Debug.Log("Default State");
+                }
                break;
         }
 
-        /*if(ragdolling)
+
+        if (isDusted)
         {
-            rb.AddForce(transform.forward);
-            //PlayerInput.onMove -= MovementInput;
-        }*/
-
-            if(!ragdolling && !hanging)
-            {
-            //PlayerInput.onMove += MovementInput;
-            if (isDusted)
-            {
-                characterController.Move(direction * ((speed * 0.8f) / (grabIncrement + 1)) * Time.deltaTime);
-            }
-
-            }
+            characterController.Move(direction * ((speed * 0.8f) / (grabIncrement + 1)) * Time.deltaTime);
+        }
         
         
     }
@@ -259,11 +272,6 @@ public class PlayerController : MonoBehaviour, IDamageable
         {
             return;
         }
-        //Debug.Log("Jump");
-        //if (!context.started) return;
-        if (ragdolling) return;
-        if (isDraggingMedium) return;
-        if (isDraggingLarge) return;
 
         if (hanging)
         {
@@ -308,12 +316,23 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     public void Ragdoll()
     {
+        ragdolling = !ragdolling;
         RagdollState();
     }
 
     public void RagdollState()
     {
-        ragdolling = !ragdolling;
+
+        if(ragdolling)
+        {
+            //PlayerInput.onMove -= MovementInput;
+            ChangePlayerState(PlayerMovementState.Ragdolling);
+        }
+        else
+        {
+            //PlayerInput.onMove += MovementInput;
+            ChangePlayerState(PlayerMovementState.Default);
+        }
     }
 
     void LedgeGrab()
@@ -341,8 +360,8 @@ public class PlayerController : MonoBehaviour, IDamageable
                     gravity = 0.0f;
                     velocity = 0.0f;
 
-                    hanging = true;
                     ChangePlayerState(PlayerMovementState.Hanging);
+                    hanging = true;
 
                     Vector3 hangPos = new Vector3(fwdHit.point.x, downHit.point.y, fwdHit.point.z);
                     Vector3 offset = transform.forward * -0.1f + transform.up * -0.5f;

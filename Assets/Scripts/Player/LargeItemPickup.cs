@@ -45,13 +45,13 @@ public class LargeItemPickup : Interactable
         if(heldObject)
         {
             
-            playerController.isDraggingLarge = true;
+            playerController.canJump = false;
             playerController.speed = 1;
             playerController.rotationSpeed = 250f;
+            playerController.ChangePlayerState(PlayerMovementState.Dragging);
             if(!activated)
             {
                 var rigidbody = heldObject.GetComponent<Rigidbody>();
-                playerController.isDraggingLarge = false;
                 rigidbody.drag = 1f;
                 rigidbody.useGravity = true;
                 rigidbody.constraints = RigidbodyConstraints.None;
@@ -62,6 +62,7 @@ public class LargeItemPickup : Interactable
         }
         else
         {
+            playerController.ChangePlayerState(PlayerMovementState.Default);
             if (activated)
             {
                 var hits = Physics.SphereCastAll(t.position + t.forward, radius, t.forward, radius);
@@ -94,6 +95,16 @@ public class LargeItemPickup : Interactable
             var difference = moveTo - heldObject.transform.position;
             rigidbody.AddForce(difference * 500);
             heldObject.transform.rotation = t.rotation;
+        }
+    }
+
+    public void DropLargeItem()
+    {
+        if(heldObject)
+        {
+            activated = false;
+            playerController.isHoldingItem = false;
+            playerController.canJump = true;
         }
     }
 
