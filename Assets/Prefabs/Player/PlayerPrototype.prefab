@@ -129,7 +129,7 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: -0.1, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4773192885318573420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,6 +150,7 @@ MonoBehaviour:
   ragdolling: 0
   crouching: 0
   attackCooldown: 0
+  canJump: 1
   speed: 5
   rotationSpeed: 500
   gravityMultiplier: 2
@@ -180,6 +181,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  defaultSpeedModifier: 1
+  speedModifier: 0
 --- !u!143 &4019160133836726586
 CharacterController:
   m_ObjectHideFlags: 0
