@@ -45,13 +45,12 @@ public class MediumItemPickup : Interactable
         if(heldObject)
         {
             
-            playerController.isDraggingMedium = true;
+            playerController.canJump = false;
             playerController.speed = 3;
             playerController.rotationSpeed = 250f;
             if(!activated)
             {
                 var rigidbody = heldObject.GetComponent<Rigidbody>();
-                playerController.isDraggingMedium = false;
                 rigidbody.drag = 1f;
                 rigidbody.useGravity = true;
                 rigidbody.constraints = RigidbodyConstraints.None;
@@ -94,6 +93,17 @@ public class MediumItemPickup : Interactable
             var difference = moveTo - heldObject.transform.position;
             rigidbody.AddForce(difference * 500);
             heldObject.transform.rotation = t.rotation;
+
+        }
+    }
+
+    public void DropMediumItem()
+    {
+        if(heldObject)
+        {
+            activated = false;
+            playerController.isHoldingItem = false;
+            playerController.canJump = true;
         }
     }
 
