@@ -1029,6 +1029,7 @@ GameObject:
   - component: {fileID: 821989401}
   - component: {fileID: 821989400}
   - component: {fileID: 821989399}
+  - component: {fileID: 821989404}
   m_Layer: 7
   m_Name: ToySoldier
   m_TagString: Untagged
@@ -1147,6 +1148,19 @@ Transform:
   - {fileID: 1580824539}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &821989404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 821989398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f71d0d08b87d9744fabde6341e53fc98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  behaviorObject: {fileID: 1580824538}
 --- !u!1001 &826610778
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1884,9 +1898,13 @@ GameObject:
   - component: {fileID: 1580824542}
   - component: {fileID: 1580824541}
   - component: {fileID: 1580824540}
-  - component: {fileID: 1580824551}
   - component: {fileID: 1580824550}
   - component: {fileID: 1580824549}
+  - component: {fileID: 1580824555}
+  - component: {fileID: 1580824554}
+  - component: {fileID: 1580824553}
+  - component: {fileID: 1580824552}
+  - component: {fileID: 1580824551}
   m_Layer: 7
   m_Name: ToySoldierBehavior
   m_TagString: Untagged
@@ -1924,8 +1942,8 @@ MonoBehaviour:
   title: Move Navmesh Agent
   rect:
     serializedVersion: 2
-    x: 620
-    y: 340
+    x: 860
+    y: 360
     width: 160
     height: 45
   parent: {fileID: 1580824544}
@@ -1957,8 +1975,8 @@ MonoBehaviour:
   title: Wait
   rect:
     serializedVersion: 2
-    x: 420
-    y: 340
+    x: 660
+    y: 360
     width: 160
     height: 45
   parent: {fileID: 1580824544}
@@ -1971,7 +1989,7 @@ MonoBehaviour:
     mode: 0
     blackboard: {fileID: 0}
     key: 
-    constantValue: 3
+    constantValue: 2
   randomDeviation: 0
   continueOnRestart: 0
 --- !u!114 &1580824542
@@ -2003,8 +2021,8 @@ MonoBehaviour:
   title: Set Patrol Point
   rect:
     serializedVersion: 2
-    x: 220
-    y: 340
+    x: 460
+    y: 360
     width: 160
     height: 45
   parent: {fileID: 1580824544}
@@ -2037,7 +2055,7 @@ MonoBehaviour:
   title: Sequence
   rect:
     serializedVersion: 2
-    x: 420
+    x: 660
     y: 260
     width: 160
     height: 45
@@ -2071,7 +2089,7 @@ MonoBehaviour:
     height: 45
   parent: {fileID: 0}
   children:
-  - {fileID: 1580824551}
+  - {fileID: 1580824555}
   behaviourTree: {fileID: 0}
   runtimePriority: 0
   breakpoint: 0
@@ -2106,6 +2124,8 @@ MonoBehaviour:
   variables:
   - {fileID: 1580824542}
   - {fileID: 1580824550}
+  - {fileID: 1580824554}
+  - {fileID: 1580824553}
   masterBlackboard: {fileID: 0}
 --- !u!114 &1580824548
 MonoBehaviour:
@@ -2139,8 +2159,9 @@ MonoBehaviour:
     y: 180
     width: 160
     height: 45
-  parent: {fileID: 1580824551}
+  parent: {fileID: 1580824555}
   children:
+  - {fileID: 1580824552}
   - {fileID: 1580824544}
   behaviourTree: {fileID: 0}
   runtimePriority: 0
@@ -2169,10 +2190,116 @@ MonoBehaviour:
   m_GameObject: {fileID: 1580824538}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2b0d715ba3c3a646a4fdb6d2bcc62d7, type: 3}
+  m_Script: {fileID: 11500000, guid: 58fe7bc6a9b18e148b82820c7c1c0a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: Detect Enemy Service
+  title: Wait
+  rect:
+    serializedVersion: 2
+    x: 220
+    y: 360
+    width: 160
+    height: 45
+  parent: {fileID: 1580824552}
+  children: []
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  time:
+    useConstant: 1
+    mode: 0
+    blackboard: {fileID: 0}
+    key: 
+    constantValue: 3
+  randomDeviation: 0
+  continueOnRestart: 0
+--- !u!114 &1580824552
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1580824538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 534e3ec7de6cd444e984c2e7f68e42e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Is Set Condition
+  rect:
+    serializedVersion: 2
+    x: 220
+    y: 260
+    width: 160
+    height: 45
+  parent: {fileID: 1580824549}
+  children:
+  - {fileID: 1580824551}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  abort: 3
+  invert: 0
+  type: 0
+  boolReference:
+    useConstant: 0
+    mode: 1
+    blackboard: {fileID: 1580824547}
+    key: SeesPlayer
+    constantValue: 0
+  objectReference:
+    useConstant: 0
+    mode: 1
+    blackboard: {fileID: 0}
+    key: 
+    constantValue: {fileID: 0}
+  transformReference:
+    useConstant: 0
+    mode: 1
+    blackboard: {fileID: 0}
+    key: 
+    constantValue: {fileID: 0}
+--- !u!114 &1580824553
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1580824538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbc98ff6538275b4c9a8383882546ee9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: self
+  val: {fileID: 821989403}
+--- !u!114 &1580824554
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1580824538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ae15c5e6bcb1714080f2e8296c3d17a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: SeesPlayer
+  val: 0
+--- !u!114 &1580824555
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1580824538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29e4ded86805eac4281c2fd032b60400, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Enemy Sees Service
   rect:
     serializedVersion: 2
     x: 420
@@ -2188,13 +2315,28 @@ MonoBehaviour:
   interval: 1
   randomDeviation: 0
   callOnEnter: 1
-  mask:
+  rangeMask:
     serializedVersion: 2
     m_Bits: 64
+  sightMask:
+    serializedVersion: 2
+    m_Bits: 65
   range: 10
-  variableToSet:
+  seenBool:
     useConstant: 0
-    mode: 1
+    mode: 0
+    blackboard: {fileID: 1580824547}
+    key: SeesPlayer
+    constantValue: 0
+  self:
+    useConstant: 0
+    mode: 0
+    blackboard: {fileID: 1580824547}
+    key: self
+    constantValue: {fileID: 0}
+  target:
+    useConstant: 0
+    mode: 0
     blackboard: {fileID: 1580824547}
     key: attackTarget
     constantValue: {fileID: 0}
