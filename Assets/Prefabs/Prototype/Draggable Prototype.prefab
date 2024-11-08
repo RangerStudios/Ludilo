@@ -161,9 +161,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8210652019707643556}
+        m_TargetAssemblyTypeName: LargeItemPickup, Assembly-CSharp
+        m_MethodName: DropLargeItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   activated: 0
   heldObject: {fileID: 0}
   radius: 0
   distance: 0
   playerController: {fileID: 0}
+  player: {fileID: 0}
   playerTransform: {fileID: 0}
