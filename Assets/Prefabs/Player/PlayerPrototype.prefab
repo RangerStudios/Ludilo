@@ -82,6 +82,7 @@ GameObject:
   - component: {fileID: 3138588615103539705}
   - component: {fileID: 168618076489209509}
   - component: {fileID: 7276590156589369150}
+  - component: {fileID: 1286153590185860155}
   m_Layer: 6
   m_Name: PlayerPrototype
   m_TagString: Player
@@ -149,6 +150,7 @@ MonoBehaviour:
   savedPlayerHealth: {fileID: 11400000, guid: f2889d2d8f6aa204f9dc06cec0712ac3, type: 2}
   ragdolling: 0
   crouching: 0
+  canCrouch: 0
   attackCooldown: 0
   canJump: 1
   speed: 5
@@ -368,6 +370,27 @@ MonoBehaviour:
     m_Bits: 2048
   saveNumFound: 0
   enemyNumFound: 0
+--- !u!95 &1286153590185860155
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3836063803591100535}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 98fb1cea8b7901642b2876227a3979eb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &8121506983817541152
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -431,8 +454,19 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7766340767238636385, guid: 644d12999d2574041b6c4c1a5bdea49a,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 98fb1cea8b7901642b2876227a3979eb, type: 2}
+    - target: {fileID: 7766340767238636385, guid: 644d12999d2574041b6c4c1a5bdea49a,
+        type: 3}
+      propertyPath: m_CullingMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 1893274305863764003, guid: 644d12999d2574041b6c4c1a5bdea49a, type: 3}
+    - {fileID: 0}
+    - {fileID: 7766340767238636385, guid: 644d12999d2574041b6c4c1a5bdea49a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
