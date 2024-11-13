@@ -4,39 +4,14 @@ using UnityEngine;
 
 public class ToySoldier : MonoBehaviour
 {
-    bool lookingAtPlayer = false;
-    Transform player;
+    //Reference to behavior, in case we need to disable it in this script.
     public GameObject behaviorObject;
+    //Reference to bullet prefab, so that it can be instantiated when necessary.
+    public GameObject bulletPrefab;
 
-    public void OnEnable()
+    public void DebugShoot()
     {
-        ToySoldierAttack.OnSeePlayer += LookActive;
-        ToySoldierAttack.OnPlayerNotSeen += LookInactive;
-    }
-    public void OnDisable()
-    {
-        ToySoldierAttack.OnSeePlayer -= LookActive;
-        ToySoldierAttack.OnPlayerNotSeen -= LookInactive;
-    }
-
-    public void Update()
-    {
-        if (lookingAtPlayer)
-        {
-            transform.LookAt(player);
-        }
-    }
-
-    public void LookActive(Transform seenPlayer)
-    {
-        player = seenPlayer;
-        behaviorObject.SetActive(false);
-        lookingAtPlayer = true;
-    }
-
-    public void LookInactive()
-    {
-        lookingAtPlayer = false;
-        behaviorObject.SetActive(true);
+        Debug.Log("Fire!");
+        //Fires bullet prefab.
     }
 }

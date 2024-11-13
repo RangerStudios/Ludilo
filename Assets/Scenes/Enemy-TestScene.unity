@@ -1161,6 +1161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   behaviorObject: {fileID: 1580824538}
+  bulletPrefab: {fileID: 0}
 --- !u!1001 &826610778
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1868,18 +1869,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 91.413, z: 0}
---- !u!114 &1575466500 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9080276719249664358, guid: 7efe437b199218949a7ecd0ea85ffdef,
-    type: 3}
-  m_PrefabInstance: {fileID: 1551602689143821044}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad17cfbacfc9aaf4babcee4acc9b15c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1580824538
 GameObject:
   m_ObjectHideFlags: 0
@@ -1906,10 +1895,12 @@ GameObject:
   - component: {fileID: 1580824552}
   - component: {fileID: 1580824557}
   - component: {fileID: 1580824566}
-  - component: {fileID: 1580824565}
-  - component: {fileID: 1580824564}
-  - component: {fileID: 1580824563}
-  - component: {fileID: 1580824561}
+  - component: {fileID: 1580824569}
+  - component: {fileID: 1580824568}
+  - component: {fileID: 1580824572}
+  - component: {fileID: 1580824571}
+  - component: {fileID: 1580824570}
+  - component: {fileID: 1580824573}
   m_Layer: 7
   m_Name: ToySoldierBehavior
   m_TagString: Untagged
@@ -2110,7 +2101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b25af8627659c6949b60949c3aa8d91d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedEditorNode: {fileID: 1580824563}
+  selectedEditorNode: {fileID: 0}
   repeatOnFinish: 1
   maxExecutionsPerTick: 1000
   parent: {fileID: 0}
@@ -2208,7 +2199,7 @@ MonoBehaviour:
     height: 45
   parent: {fileID: 1580824549}
   children:
-  - {fileID: 1580824566}
+  - {fileID: 1580824573}
   behaviourTree: {fileID: 0}
   runtimePriority: 0
   breakpoint: 0
@@ -2328,160 +2319,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: Timer
   val: 0
---- !u!114 &1580824561
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1580824538}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c78c7da6b00e1b46bad07949050f82f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  title: Sequence
-  rect:
-    serializedVersion: 2
-    x: 320
-    y: 500
-    width: 160
-    height: 45
-  parent: {fileID: 1580824564}
-  children:
-  - {fileID: 1580824563}
-  behaviourTree: {fileID: 0}
-  runtimePriority: 0
-  breakpoint: 0
-  random: 0
---- !u!114 &1580824563
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1580824538}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b98470d7a96ed124985c539edd964068, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  title: Set Number
-  rect:
-    serializedVersion: 2
-    x: 160
-    y: 580
-    width: 160
-    height: 45
-  parent: {fileID: 1580824561}
-  children: []
-  behaviourTree: {fileID: 0}
-  runtimePriority: 0
-  breakpoint: 0
-  type: 0
-  operation: 1
-  sourceFloat:
-    useConstant: 1
-    mode: 0
-    blackboard: {fileID: 0}
-    key: 
-    constantValue: -0.001
-  sourceInt:
-    useConstant: 1
-    mode: 0
-    blackboard: {fileID: 0}
-    key: 
-    constantValue: 0
-  destinationFloat:
-    useConstant: 0
-    mode: 1
-    blackboard: {fileID: 1580824547}
-    key: Timer
-    constantValue: 0
-  destinationInt:
-    useConstant: 0
-    mode: 1
-    blackboard: {fileID: 0}
-    key: 
-    constantValue: 0
---- !u!114 &1580824564
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1580824538}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 056841afaed742d4e909e76361b5173f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  title: Repeater
-  rect:
-    serializedVersion: 2
-    x: 320
-    y: 420
-    width: 160
-    height: 45
-  parent: {fileID: 1580824566}
-  children:
-  - {fileID: 1580824561}
-  behaviourTree: {fileID: 0}
-  runtimePriority: 0
-  breakpoint: 0
-  loops: 1
-  infinite: 0
-  breakOnFailure: 0
---- !u!114 &1580824565
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1580824538}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b98470d7a96ed124985c539edd964068, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  title: Set Number
-  rect:
-    serializedVersion: 2
-    x: 120
-    y: 420
-    width: 160
-    height: 45
-  parent: {fileID: 1580824566}
-  children: []
-  behaviourTree: {fileID: 0}
-  runtimePriority: 0
-  breakpoint: 0
-  type: 0
-  operation: 0
-  sourceFloat:
-    useConstant: 1
-    mode: 0
-    blackboard: {fileID: 0}
-    key: 
-    constantValue: 5
-  sourceInt:
-    useConstant: 1
-    mode: 0
-    blackboard: {fileID: 0}
-    key: 
-    constantValue: 0
-  destinationFloat:
-    useConstant: 0
-    mode: 1
-    blackboard: {fileID: 1580824547}
-    key: Timer
-    constantValue: 0
-  destinationInt:
-    useConstant: 0
-    mode: 1
-    blackboard: {fileID: 0}
-    key: 
-    constantValue: 0
 --- !u!114 &1580824566
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -2498,17 +2335,291 @@ MonoBehaviour:
   rect:
     serializedVersion: 2
     x: 220
+    y: 420
+    width: 160
+    height: 45
+  parent: {fileID: 1580824573}
+  children:
+  - {fileID: 1580824568}
+  - {fileID: 1580824569}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  random: 0
+--- !u!114 &1580824568
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1580824538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ec611930975eda44b3c82fc2e9133a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Move Navmesh Agent
+  rect:
+    serializedVersion: 2
+    x: 120
+    y: 500
+    width: 160
+    height: 45
+  parent: {fileID: 1580824566}
+  children: []
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  destination:
+    useConstant: 0
+    mode: 0
+    blackboard: {fileID: 1580824547}
+    key: attackTarget
+    constantValue: {fileID: 0}
+  agent: {fileID: 821989399}
+  stopDistance: 2
+  updateInterval: 3
+--- !u!114 &1580824569
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1580824538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2370820ab6f42c8449d09456ac02d66d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Cooldown
+  rect:
+    serializedVersion: 2
+    x: 320
+    y: 500
+    width: 160
+    height: 45
+  parent: {fileID: 1580824566}
+  children:
+  - {fileID: 1580824572}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  abort: 0
+  time:
+    useConstant: 1
+    mode: 0
+    blackboard: {fileID: 0}
+    key: 
+    constantValue: 5
+  resetOnChildFailure: 1
+--- !u!114 &1580824570
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1580824538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58fe7bc6a9b18e148b82820c7c1c0a90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Wait
+  rect:
+    serializedVersion: 2
+    x: 420
+    y: 660
+    width: 160
+    height: 45
+  parent: {fileID: 1580824572}
+  children: []
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  time:
+    useConstant: 1
+    mode: 0
+    blackboard: {fileID: 0}
+    key: 
+    constantValue: 3
+  randomDeviation: 0
+  continueOnRestart: 0
+--- !u!114 &1580824571
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1580824538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d47807df5b5587e44bfd9aface30c12f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Invoke Unity Event
+  rect:
+    serializedVersion: 2
+    x: 220
+    y: 660
+    width: 160
+    height: 45
+  parent: {fileID: 1580824572}
+  children: []
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  type: 0
+  transformReference:
+    useConstant: 0
+    mode: 0
+    blackboard: {fileID: 1580824547}
+    key: self
+    constantValue: {fileID: 0}
+  gameObjectReference:
+    useConstant: 0
+    mode: 0
+    blackboard: {fileID: 0}
+    key: 
+    constantValue: {fileID: 0}
+  floatReference:
+    useConstant: 0
+    mode: 0
+    blackboard: {fileID: 1580824547}
+    key: Timer
+    constantValue: 0
+  intReference:
+    useConstant: 0
+    mode: 0
+    blackboard: {fileID: 0}
+    key: 
+    constantValue: 0
+  boolReference:
+    useConstant: 0
+    mode: 0
+    blackboard: {fileID: 0}
+    key: 
+    constantValue: 0
+  stringReference:
+    useConstant: 0
+    mode: 0
+    blackboard: {fileID: 0}
+    key: 
+    constantValue: 
+  vector3Reference:
+    useConstant: 0
+    mode: 0
+    blackboard: {fileID: 0}
+    key: 
+    constantValue: {x: 0, y: 0, z: 0}
+  vector2Reference:
+    useConstant: 0
+    mode: 0
+    blackboard: {fileID: 0}
+    key: 
+    constantValue: {x: 0, y: 0}
+  transformEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 821989404}
+        m_TargetAssemblyTypeName: ToySoldier, Assembly-CSharp
+        m_MethodName: DebugShoot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  gameObjectEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  floatEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 821989404}
+        m_TargetAssemblyTypeName: ToySoldier, Assembly-CSharp
+        m_MethodName: DebugShoot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  intEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  boolEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  stringEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  vector3Event:
+    m_PersistentCalls:
+      m_Calls: []
+  vector2Event:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1580824572
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1580824538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c78c7da6b00e1b46bad07949050f82f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Sequence
+  rect:
+    serializedVersion: 2
+    x: 320
+    y: 580
+    width: 160
+    height: 45
+  parent: {fileID: 1580824569}
+  children:
+  - {fileID: 1580824571}
+  - {fileID: 1580824570}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  random: 0
+--- !u!114 &1580824573
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1580824538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 056841afaed742d4e909e76361b5173f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Repeater
+  rect:
+    serializedVersion: 2
+    x: 220
     y: 340
     width: 160
     height: 45
   parent: {fileID: 1580824552}
   children:
-  - {fileID: 1580824565}
-  - {fileID: 1580824564}
+  - {fileID: 1580824566}
   behaviourTree: {fileID: 0}
   runtimePriority: 0
   breakpoint: 0
-  random: 0
+  loops: 1
+  infinite: 1
+  breakOnFailure: 0
 --- !u!4 &1623767571 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 858383005359156688, guid: a15595a13d36bd542977e106d1a1f6de,
@@ -3167,129 +3278,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e64b3c305658e04195e6ba4195befd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &1966655061
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 604025034133275633, guid: 09edb36c0858aa847a1b3f517f33561a,
-        type: 3}
-      propertyPath: OnEnterTrigger.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 604025034133275633, guid: 09edb36c0858aa847a1b3f517f33561a,
-        type: 3}
-      propertyPath: OnEnterTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 604025034133275633, guid: 09edb36c0858aa847a1b3f517f33561a,
-        type: 3}
-      propertyPath: OnEnterTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1575466500}
-    - target: {fileID: 604025034133275633, guid: 09edb36c0858aa847a1b3f517f33561a,
-        type: 3}
-      propertyPath: OnEnterTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 604025034133275633, guid: 09edb36c0858aa847a1b3f517f33561a,
-        type: 3}
-      propertyPath: OnEnterTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ManualMove
-      objectReference: {fileID: 0}
-    - target: {fileID: 604025034133275633, guid: 09edb36c0858aa847a1b3f517f33561a,
-        type: 3}
-      propertyPath: OnEnterTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Pinhead, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 604025034133275633, guid: 09edb36c0858aa847a1b3f517f33561a,
-        type: 3}
-      propertyPath: OnEnterTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 1764608285}
-    - target: {fileID: 604025034133275633, guid: 09edb36c0858aa847a1b3f517f33561a,
-        type: 3}
-      propertyPath: OnEnterTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Transform, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 1651030477352022517, guid: 09edb36c0858aa847a1b3f517f33561a,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1651030477352022517, guid: 09edb36c0858aa847a1b3f517f33561a,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1651030477352022517, guid: 09edb36c0858aa847a1b3f517f33561a,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1651030477352022517, guid: 09edb36c0858aa847a1b3f517f33561a,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.36239386
-      objectReference: {fileID: 0}
-    - target: {fileID: 1651030477352022517, guid: 09edb36c0858aa847a1b3f517f33561a,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3.06
-      objectReference: {fileID: 0}
-    - target: {fileID: 1651030477352022517, guid: 09edb36c0858aa847a1b3f517f33561a,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -5.7300053
-      objectReference: {fileID: 0}
-    - target: {fileID: 1651030477352022517, guid: 09edb36c0858aa847a1b3f517f33561a,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1651030477352022517, guid: 09edb36c0858aa847a1b3f517f33561a,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1651030477352022517, guid: 09edb36c0858aa847a1b3f517f33561a,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1651030477352022517, guid: 09edb36c0858aa847a1b3f517f33561a,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1651030477352022517, guid: 09edb36c0858aa847a1b3f517f33561a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1651030477352022517, guid: 09edb36c0858aa847a1b3f517f33561a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1651030477352022517, guid: 09edb36c0858aa847a1b3f517f33561a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6930773978865638181, guid: 09edb36c0858aa847a1b3f517f33561a,
-        type: 3}
-      propertyPath: m_Name
-      value: TriggerVolume
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 09edb36c0858aa847a1b3f517f33561a, type: 3}
 --- !u!1 &2016305094 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3836063803591100535, guid: 04040e2a1c5cdcd4aad85ceb646d1555,
@@ -3925,6 +3913,5 @@ SceneRoots:
   - {fileID: 8822580059001336068}
   - {fileID: 6910802877441242067}
   - {fileID: 303153963}
-  - {fileID: 1966655061}
   - {fileID: 446129606}
   - {fileID: 821989403}
