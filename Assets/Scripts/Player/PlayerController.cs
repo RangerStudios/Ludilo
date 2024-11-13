@@ -235,7 +235,8 @@ public class PlayerController : MonoBehaviour, IDamageable
 
         if (isDusted)
         {
-            characterController.Move(direction * ((speed * 0.8f) / (grabIncrement + 1)) * Time.deltaTime);
+            speedModifier = 0.8f;
+            characterController.Move(direction * (speedModifier / (grabIncrement + 1)) * Time.deltaTime);
         }
         
         
