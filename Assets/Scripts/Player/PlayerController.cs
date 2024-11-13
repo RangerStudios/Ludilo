@@ -425,6 +425,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         onLadder = false;
         exitLadder = false;
         characterController.enabled = true;
+        ChangePlayerState(PlayerMovementState.Default);
     }
 
 
