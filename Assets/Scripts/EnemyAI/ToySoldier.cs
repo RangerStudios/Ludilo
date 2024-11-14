@@ -11,7 +11,7 @@ public class ToySoldier : MonoBehaviour
     //Bullet Speed.
     public float bulletSpeed = 7f;
 
-    public void DebugShoot()
+    public void Shoot()
     {
         Debug.Log("Fire!");
         GameObject bullet = GameObject.Instantiate(bulletPrefab, this.transform.position + transform.forward, transform.localRotation);
