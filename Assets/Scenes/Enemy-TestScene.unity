@@ -765,7 +765,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 482328558}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.017969146, y: -0.84155995, z: 0.028048804, w: 0.53913575}
+  m_LocalRotation: {x: 0.016589941, y: -0.85769933, z: 0.027729886, w: 0.51313525}
   m_LocalPosition: {x: 13.232984, y: 4.6191435, z: -5.985538}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1161,7 +1161,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   behaviorObject: {fileID: 1580824538}
-  bulletPrefab: {fileID: 0}
+  bulletPrefab: {fileID: 8984550303384492611, guid: 5e026610f6859894ebb1a50b65e2233a,
+    type: 3}
+  bulletSpeed: 7
 --- !u!1001 &826610778
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2101,7 +2103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b25af8627659c6949b60949c3aa8d91d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedEditorNode: {fileID: 0}
+  selectedEditorNode: {fileID: 1580824568}
   repeatOnFinish: 1
   maxExecutionsPerTick: 1000
   parent: {fileID: 0}
@@ -2378,7 +2380,7 @@ MonoBehaviour:
     constantValue: {fileID: 0}
   agent: {fileID: 821989399}
   stopDistance: 2
-  updateInterval: 3
+  updateInterval: 2
 --- !u!114 &1580824569
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -2735,7 +2737,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1744712888}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.017969146, y: -0.84155995, z: 0.028048804, w: 0.53913575}
+  m_LocalRotation: {x: 0.016589941, y: -0.85769933, z: 0.027729886, w: 0.51313525}
   m_LocalPosition: {x: 13.232984, y: 4.6191435, z: -5.985538}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3228,7 +3230,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1849868569}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.024172405, y: 0.9028546, z: -0.051206294, w: -0.42620093}
+  m_LocalRotation: {x: -0.02214818, y: 0.91231644, z: -0.049787957, w: -0.40584412}
   m_LocalPosition: {x: 12.7, y: 6.14, z: 10.76}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3475,7 +3477,7 @@ PrefabInstance:
     - target: {fileID: 6410329551478724025, guid: 04040e2a1c5cdcd4aad85ceb646d1555,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -15.94
+      value: -17.595
       objectReference: {fileID: 0}
     - target: {fileID: 6410329551478724025, guid: 04040e2a1c5cdcd4aad85ceb646d1555,
         type: 3}
