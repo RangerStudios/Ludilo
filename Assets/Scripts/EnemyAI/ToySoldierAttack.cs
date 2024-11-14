@@ -1,25 +1,14 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ToySoldierAttack : MonoBehaviour
 {
-    public static Action<Transform> OnSeePlayer;
-    public static Action OnPlayerNotSeen;
-    public void OnTriggerEnter(Collider other)
+    void OnTriggerEnter (Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        Debug.Log("Name: " + other.gameObject.name);
+        if(other.gameObject.CompareTag("Player"))
         {
-            OnSeePlayer(other.gameObject.transform);
+            other.gameObject.GetComponent<IDamageable>().Damage(1);
         }
-    }
-
-    public void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            OnPlayerNotSeen();
-        }
+        Destroy(this.gameObject);
     }
 }
