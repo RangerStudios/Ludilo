@@ -2,8 +2,10 @@ using UnityEngine;
 using UnityEditor;
 using System.Runtime.InteropServices.WindowsRuntime;
 
-[System.Serializable]
 
+
+#if UNITY_EDITOR
+[System.Serializable]
 public class SceneField
 {
     [SerializeField] private Object sceneAsset;
@@ -42,3 +44,4 @@ public class SceneField
         }
     }
 }
+#endif
