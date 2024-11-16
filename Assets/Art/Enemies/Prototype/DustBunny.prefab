@@ -579,6 +579,7 @@ GameObject:
   - component: {fileID: 4508028081379173471}
   - component: {fileID: 6296315569988532991}
   - component: {fileID: 1007876159670454906}
+  - component: {fileID: 128898133852327824}
   m_Layer: 0
   m_Name: DustBunny
   m_TagString: Untagged
@@ -713,6 +714,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explodeEffect: {fileID: 8134638212732098283}
   behavior: {fileID: 2705898914821891190}
+  EnemyHealth: {fileID: 128898133852327824}
+--- !u!114 &128898133852327824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8014575458442653612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 170b6c885bfebc04f9b303f574e6febd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1
+  canHeal: 0
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1007876159670454906}
+        m_TargetAssemblyTypeName: DustBunny, Assembly-CSharp
+        m_MethodName: Die
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnHeal:
+    m_PersistentCalls:
+      m_Calls: []
+  stuffingController: {fileID: 0}
 --- !u!1 &8134638212732098283
 GameObject:
   m_ObjectHideFlags: 0
