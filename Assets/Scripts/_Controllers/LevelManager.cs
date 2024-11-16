@@ -22,12 +22,12 @@ public class LevelManager : MonoBehaviour
     // Hashset containing all remaining events.
     public HashSet<string> remainingLevelEvents;
 
-    void Start()
+    /*void Start()
     {
         CreateLevelHashSet();
         remainingLevelEvents = new HashSet<string>(levelEvents); // Set to values from levelEvents at start since the start has nothing fired.
         DebugPrintHashSet(remainingLevelEvents);
-    }
+    }*/
 
     // Creates the hashset of strings for elevel events based on the string array eventList.
     public void CreateLevelHashSet()
