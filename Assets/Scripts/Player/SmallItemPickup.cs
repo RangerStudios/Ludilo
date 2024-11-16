@@ -34,6 +34,7 @@ public class SmallItemPickup : Interactable
         else
         {
             activated = false;
+            playerController.isHoldingItem = false; 
         }
     }
 
@@ -56,7 +57,7 @@ public class SmallItemPickup : Interactable
         }
         else
         {
-            if (activated)
+            if (activated && playerController.isHoldingItem == false)
             {
                 var hits = Physics.SphereCastAll(t.position + t.forward, radius, t.forward, radius);
                 var hitIndex = Array.FindIndex(hits, hit => hit.transform.tag == "PickUp");
@@ -100,11 +101,6 @@ public class SmallItemPickup : Interactable
         {
             activated = false;
             playerController.isHoldingItem = false;
-            //playerController.ChangePlayerState(PlayerMovementState.Default);
-        }
-        else
-        {
-            //playerController.ChangePlayerState(PlayerMovementState.HoldingSmall);
         }
     }
 
