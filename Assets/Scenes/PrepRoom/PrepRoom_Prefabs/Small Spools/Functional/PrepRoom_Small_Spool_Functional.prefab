@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8525738214684814067}
   - component: {fileID: 757335705325596190}
   - component: {fileID: 3868516625397762791}
-  - component: {fileID: 3011949972281292845}
+  - component: {fileID: 962467212269757744}
   m_Layer: 9
   m_Name: PrepRoom_Small_Spool_Functional
   m_TagString: PickUp
@@ -135,7 +135,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 48.832054, y: 48.83206, z: 56.260643}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3011949972281292845
+--- !u!114 &962467212269757744
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -150,7 +150,7 @@ MonoBehaviour:
   OnInteract:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3011949972281292845}
+      - m_Target: {fileID: 962467212269757744}
         m_TargetAssemblyTypeName: SmallItemPickup, Assembly-CSharp
         m_MethodName: HoldState
         m_Mode: 1
@@ -162,7 +162,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 3011949972281292845}
+      - m_Target: {fileID: 962467212269757744}
         m_TargetAssemblyTypeName: SmallItemPickup, Assembly-CSharp
         m_MethodName: DropSmallItem
         m_Mode: 1
