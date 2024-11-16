@@ -190,11 +190,11 @@ public class PlayerController : MonoBehaviour, IDamageable
                 rb.AddForce(transform.forward);
                 canJump = false;
                 canCrouch = false;
-                //Debug.Log("RagdollState");
+                Debug.Log("RagdollState");
             break;
             case PlayerMovementState.Hanging:
                 canCrouch = false;
-                //Debug.Log("Hang State");
+                Debug.Log("Hang State");
                 //Hanging anim here
                 break;
             case PlayerMovementState.OnLadder:
