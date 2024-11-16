@@ -73,5 +73,10 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    public void PlayerOutOfBounds()
+    {
+        GameManager.Instance.PlayerFell();
+    }
+
 
 }
