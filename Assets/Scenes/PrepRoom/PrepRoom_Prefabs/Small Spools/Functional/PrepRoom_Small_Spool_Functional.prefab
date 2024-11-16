@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 6394594515209305763}
   - component: {fileID: 2196080139405161232}
   - component: {fileID: 8525738214684814067}
-  - component: {fileID: 7506591765628234518}
   - component: {fileID: 757335705325596190}
   - component: {fileID: 3868516625397762791}
+  - component: {fileID: 3011949972281292845}
   m_Layer: 9
   m_Name: PrepRoom_Small_Spool_Functional
   m_TagString: PickUp
@@ -87,41 +87,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &7506591765628234518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8116016833740529735}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b255d58a827339449815acbf889b351, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7506591765628234518}
-        m_TargetAssemblyTypeName: SmallItemPickup, Assembly-CSharp
-        m_MethodName: HoldState
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  activated: 0
-  heldObject: {fileID: 0}
-  radius: 2
-  distance: 1.2
-  height: 0.3
-  playerController: {fileID: 0}
-  player: {fileID: 0}
-  playerTransform: {fileID: 0}
 --- !u!54 &757335705325596190
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -170,3 +135,50 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 48.832054, y: 48.83206, z: 56.260643}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3011949972281292845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8116016833740529735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d03c7016815bccd4ab907218470b4a35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3011949972281292845}
+        m_TargetAssemblyTypeName: SmallItemPickup, Assembly-CSharp
+        m_MethodName: HoldState
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3011949972281292845}
+        m_TargetAssemblyTypeName: SmallItemPickup, Assembly-CSharp
+        m_MethodName: DropSmallItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  activated: 0
+  heldObject: {fileID: 0}
+  radius: 2
+  distance: 1.2
+  height: 0.3
+  playerController: {fileID: 0}
+  player: {fileID: 0}
+  playerTransform: {fileID: 0}
