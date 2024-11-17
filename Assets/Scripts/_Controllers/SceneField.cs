@@ -4,7 +4,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 
 
 
-#if UNITY_EDITOR
+
 [System.Serializable]
 public class SceneField
 {
@@ -20,7 +20,9 @@ public class SceneField
     {
         return sceneField.SceneName;
     }
-    
+}
+
+#if UNITY_EDITOR
     [CustomPropertyDrawer(typeof(SceneField))]
 
     public class SceneFieldPropertyDrawer : PropertyDrawer
@@ -43,5 +45,6 @@ public class SceneField
             EditorGUI.EndProperty();
         }
     }
-}
-#endif
+    #endif
+
+
