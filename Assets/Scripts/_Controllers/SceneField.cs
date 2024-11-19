@@ -2,8 +2,10 @@ using UnityEngine;
 using UnityEditor;
 using System.Runtime.InteropServices.WindowsRuntime;
 
-[System.Serializable]
 
+
+
+[System.Serializable]
 public class SceneField
 {
     [SerializeField] private Object sceneAsset;
@@ -18,7 +20,9 @@ public class SceneField
     {
         return sceneField.SceneName;
     }
-    
+}
+
+#if UNITY_EDITOR
     [CustomPropertyDrawer(typeof(SceneField))]
 
     public class SceneFieldPropertyDrawer : PropertyDrawer
@@ -41,4 +45,6 @@ public class SceneField
             EditorGUI.EndProperty();
         }
     }
-}
+    #endif
+
+
