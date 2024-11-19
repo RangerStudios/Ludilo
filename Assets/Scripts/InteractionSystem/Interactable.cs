@@ -6,7 +6,6 @@ public class Interactable : MonoBehaviour, IPlaySounds
 {
    
     public UnityEvent OnInteract;
-    public UnityEvent OnPlaySound;
 
     protected bool Interact()
     {
@@ -22,7 +21,6 @@ public class Interactable : MonoBehaviour, IPlaySounds
 
     public void PlaySoundEffect(AudioClip soundEffect)
     {
-        OnPlaySound?.Invoke();
-        return;
+        
     }
 }
