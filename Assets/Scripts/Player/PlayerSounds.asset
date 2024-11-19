@@ -12,3 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf477bb7526fc5c4993e78025103e816, type: 3}
   m_Name: PlayerSounds
   m_EditorClassIdentifier: 
+  WalkSounds:
+  - {fileID: 8300000, guid: 710820c3ac48eef419c9390e91a56afa, type: 3}
+  HitSounds: []
+  PickupSounds: []
+  DraggingSounds: []
+  JumpSounds: []
