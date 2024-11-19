@@ -2,10 +2,11 @@ using UnityEngine;
 using UnityEngine.Events;
 
 
-public class Interactable : MonoBehaviour
+public class Interactable : MonoBehaviour, IPlaySounds
 {
    
     public UnityEvent OnInteract;
+    public UnityEvent OnPlaySound;
 
     protected bool Interact()
     {
@@ -19,4 +20,9 @@ public class Interactable : MonoBehaviour
         return true; 
     }
 
+    public void PlaySoundEffect(AudioClip soundEffect)
+    {
+        OnPlaySound?.Invoke();
+        return;
+    }
 }

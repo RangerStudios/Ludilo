@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour, IDamageable
+public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
 {
     //setup
     private Vector2 movementVector;
@@ -62,6 +62,8 @@ public class PlayerController : MonoBehaviour, IDamageable
     public float defaultSpeedModifier = 1;
 
     public float speedModifier;
+
+    [SerializeField] private PlayerSoundsResource playerSounds;
 
 
     void OnEnable()
@@ -490,6 +492,12 @@ public class PlayerController : MonoBehaviour, IDamageable
         Debug.Log("Hello I am Active");
         isDusted = true;
         currentDustTimer = dustTimer;
+    }
+
+    public void PlaySoundEffect(AudioClip soundEffect)
+    {
+        AudioSource audio = GetComponent<AudioSource>();
+        audio.PlayOneShot(soundEffect);
     }
 }
 
