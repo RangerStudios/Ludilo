@@ -34,10 +34,13 @@ public class Attacker : MonoBehaviour
 
     public void AttackCheck()
     {
-        //Animation here?? Idk
         if (enemyNumFound > 0)
         {
-            Debug.Log("EnemyHit");
+            var damageable = colliders[0].GetComponent<IDamageable>();
+            if (damageable != null)
+            {
+                damageable.Damage(1);
+            }
         }
 
         if (saveNumFound > 0)
