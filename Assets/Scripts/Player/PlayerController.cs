@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     //setup
     private Vector2 movementVector;
     public CharacterController characterController;
+    public Animator playerAnimator;
     public HealthController playerHealth;
     public StuffingController playerStuffing;
     public Attacker attackScript;
@@ -23,6 +24,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     [SerializeField] bool ragdolling = false;
     [SerializeField] bool crouching = false;
     [SerializeField] bool canCrouch;
+    [SerializeField] bool canAttack;
     [SerializeField] bool attackCooldown;
     public bool canJump = true;
 
@@ -118,17 +120,37 @@ public class PlayerController : MonoBehaviour, IDamageable
         ApplyMovement();
         LedgeGrab();
 
+        if (movementVector.sqrMagnitude == 0)
+        {
+            playerAnimator.SetBool("isMoving", false);
+        }
+        else
+        {
+            playerAnimator.SetBool("isMoving", true);
+        }
+
+        if(isHoldingItem == true)
+        {
+            playerAnimator.SetBool("isHolding", true);
+        }
+        else
+        {
+            playerAnimator.SetBool("isHolding", false);
+        }
+
 
 
         if(crouching)
         {
             characterController.height = 1.0f;
             characterController.center = new Vector3(0f, -0.4f, 0f);
+            canJump = false;
         }
         else
         {
             characterController.height = 2.0f;
             characterController.center = new Vector3(0f, 0f, 0f);
+            canJump = true;
         }
     }
 
@@ -188,14 +210,15 @@ public class PlayerController : MonoBehaviour, IDamageable
                 movementVector = Vector2.zero;
                 GetComponent<Rigidbody>().isKinematic = false;
                 rb.AddForce(transform.forward);
+                //playerAnimator.SetBool("isRagdoll", true);
                 canJump = false;
                 canCrouch = false;
-                Debug.Log("RagdollState");
+                //Debug.Log("RagdollState");
             break;
             case PlayerMovementState.Hanging:
                 canCrouch = false;
-                Debug.Log("Hang State");
-                //Hanging anim here
+                //Debug.Log("Hang State");
+                playerAnimator.SetBool("isHanging", true);
                 break;
             case PlayerMovementState.OnLadder:
                 if (onLadder && !exitLadder)
@@ -247,10 +270,15 @@ public class PlayerController : MonoBehaviour, IDamageable
         if (IsGrounded() && velocity < 0.0f)
         {
             velocity = -1.0f;
+            playerAnimator.SetBool("isGrounded", true);
+            playerAnimator.SetBool("isJumping", false);
+            playerAnimator.SetBool("isFalling", false);
         }
         else
         {
             velocity += gravity * gravityMultiplier * Time.deltaTime;
+            playerAnimator.SetBool("isFalling", true);
+            playerAnimator.SetBool("isGrounded", false);
         }
         
         direction.y = velocity;
@@ -261,6 +289,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         if(characterController.enabled)
         {
             direction = new Vector3(movementVector.x, 0.0f, movementVector.y);
+            playerAnimator.SetBool("isRagdoll", false);
         }  
     }
 
@@ -277,12 +306,15 @@ public class PlayerController : MonoBehaviour, IDamageable
             gravity = -9.81f;
             hanging = false;
             velocity += jumpPower;
+            playerAnimator.SetBool("isHanging", false);
+            playerAnimator.SetBool("isJumping", true);
             ChangePlayerState(PlayerMovementState.Default);
         }
         else
         {
             if (!IsGrounded()) return;
             velocity += jumpPower;
+            playerAnimator.SetBool("isJumping", true);
         }
         
     }
@@ -375,11 +407,12 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     void Attack()
     {
-        if (!isGrabbed && !attackCooldown)
+        if (!isGrabbed && !attackCooldown && !isHoldingItem)
         {
             //Logic, anim trigger, etc.
             attackCooldown = true;
-            attackScript.AttackCheck();
+            playerAnimator.SetBool("isAttacking", true);
+            StartCoroutine(AttackAnimDelay());
             StartCoroutine(AttackCooldown());
         }
         else
@@ -395,8 +428,15 @@ public class PlayerController : MonoBehaviour, IDamageable
     IEnumerator AttackCooldown()
     {
         yield return new WaitForSeconds(1.0f); //1 second is a little sluggish, I know. Planning on tuning it.
+        playerAnimator.SetBool("isAttacking", false);
         attackCooldown = false;
 
+    }
+
+    IEnumerator AttackAnimDelay()
+    {
+        yield return new WaitForSeconds(0.5f);
+        attackScript.AttackCheck();
     }
 
 

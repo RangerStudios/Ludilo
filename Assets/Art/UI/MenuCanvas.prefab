@@ -609,11 +609,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: f6ab76b1dda16da4590cb0f183135562, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1201,7 +1201,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 364959033537308236}
     - target: {fileID: 3504218172014625227, guid: f2a837ff2f3a4574c9333cdfc0c68c92,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -1286,7 +1286,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 8300000, guid: b0deb38428c5d1c4b9a3d8d3f3e6846d, type: 3}
+      objectReference: {fileID: 8300000, guid: 0fefc29f02802cc479f91cb77508aeae, type: 3}
     - target: {fileID: 3504218172014625227, guid: f2a837ff2f3a4574c9333cdfc0c68c92,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
@@ -1321,7 +1321,7 @@ PrefabInstance:
         type: 3}
       propertyPath: PointerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 364959033537308236}
     - target: {fileID: 5197710588380214394, guid: f2a837ff2f3a4574c9333cdfc0c68c92,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1426,12 +1426,12 @@ PrefabInstance:
         type: 3}
       propertyPath: PointerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 364959033537308236}
     - target: {fileID: 7102103073030431170, guid: f2a837ff2f3a4574c9333cdfc0c68c92,
         type: 3}
       propertyPath: PointerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 364959033537308236}
     - target: {fileID: 7709378141905929200, guid: f2a837ff2f3a4574c9333cdfc0c68c92,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
