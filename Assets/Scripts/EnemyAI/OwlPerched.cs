@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class OwlHazard : MonoBehaviour
+public class OwlPerched : MonoBehaviour
 {
     //Bool for whether the Owl is looking at the player.
     public bool isLookingAtPlayer;
@@ -23,14 +23,14 @@ public class OwlHazard : MonoBehaviour
     private GameManager gameManager;
     public void OnEnable()
     {
-        OwlSight.OnSeePlayer += SeesPlayer;
-        OwlSight.OnNotSeePlayer += CantSeePlayer;
+        OwlPerchedSight.OnSeePlayer += SeesPlayer;
+        OwlPerchedSight.OnNotSeePlayer += CantSeePlayer;
     }
 
     public void OnDisable()
     {
-        OwlSight.OnSeePlayer -= SeesPlayer;
-        OwlSight.OnNotSeePlayer -= CantSeePlayer;
+        OwlPerchedSight.OnSeePlayer -= SeesPlayer;
+        OwlPerchedSight.OnNotSeePlayer -= CantSeePlayer;
     }
 
     public void Start()

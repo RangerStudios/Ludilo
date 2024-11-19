@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class OwlSight : MonoBehaviour
+public class OwlPerchedSight : MonoBehaviour
 {
     public static Action<Transform> OnSeePlayer;
     public static Action OnNotSeePlayer;
