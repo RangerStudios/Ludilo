@@ -307,7 +307,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
         {
             gravity = -9.81f;
             hanging = false;
-            PlaySoundEffect(playerSounds.HitSounds[Random.Range(0, playerSounds.JumpSounds.Count - 1)]);
+            PlaySoundEffect(playerSounds.JumpSounds[Random.Range(0, playerSounds.JumpSounds.Count - 1)]);
             velocity += jumpPower;
             playerAnimator.SetBool("isHanging", false);
             playerAnimator.SetBool("isJumping", true);
@@ -316,7 +316,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
         else
         {
             if (!IsGrounded()) return;
-            PlaySoundEffect(playerSounds.HitSounds[Random.Range(0, playerSounds.JumpSounds.Count - 1)]);
+            PlaySoundEffect(playerSounds.JumpSounds[Random.Range(0, playerSounds.JumpSounds.Count - 1)]);
             velocity += jumpPower;
             playerAnimator.SetBool("isJumping", true);
         }
