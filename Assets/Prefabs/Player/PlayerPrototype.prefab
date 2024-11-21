@@ -154,10 +154,10 @@ MonoBehaviour:
   canAttack: 0
   attackCooldown: 0
   canJump: 1
-  speed: 6
+  speed: 5
   rotationSpeed: 500
-  gravityMultiplier: 1
-  jumpPower: 3.5
+  gravityMultiplier: 1.3
+  jumpPower: 4.5
   dustTimer: 7
   currentDustTimer: 0
   isDraggingMedium: 0
