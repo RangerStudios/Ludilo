@@ -12,6 +12,8 @@ public class PlayerSoundsResource : ScriptableObject
     public List<AudioClip> PickupSounds;
     public List<AudioClip> DraggingSounds;
     public List<AudioClip> JumpSounds;
+    public List<AudioClip> AttackSounds;
+    public List<AudioClip> LedgeSounds;
 
 
 
