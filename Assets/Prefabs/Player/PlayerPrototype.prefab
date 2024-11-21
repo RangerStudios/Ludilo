@@ -154,8 +154,8 @@ MonoBehaviour:
   canAttack: 0
   attackCooldown: 0
   canJump: 1
-  speed: 6
-  rotationSpeed: 500
+  speed: 5.7
+  rotationSpeed: 1000
   gravityMultiplier: 1
   jumpPower: 3.5
   dustTimer: 7
