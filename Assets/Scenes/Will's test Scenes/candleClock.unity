@@ -546,7 +546,8 @@ PrefabInstance:
       value: prop_candleClock
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: -1629246779727423547, guid: 953eee1b9caefd64a8e5bf9185cb3ac9, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 953eee1b9caefd64a8e5bf9185cb3ac9, type: 3}
