@@ -1,13 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-//Code by Anthony C.
-//Apply this script to the player for picking up small items
-public class SmallItemPickup : Interactable
+public class WindupKeyPickup : Interactable
 {
     [SerializeField] bool activated = false;
     [SerializeField] public bool isHeld;
@@ -61,11 +57,11 @@ public class SmallItemPickup : Interactable
             if (activated && playerController.isHoldingItem == false)
             {
                 var hits = Physics.SphereCastAll(t.position + t.forward, radius, t.forward, radius);
-                var hitIndex = Array.FindIndex(hits, hit => hit.transform.tag == "PickUp");
+                var windUpHitIndex = Array.FindIndex(hits, hit => hit.transform.tag == "WindupKey");
                 
-                if (hitIndex != -1)
+                if (windUpHitIndex != -1)
                 {
-                    var hitObject = hits[hitIndex].transform.gameObject;
+                    var hitObject = hits[windUpHitIndex].transform.gameObject;
                     heldObject = hitObject;
                     var rigidbody = heldObject.GetComponent<Rigidbody>();
                     rigidbody.drag = 25f;
@@ -109,17 +105,4 @@ public class SmallItemPickup : Interactable
             playerController.isHoldingItem = false;
         }
     }
-
-    //public void Interaction(InputAction.CallbackContext context)
-    //{
-        //HoldState();
-        //if(!context.started) return;
-        //Debug.Log("Interact");
-    //}
-
-    
-
-    
-
 }
-
