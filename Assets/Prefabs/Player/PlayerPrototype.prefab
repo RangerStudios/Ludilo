@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterController: {fileID: 4019160133836726586}
-  playerAnimator: {fileID: 2360819797367875263}
+  playerAnimator: {fileID: 9154285779590658854}
   playerHealth: {fileID: 4963913879843685906}
   playerStuffing: {fileID: 7413054823504788109}
   attackScript: {fileID: 7276590156589369150}
@@ -456,25 +456,31 @@ PrefabInstance:
     - {fileID: 6620001752131549357, guid: 644d12999d2574041b6c4c1a5bdea49a, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6265940334447153819, guid: 644d12999d2574041b6c4c1a5bdea49a,
+    - targetCorrespondingSourceObject: {fileID: 2563125604868128828, guid: 644d12999d2574041b6c4c1a5bdea49a,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2360819797367875263}
+      addedObject: {fileID: 9154285779590658854}
   m_SourcePrefab: {fileID: 100100000, guid: 644d12999d2574041b6c4c1a5bdea49a, type: 3}
---- !u!1 &2756330632636245179 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6265940334447153819, guid: 644d12999d2574041b6c4c1a5bdea49a,
+--- !u!4 &2920308931976801901 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6355254252602710093, guid: 644d12999d2574041b6c4c1a5bdea49a,
     type: 3}
   m_PrefabInstance: {fileID: 8121506983817541152}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &2360819797367875263
+--- !u!1 &5991879574979606044 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2563125604868128828, guid: 644d12999d2574041b6c4c1a5bdea49a,
+    type: 3}
+  m_PrefabInstance: {fileID: 8121506983817541152}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &9154285779590658854
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2756330632636245179}
+  m_GameObject: {fileID: 5991879574979606044}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 98fb1cea8b7901642b2876227a3979eb, type: 2}
@@ -488,9 +494,3 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!4 &2920308931976801901 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6355254252602710093, guid: 644d12999d2574041b6c4c1a5bdea49a,
-    type: 3}
-  m_PrefabInstance: {fileID: 8121506983817541152}
-  m_PrefabAsset: {fileID: 0}
