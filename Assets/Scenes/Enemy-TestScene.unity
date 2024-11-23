@@ -153,6 +153,57 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1428111731}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &264541577 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8879862543911568565, guid: 7fc3f3c579550b54a9ee4d6ed1ed6612,
+    type: 3}
+  m_PrefabInstance: {fileID: 7761277767294618992}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &264541582 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3260503845668027447, guid: 7fc3f3c579550b54a9ee4d6ed1ed6612,
+    type: 3}
+  m_PrefabInstance: {fileID: 7761277767294618992}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 264541577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2508c14b54c2bb43ae7d5cd15b16d0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &264541583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 264541577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 170b6c885bfebc04f9b303f574e6febd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  canHeal: 0
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 264541582}
+        m_TargetAssemblyTypeName: EggTimer, Assembly-CSharp
+        m_MethodName: DeactivateEgg
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnHeal:
+    m_PersistentCalls:
+      m_Calls: []
+  stuffingController: {fileID: 0}
 --- !u!1 &266627304
 GameObject:
   m_ObjectHideFlags: 0
@@ -2949,6 +3000,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: OwlSoaring
       objectReference: {fileID: 0}
+    - target: {fileID: 8471647751106103956, guid: c5fddc1ad86fbb245bcd373cd68f7661,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3267,7 +3323,7 @@ PrefabInstance:
     - target: {fileID: 6851588877897457690, guid: ce4851084982d0248879a648779c180f,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8500504991676877330, guid: ce4851084982d0248879a648779c180f,
         type: 3}
@@ -3583,6 +3639,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3260503845668027447, guid: 7fc3f3c579550b54a9ee4d6ed1ed6612,
+        type: 3}
+      propertyPath: eggHealth
+      value: 
+      objectReference: {fileID: 264541583}
     - target: {fileID: 8043329130478007732, guid: 7fc3f3c579550b54a9ee4d6ed1ed6612,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3638,10 +3699,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: EggTimer
       objectReference: {fileID: 0}
+    - target: {fileID: 8879862543911568565, guid: 7fc3f3c579550b54a9ee4d6ed1ed6612,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8879862543911568565, guid: 7fc3f3c579550b54a9ee4d6ed1ed6612,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 264541583}
   m_SourcePrefab: {fileID: 100100000, guid: 7fc3f3c579550b54a9ee4d6ed1ed6612, type: 3}
 --- !u!1001 &8539082483872553554
 PrefabInstance:

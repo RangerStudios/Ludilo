@@ -3,12 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EggTimer : MonoBehaviour
+public class EggTimer : MonoBehaviour, IDamageable
 {
     public static Action<Transform> EggTurnOn;
     public static Action EggTurnOff;
 
     public WindupInteract attachedWindup;
+    public HealthController eggHealth;
 
     public float timer = 15f;
     public bool activeBool;
@@ -18,6 +19,7 @@ public class EggTimer : MonoBehaviour
     public void Awake()
     {
         attachedWindup = GetComponentInChildren<WindupInteract>();
+        eggHealth = GetComponent<HealthController>();
     }
 
     public void Start()
@@ -41,6 +43,7 @@ public class EggTimer : MonoBehaviour
     {
         activeBool = true;
         EggTurnOn(this.transform);
+        eggHealth.health = 1;
     }
 
     public void DeactivateEgg()
@@ -50,5 +53,14 @@ public class EggTimer : MonoBehaviour
         EggTurnOff();
         attachedWindup.gameObject.SetActive(true);
         attachedWindup.returnKey();
+    }
+
+    public void Damage(int damageValue)
+    {
+        if (eggHealth.health > 0)
+        {
+            eggHealth.Damage(damageValue);
+        }
+        
     }
 }
