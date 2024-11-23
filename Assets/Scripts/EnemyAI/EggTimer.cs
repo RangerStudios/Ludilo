@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EggTimer : MonoBehaviour
 {
-    public static Action EggTurnOn;
+    public static Action<Transform> EggTurnOn;
     public static Action EggTurnOff;
 
     public WindupInteract attachedWindup;
@@ -40,14 +40,14 @@ public class EggTimer : MonoBehaviour
     public void ActivateEgg()
     {
         activeBool = true;
-        //EggTurnOn();
+        EggTurnOn(this.transform);
     }
 
     public void DeactivateEgg()
     {
         activeBool = false;
         currentTimer = timer;
-        //EggTurnOff();
+        EggTurnOff();
         attachedWindup.gameObject.SetActive(true);
         attachedWindup.returnKey();
     }

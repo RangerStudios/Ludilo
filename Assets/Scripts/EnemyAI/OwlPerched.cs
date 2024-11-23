@@ -18,19 +18,23 @@ public class OwlPerched : MonoBehaviour
     //Transform of player, grabbed when first looking at player.
     private Transform playerTransform;
     //Transform of baby owl to look at. Set when baby owl is activated by the player.
-    private Transform babyOwlTransform;
+    private Transform eggTransform;
     //Reference to Game Manager, set on start. For respawning the player after looking at them long enough.
     private GameManager gameManager;
     public void OnEnable()
     {
         OwlPerchedSight.OnSeePlayer += SeesPlayer;
         OwlPerchedSight.OnNotSeePlayer += CantSeePlayer;
+        EggTimer.EggTurnOn += SeesEgg;
+        EggTimer.EggTurnOff += CantSeeEgg;
     }
 
     public void OnDisable()
     {
         OwlPerchedSight.OnSeePlayer -= SeesPlayer;
         OwlPerchedSight.OnNotSeePlayer -= CantSeePlayer;
+        EggTimer.EggTurnOn -= SeesEgg;
+        EggTimer.EggTurnOff -= CantSeeEgg;
     }
 
     public void Start()
@@ -76,11 +80,17 @@ public class OwlPerched : MonoBehaviour
     }
 
     //Sets look point to baby owl.
-    public void SeesBabyOwl(Transform seenTransform)
+    public void SeesEgg(Transform seenTransform)
     {
-        Debug.Log("Sees Baby Owl, disabled.");
-        babyOwlTransform = seenTransform;
-        this.transform.LookAt(babyOwlTransform);
+        Debug.Log("Sees Egg, disabled.");
+        eggTransform = seenTransform;
+        this.transform.LookAt(eggTransform);
         sightZone.SetActive(false);
+    }
+
+    public void CantSeeEgg()
+    {
+        CantSeePlayer();
+        sightZone.SetActive(true);
     }
 }
