@@ -1,9 +1,29 @@
 fileFormatVersion: 2
-guid: 8bdd444f0c18e2b41ac53d59eb7ab956
+guid: dad9566871feaea4595df9353e0e5f26
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Drawers
+    second: {fileID: 2100000, guid: 690d99449b2c999429cabf0d90729b29, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lid
+    second: {fileID: 2100000, guid: 76f6493fd4e34b9468aabd5160c7b62a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Main_Body
+    second: {fileID: 2100000, guid: 4601375def6b848438295c14d74a4c04, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Sliders
+    second: {fileID: 2100000, guid: 837dd06a88636db409b3be9a9f3f616f, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
