@@ -8,6 +8,8 @@ TagManager:
   - MediumPickUp
   - LargePickUp
   - Checkpoint
+  - WindupKey
+  - PullDrawer
   layers:
   - Default
   - TransparentFX
