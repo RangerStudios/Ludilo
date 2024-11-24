@@ -81,7 +81,6 @@ public class OwlSoaringSight : MonoBehaviour
         else
         {
             DoesntSeePlayer();
-            Debug.LogError("Something else is in the trigger that shouldn't.");
         }
     }
 
