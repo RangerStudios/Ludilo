@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5316244943547053900}
   - component: {fileID: 4786522641568913694}
   - component: {fileID: 8207443602682988511}
+  - component: {fileID: 4666080305642226777}
   m_Layer: 0
   m_Name: OwlPrototype
   m_TagString: Untagged
@@ -107,6 +108,20 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &4666080305642226777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382002596356137281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaee52459a4c13c49a0be8930b5cc088, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalSoaring: {fileID: 8936581692281864523}
+  alertedSoaring: {fileID: 1850398657664632112}
 --- !u!1 &1850398657664632112
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,7 +137,9 @@ GameObject:
   - component: {fileID: 3651712300734243054}
   - component: {fileID: 618595124285711801}
   - component: {fileID: 3154038758548592396}
-  - component: {fileID: 7398602488897705922}
+  - component: {fileID: 4885855798087333816}
+  - component: {fileID: 5572465971900067516}
+  - component: {fileID: 5308648506522308554}
   m_Layer: 0
   m_Name: OwlMovementAlerted
   m_TagString: Untagged
@@ -186,7 +203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b25af8627659c6949b60949c3aa8d91d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedEditorNode: {fileID: 7398602488897705922}
+  selectedEditorNode: {fileID: 0}
   repeatOnFinish: 0
   maxExecutionsPerTick: 1000
   parent: {fileID: 0}
@@ -239,11 +256,55 @@ MonoBehaviour:
     height: 45
   parent: {fileID: 0}
   children:
-  - {fileID: 7398602488897705922}
+  - {fileID: 5308648506522308554}
   behaviourTree: {fileID: 0}
   runtimePriority: 0
   breakpoint: 0
---- !u!114 &7398602488897705922
+--- !u!114 &4885855798087333816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850398657664632112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb0b7cfe3e9cfba47a378c725cf5d0b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Distance Condition
+  rect:
+    serializedVersion: 2
+    x: 640
+    y: 220
+    width: 160
+    height: 45
+  parent: {fileID: 5308648506522308554}
+  children:
+  - {fileID: 5572465971900067516}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  comparator: 0
+  distance:
+    useConstant: 1
+    mode: 0
+    blackboard: {fileID: 0}
+    key: 
+    constantValue: 1
+  transform1:
+    useConstant: 0
+    mode: 0
+    blackboard: {fileID: 6234565893338177176}
+    key: Self
+    constantValue: {fileID: 0}
+  transform2:
+    useConstant: 0
+    mode: 0
+    blackboard: {fileID: 6234565893338177176}
+    key: MovePoint
+    constantValue: {fileID: 0}
+--- !u!114 &5572465971900067516
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -259,10 +320,10 @@ MonoBehaviour:
   rect:
     serializedVersion: 2
     x: 640
-    y: 160
+    y: 300
     width: 160
     height: 45
-  parent: {fileID: 3154038758548592396}
+  parent: {fileID: 4885855798087333816}
   children: []
   behaviourTree: {fileID: 0}
   runtimePriority: 0
@@ -279,8 +340,36 @@ MonoBehaviour:
     blackboard: {fileID: 6234565893338177176}
     key: Self
     constantValue: {fileID: 0}
-  speed: 0.01
+  speed: 0.015
   minDistance: 0
+--- !u!114 &5308648506522308554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850398657664632112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 056841afaed742d4e909e76361b5173f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Repeater
+  rect:
+    serializedVersion: 2
+    x: 640
+    y: 140
+    width: 160
+    height: 45
+  parent: {fileID: 3154038758548592396}
+  children:
+  - {fileID: 4885855798087333816}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  loops: 1
+  infinite: 1
+  breakOnFailure: 0
 --- !u!1 &7501142821599383827
 GameObject:
   m_ObjectHideFlags: 0
@@ -433,7 +522,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8471647751106103956}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
