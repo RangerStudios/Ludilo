@@ -30,9 +30,9 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
 
     //player movement values
     [SerializeField] public float speed;
-    [SerializeField] public float rotationSpeed = 500f; //smoothtime
+    [SerializeField] public float rotationSpeed;
     private float gravity = -9.81f;
-    [SerializeField] private float gravityMultiplier = 3.0f;
+    [SerializeField] private float gravityMultiplier;
     [SerializeField] private float jumpPower;
     private float velocity;
 

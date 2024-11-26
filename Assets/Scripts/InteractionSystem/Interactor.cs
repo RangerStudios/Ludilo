@@ -11,7 +11,7 @@ public class Interactor : MonoBehaviour
     [SerializeField] private LayerMask interactableMask;
 
     private readonly Collider[] colliders = new Collider[3];
-    [SerializeField] private int numFound;
+    [SerializeField] public int numFound;
 
     void Awake()
     {
