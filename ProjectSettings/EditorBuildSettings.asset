@@ -35,7 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Additve Scene Dev/Additive-Scene-Test-2.unity
     guid: 7422ce37b91f24e4a9980b1aa35a1c0d
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Additve Scene Dev/Additive-Scene-Test-3.unity
     guid: 23036e214e6c33549ba5156a658a3e98
   - enabled: 1
