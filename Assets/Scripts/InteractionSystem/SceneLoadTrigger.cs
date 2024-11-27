@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-//using UnityEditor.SearchService;
+using UnityEditor.SearchService; //DONT DELETE THIS
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Scene = UnityEngine.SceneManagement.Scene;
@@ -44,12 +44,12 @@ public class SceneLoadTrigger : MonoBehaviour
                     isSceneLoaded = true;
                     break;
                 }
-            }
-
-            if (!isSceneLoaded)
-            {
-                SceneManager.LoadSceneAsync(scenesToLoad[i], LoadSceneMode.Additive); 
-            }
+                
+                if (!isSceneLoaded)
+                {
+                    SceneManager.LoadSceneAsync(scenesToLoad[i], LoadSceneMode.Additive); 
+                }
+            }    
         }
     }
 
