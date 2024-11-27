@@ -41,4 +41,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PrepRoom/Prep Tranistion To Clock.unity
     guid: cc7172b647f05cc48824e636a3be71f4
+  - enabled: 1
+    path: Assets/Scenes/ClockroomBlockOut.unity
+    guid: abb9d4443f1e42848878d2742b94ac09
   m_configObjects: {}
