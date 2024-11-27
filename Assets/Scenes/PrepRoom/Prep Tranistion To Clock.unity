@@ -7009,7 +7009,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 3
+  m_Priority: 7
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
@@ -7041,7 +7041,7 @@ Transform:
   m_GameObject: {fileID: 373306413}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.000000044703484}
-  m_LocalPosition: {x: -22.930367, y: -1.0254049, z: 14.045124}
+  m_LocalPosition: {x: -26.160942, y: -1.0264044, z: 14.630718}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9242,6 +9242,11 @@ PrefabInstance:
         type: 3}
       propertyPath: boxSize.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3257558243816791284, guid: ea2fb6c2f74340b48a6d96b1f09948c5,
+        type: 3}
+      propertyPath: followPlayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3910592014867313792, guid: ea2fb6c2f74340b48a6d96b1f09948c5,
         type: 3}
@@ -11515,7 +11520,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 3
+  m_Priority: 7
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
@@ -11547,7 +11552,7 @@ Transform:
   m_GameObject: {fileID: 603912307}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.70710784, z: -0, w: -0.70710576}
-  m_LocalPosition: {x: -15.93037, y: -1.0254049, z: 7.045143}
+  m_LocalPosition: {x: -19.160942, y: -1.0264044, z: 7.6307373}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12980,7 +12985,7 @@ Transform:
   m_GameObject: {fileID: 702403391}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071079, z: -0, w: -0.7071057}
-  m_LocalPosition: {x: -15.9303665, y: -1.0254049, z: 7.045143}
+  m_LocalPosition: {x: -19.160942, y: -1.0264044, z: 7.6307373}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -13020,7 +13025,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 3
+  m_Priority: 7
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
@@ -24349,6 +24354,11 @@ PrefabInstance:
       propertyPath: boxSize.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3257558243816791284, guid: ea2fb6c2f74340b48a6d96b1f09948c5,
+        type: 3}
+      propertyPath: followPlayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3910592014867313792, guid: ea2fb6c2f74340b48a6d96b1f09948c5,
         type: 3}
       propertyPath: m_Follow
@@ -29246,6 +29256,11 @@ PrefabInstance:
       propertyPath: boxSize.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3257558243816791284, guid: ea2fb6c2f74340b48a6d96b1f09948c5,
+        type: 3}
+      propertyPath: followPlayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3910592014867313792, guid: ea2fb6c2f74340b48a6d96b1f09948c5,
         type: 3}
       propertyPath: m_Follow
@@ -29618,6 +29633,11 @@ PrefabInstance:
         type: 3}
       propertyPath: boxSize.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3257558243816791284, guid: ea2fb6c2f74340b48a6d96b1f09948c5,
+        type: 3}
+      propertyPath: followPlayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3910592014867313792, guid: ea2fb6c2f74340b48a6d96b1f09948c5,
         type: 3}
@@ -39177,7 +39197,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 4
+  m_Priority: 8
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
@@ -39209,7 +39229,7 @@ Transform:
   m_GameObject: {fileID: 1947674199}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -22.930367, y: -1.0254049, z: 14.04512}
+  m_LocalPosition: {x: 0.42, y: 2.08, z: 44.62}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

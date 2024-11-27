@@ -940,6 +940,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WindupKeyProto
       objectReference: {fileID: 0}
+    - target: {fileID: 2486133450784703918, guid: 6704cffd9671a3a44bd26e1c9e30d1e0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1707,7 +1712,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1326716354
 Transform:
   m_ObjectHideFlags: 0
@@ -2371,7 +2376,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1757684162
 Transform:
   m_ObjectHideFlags: 0
@@ -3357,10 +3362,15 @@ PrefabInstance:
       propertyPath: rect.x
       value: 421
       objectReference: {fileID: 0}
+    - target: {fileID: 4184199680132073792, guid: 24cace8b3c2bb834ea671334c940e4a5,
+        type: 3}
+      propertyPath: rect.y
+      value: 659
+      objectReference: {fileID: 0}
     - target: {fileID: 5003912573761546600, guid: 24cace8b3c2bb834ea671334c940e4a5,
         type: 3}
       propertyPath: rect.y
-      value: 419
+      value: 418
       objectReference: {fileID: 0}
     - target: {fileID: 5817749749780767786, guid: 24cace8b3c2bb834ea671334c940e4a5,
         type: 3}
@@ -3420,7 +3430,7 @@ PrefabInstance:
     - target: {fileID: 7414694944748143536, guid: 24cace8b3c2bb834ea671334c940e4a5,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3642,6 +3652,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EggTimer
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879862543911568565, guid: 7fc3f3c579550b54a9ee4d6ed1ed6612,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
