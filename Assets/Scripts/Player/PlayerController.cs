@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour, IDamageable
+public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
 {
     //setup
     private Vector2 movementVector;
@@ -30,9 +30,9 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     //player movement values
     [SerializeField] public float speed;
-    [SerializeField] public float rotationSpeed = 500f; //smoothtime
+    [SerializeField] public float rotationSpeed;
     private float gravity = -9.81f;
-    [SerializeField] private float gravityMultiplier = 3.0f;
+    [SerializeField] private float gravityMultiplier;
     [SerializeField] private float jumpPower;
     private float velocity;
 
@@ -62,6 +62,8 @@ public class PlayerController : MonoBehaviour, IDamageable
     public float defaultSpeedModifier = 1;
 
     public float speedModifier;
+
+    [SerializeField] private PlayerSoundsResource playerSounds;
 
 
     void OnEnable()
@@ -305,6 +307,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         {
             gravity = -9.81f;
             hanging = false;
+            //PlaySoundEffect(playerSounds.JumpSounds[Random.Range(0, playerSounds.JumpSounds.Count - 1)]);
             velocity += jumpPower;
             playerAnimator.SetBool("isHanging", false);
             playerAnimator.SetBool("isJumping", true);
@@ -313,6 +316,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         else
         {
             if (!IsGrounded()) return;
+            //PlaySoundEffect(playerSounds.JumpSounds[Random.Range(0, playerSounds.JumpSounds.Count - 1)]);
             velocity += jumpPower;
             playerAnimator.SetBool("isJumping", true);
         }
@@ -340,6 +344,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         playerHealth.Damage(damageValue);
         onDamage.Invoke(damageValue);
+        //PlaySoundEffect(playerSounds.HitSounds[Random.Range(0, playerSounds.HitSounds.Count - 1)]);
     }
 
     public void Die()
@@ -490,6 +495,12 @@ public class PlayerController : MonoBehaviour, IDamageable
         Debug.Log("Hello I am Active");
         isDusted = true;
         currentDustTimer = dustTimer;
+    }
+
+    public void PlaySoundEffect(AudioClip soundEffect)
+    {
+        AudioSource audio = GetComponent<AudioSource>();
+        audio.PlayOneShot(soundEffect);
     }
 }
 
