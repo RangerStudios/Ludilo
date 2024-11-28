@@ -55,7 +55,7 @@ public class MediumItemPickup : Interactable
                 rigidbody.useGravity = true;
                 rigidbody.constraints = RigidbodyConstraints.None;
                 heldObject = null;
-                playerController.speed = 5;
+                playerController.speed = 5.7f;
                 playerController.rotationSpeed = 500f;
             }
         }
