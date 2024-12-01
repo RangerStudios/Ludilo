@@ -352,7 +352,7 @@ MonoBehaviour:
         m_CallState: 2
   defaultSpeedModifier: 1
   speedModifier: 0
-  playerSounds: {fileID: 0}
+  playerSounds: {fileID: 11400000, guid: eecfab59a4315b9458d5b035d22b046e, type: 2}
 --- !u!143 &799090635031292760
 CharacterController:
   m_ObjectHideFlags: 0
