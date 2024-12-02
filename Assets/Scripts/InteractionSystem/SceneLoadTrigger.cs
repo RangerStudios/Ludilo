@@ -45,6 +45,7 @@ public class SceneLoadTrigger : MonoBehaviour
                     SceneManager.MoveGameObjectToScene(mainCam, loadedScene);
                     SceneManager.MoveGameObjectToScene(player, loadedScene);
                     isSceneLoaded = true;
+                    Destroy(this);
                     break;
                 }
                 
