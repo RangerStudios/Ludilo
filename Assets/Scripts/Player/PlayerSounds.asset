@@ -14,7 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WalkSounds:
   - {fileID: 8300000, guid: 710820c3ac48eef419c9390e91a56afa, type: 3}
-  HitSounds: []
+  HitSounds:
+  - {fileID: 8300000, guid: 908a2116b9b65b44e85c9d6c78350624, type: 3}
   PickupSounds: []
   DraggingSounds: []
-  JumpSounds: []
+  JumpSounds:
+  - {fileID: 8300000, guid: f41c2fd059257644bb76c96071d98f87, type: 3}
+  AttackSounds:
+  - {fileID: 8300000, guid: b6a6100834a38fd4baa0abdd33b49fc0, type: 3}
+  LedgeSounds: []
