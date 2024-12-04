@@ -10,12 +10,13 @@ public class PullDrawer : Interactable
     public GameObject heldObject;
     public float radius;
     public float distance;
+    public float rayDist;
     //public float height = 0.3f;
     public PlayerController playerController;
     public Interactor playerInteractor;
     public GameObject player;
     public Transform playerTransform;
-    
+    public PullDrawer pullDrawerInst;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,9 +43,9 @@ public class PullDrawer : Interactable
     // Update is called once per frame
     void Update()
     {
-        
-        
         var t = playerTransform;
+        
+        
         if(heldObject)
         {
             
@@ -68,17 +69,23 @@ public class PullDrawer : Interactable
             
             if (activated)
             {
-                var hits = Physics.SphereCastAll(t.position + t.forward, radius, t.forward, radius);
-                var hitIndex = Array.FindIndex(hits, hit => hit.transform.tag == "PullDrawer");
+                RaycastHit hits;
+                //hits = Physics.Raycast(t.position, t.forward, hits);
+                //var hitIndex = Array.FindIndex(hits, hit => hit.transform.tag == "PullDrawer");
 
-                if (hitIndex != -1)
+                if (Physics.Raycast(t.position, t.forward, out hits, rayDist))
                 {
-                    var hitObject = hits[hitIndex].transform.gameObject;
-                    heldObject = hitObject;
-                    var rigidbody = heldObject.GetComponent<Rigidbody>();
-                    //rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
-                    rigidbody.drag = 25f;
-                    //rigidbody.useGravity = false;
+                    if (hits.transform.tag == "PullDrawer")
+                    {
+                        Debug.Log("My god...");
+                        var hitObject = hits.transform.gameObject;
+                        heldObject = hitObject;
+                        var rigidbody = heldObject.GetComponent<Rigidbody>();
+                        //rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+                        rigidbody.drag = 25f;
+                        //rigidbody.useGravity = false;
+                    }
+                    
                 }
             }
         else
