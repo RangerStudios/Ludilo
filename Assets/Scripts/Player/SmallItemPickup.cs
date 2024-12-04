@@ -10,7 +10,6 @@ using UnityEngine.InputSystem;
 public class SmallItemPickup : Interactable
 {
     [SerializeField] bool activated = false;
-    [SerializeField] public bool isHeld;
     public GameObject heldObject;
     public float radius = 2f;
     public float distance = 1.2f;
@@ -62,7 +61,7 @@ public class SmallItemPickup : Interactable
             {
                 var hits = Physics.SphereCastAll(t.position + t.forward, radius, t.forward, radius);
                 var hitIndex = Array.FindIndex(hits, hit => hit.transform.tag == "PickUp");
-                
+
                 if (hitIndex != -1)
                 {
                     var hitObject = hits[hitIndex].transform.gameObject;
@@ -86,7 +85,6 @@ public class SmallItemPickup : Interactable
 
         if(heldObject)
         {
-            isHeld = true;
             var rigidbody = heldObject.GetComponent<Rigidbody>();
             var moveTo = t.position + distance * t.forward + height * t.up;
             var difference = moveTo - heldObject.transform.position;
@@ -94,10 +92,6 @@ public class SmallItemPickup : Interactable
             heldObject.transform.rotation = t.rotation;
             playerController.isHoldingItem = true;
             activated = true;
-        }
-        else
-        {
-            isHeld = false;
         }
     }
 

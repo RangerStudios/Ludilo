@@ -7,9 +7,6 @@ TagManager:
   - PickUp
   - MediumPickUp
   - LargePickUp
-  - Checkpoint
-  - WindupKey
-  - PullDrawer
   layers:
   - Default
   - TransparentFX
@@ -23,7 +20,7 @@ TagManager:
   - Interactable
   - Trigger
   - SavePoint
-  - NoNavMesh
+  - 
   - 
   - 
   - 

@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -18,7 +17,6 @@ public class MenuController : MonoBehaviour
 
     public static Action<string> TryLoadNewScene;
 
-    public Animator fadeAnimator;
 
     public void Awake()
     {
@@ -44,12 +42,6 @@ public class MenuController : MonoBehaviour
 
     public void TryLoadScene(string sceneToLoad)
     {
-        StartCoroutine(FadeToScene(sceneToLoad));
-    }
-    public IEnumerator FadeToScene(string sceneToLoad)
-    {
-        fadeAnimator.SetTrigger("FadeOut");
-        yield return new WaitForSeconds(1.0f);
         GameManager.Instance.LoadScene(sceneToLoad);
     }
 

@@ -3,37 +3,7 @@ guid: 49667689a757dd644b49874cf7fc659a
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: head_rest
-    second: {fileID: 2100000, guid: 62a43a979ce17d640a8f3525ad946454, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: lambert1
-    second: {fileID: 2100000, guid: a9e5904dd239bed4889c34198ad11676, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: player chair_upper_clap_Height.1001
-    second: {fileID: 2800000, guid: d06b43ce06f41614d83c14b0bc868a11, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: player chair_upper_clap_Metallic.1001
-    second: {fileID: 2800000, guid: 419de3637888a5740b7430e6a34580cf, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: player chair_upper_clap_Normal.1001
-    second: {fileID: 2800000, guid: 8ce5707e15b420e408e7e1101bc7bbf4, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: player chair_upper_clap_Roughness.1001
-    second: {fileID: 2800000, guid: e237410ff2d326d4bab1e010e6b25baf, type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -78,7 +48,7 @@ ModelImporter:
     nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
-    generateSecondaryUV: 1
+    generateSecondaryUV: 0
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1
@@ -91,7 +61,7 @@ ModelImporter:
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
-    secondaryUVAreaDistortion: 15
+    secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVMarginMethod: 1
     secondaryUVMinLightmapResolution: 40
