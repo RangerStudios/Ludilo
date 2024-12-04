@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
     [SerializeField] bool ragdolling = false;
     [SerializeField] bool crouching = false;
     [SerializeField] bool canCrouch;
-    [SerializeField] bool canAttack;
+    [SerializeField] public bool canAttack;
     [SerializeField] public bool canInteract;
     [SerializeField] bool attackCooldown;
     public bool canJump = true;
