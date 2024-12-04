@@ -279,7 +279,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
 
         if (isDusted)
         {
-            speedModifier = 0.8f;
+            speedModifier = 0.6f;
             characterController.Move(direction * (speedModifier / (grabIncrement + 1)) * Time.deltaTime);
         }
         

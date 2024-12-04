@@ -21,6 +21,8 @@ public class RespawnManager : MonoBehaviour
 
     void Awake()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+        
         allCheckpoints = new Transform[transform.childCount];
         for (int i = 0; i < allCheckpoints.Length; i++)
         {
