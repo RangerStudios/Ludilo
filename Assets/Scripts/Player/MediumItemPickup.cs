@@ -10,8 +10,10 @@ public class MediumItemPickup : Interactable
     public GameObject heldObject;
     public float radius = 2f;
     public float distance = 1.4f;
+    public float rayDist;
     //public float height = 0.3f;
     public PlayerController playerController;    
+    public Interactor playerInteractor;
     public GameObject player;
     public Transform playerTransform;
     
@@ -21,6 +23,7 @@ public class MediumItemPickup : Interactable
         player = GameObject.FindWithTag("Player");
         playerController = player.GetComponent<PlayerController>();
         playerTransform = GameObject.FindWithTag("Player").transform;
+        playerInteractor = player.GetComponent<Interactor>();
     }
 
     public void DragState()
@@ -56,24 +59,26 @@ public class MediumItemPickup : Interactable
                 rigidbody.constraints = RigidbodyConstraints.None;
                 heldObject = null;
                 playerController.speed = 5.7f;
-                playerController.rotationSpeed = 500f;
+                playerController.rotationSpeed = 1000f;
             }
         }
         else
         {
             if (activated)
             {
-                var hits = Physics.SphereCastAll(t.position + t.forward, radius, t.forward, radius);
-                var hitIndex = Array.FindIndex(hits, hit => hit.transform.tag == "MediumPickUp");
+                RaycastHit hits;
 
-                if (hitIndex != -1)
+                if (Physics.Raycast(t.position, t.forward, out hits, rayDist))
                 {
-                    var hitObject = hits[hitIndex].transform.gameObject;
-                    heldObject = hitObject;
-                    var rigidbody = heldObject.GetComponent<Rigidbody>();
-                    rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
-                    rigidbody.drag = 25f;
-                    rigidbody.useGravity = false;
+                    if (hits.transform.tag == "MediumPickUp")
+                    {
+                        var hitObject = hits.transform.gameObject;
+                        heldObject = hitObject;
+                        var rigidbody = heldObject.GetComponent<Rigidbody>();
+                        rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+                        rigidbody.drag = 25f;
+                        rigidbody.useGravity = false;
+                    }
                 }
             }
         else
@@ -94,6 +99,10 @@ public class MediumItemPickup : Interactable
             rigidbody.AddForce(difference * 500);
             heldObject.transform.rotation = t.rotation;
 
+            if(playerInteractor.numFound == 0)
+        {
+            DropMediumItem();
+        }
         }
     }
 
@@ -106,11 +115,4 @@ public class MediumItemPickup : Interactable
             playerController.canJump = true;
         }
     }
-
-     //public void Interaction(InputAction.CallbackContext context)
-    //{
-        //DragState();
-        //if(!context.started) return;
-        //Debug.Log("Interact");
-    //}
 }

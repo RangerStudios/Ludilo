@@ -16,7 +16,7 @@ public class PullDrawer : Interactable
     public Interactor playerInteractor;
     public GameObject player;
     public Transform playerTransform;
-    public PullDrawer pullDrawerInst;
+    Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +24,8 @@ public class PullDrawer : Interactable
         playerController = player.GetComponent<PlayerController>();
         playerInteractor = player.GetComponent<Interactor>();
         playerTransform = GameObject.FindWithTag("Player").transform;
+        rb = GetComponent<Rigidbody>();
+        rb.isKinematic = true;
     }
 
     public void DragState()
@@ -57,7 +59,7 @@ public class PullDrawer : Interactable
             {
                 var rigidbody = heldObject.GetComponent<Rigidbody>();
                 rigidbody.drag = 1f;
-                //rigidbody.useGravity = true;
+                rigidbody.isKinematic = true;
                 //rigidbody.constraints = RigidbodyConstraints.None;
                 heldObject = null;
                 playerController.speed = 5.7f;
@@ -77,10 +79,10 @@ public class PullDrawer : Interactable
                 {
                     if (hits.transform.tag == "PullDrawer")
                     {
-                        Debug.Log("My god...");
                         var hitObject = hits.transform.gameObject;
                         heldObject = hitObject;
                         var rigidbody = heldObject.GetComponent<Rigidbody>();
+                        rigidbody.isKinematic = false;
                         //rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
                         rigidbody.drag = 25f;
                         //rigidbody.useGravity = false;
