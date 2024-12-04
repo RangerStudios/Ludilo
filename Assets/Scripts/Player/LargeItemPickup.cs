@@ -56,8 +56,8 @@ public class LargeItemPickup : Interactable
                 rigidbody.useGravity = true;
                 rigidbody.constraints = RigidbodyConstraints.None;
                 heldObject = null;
-                playerController.speed = 5.7f;
-                playerController.rotationSpeed = 1000f;
+                playerController.speed = 5;
+                playerController.rotationSpeed = 500f;
             }
         }
         else

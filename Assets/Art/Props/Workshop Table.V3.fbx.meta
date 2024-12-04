@@ -8,12 +8,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: lambert1
-    second: {fileID: 2100000, guid: c39c74dd27e17924c8c61642d8f73050, type: 2}
+    second: {fileID: 2100000, guid: 6be53bbc24f8c8142919b6e4eb3bbd0d, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: standardSurface1
-    second: {fileID: 2100000, guid: 61f0bcf24eb988c4f818f374bfa45d80, type: 2}
+    second: {fileID: 2100000, guid: 259bff449e1ba2040b60a65af0939e31, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -58,7 +58,7 @@ ModelImporter:
     nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
-    generateSecondaryUV: 1
+    generateSecondaryUV: 0
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1

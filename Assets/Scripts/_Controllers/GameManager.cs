@@ -94,7 +94,7 @@ public class GameManager : Singleton<GameManager>
         Time.timeScale = 1.0f;
     }
 
-    public void QuitGame()
+    void QuitGame()
     {
         Application.Quit();
     }
