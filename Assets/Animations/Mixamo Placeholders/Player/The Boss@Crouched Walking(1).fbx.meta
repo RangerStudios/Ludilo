@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6cc6878399f90b94c9062cc1e441c771
+guid: 93261857d72913b4ca4dd915d3f287c6
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Standard Walk(1)
+      name: Crouched Walking(1)
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 35
+      lastFrame: 31
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -56,23 +56,7 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: 0.2990196
-        functionName: PlaySound
-        data: 
-        objectReferenceParameter: {fileID: 5972491971382029802, guid: c03307fc1139a2345bbc11f76d3163b9,
-          type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.79584503
-        functionName: PlaySound
-        data: 
-        objectReferenceParameter: {fileID: 5972491971382029802, guid: c03307fc1139a2345bbc11f76d3163b9,
-          type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
