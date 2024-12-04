@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour, IDamageable
+public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
 {
     //setup
     private Vector2 movementVector;
@@ -21,18 +21,20 @@ public class PlayerController : MonoBehaviour, IDamageable
     private Vector3 direction;
     private Camera mainCamera;
     Rigidbody rb;
+    [SerializeField] bool moveInput;
     [SerializeField] bool ragdolling = false;
     [SerializeField] bool crouching = false;
     [SerializeField] bool canCrouch;
-    [SerializeField] bool canAttack;
+    [SerializeField] public bool canAttack;
+    [SerializeField] public bool canInteract;
     [SerializeField] bool attackCooldown;
     public bool canJump = true;
 
     //player movement values
     [SerializeField] public float speed;
-    [SerializeField] public float rotationSpeed = 500f; //smoothtime
+    [SerializeField] public float rotationSpeed;
     private float gravity = -9.81f;
-    [SerializeField] private float gravityMultiplier = 3.0f;
+    [SerializeField] private float gravityMultiplier;
     [SerializeField] private float jumpPower;
     private float velocity;
 
@@ -62,6 +64,8 @@ public class PlayerController : MonoBehaviour, IDamageable
     public float defaultSpeedModifier = 1;
 
     public float speedModifier;
+
+    [SerializeField] private PlayerSoundsResource playerSounds;
 
 
     void OnEnable()
@@ -127,6 +131,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         else
         {
             playerAnimator.SetBool("isMoving", true);
+            moveInput = true;
         }
 
         if(isHoldingItem == true)
@@ -144,14 +149,30 @@ public class PlayerController : MonoBehaviour, IDamageable
         {
             characterController.height = 1.0f;
             characterController.center = new Vector3(0f, -0.4f, 0f);
+            canAttack = false;
+            canInteract = false;
+            playerAnimator.SetBool("isStandingUp", false);
+            playerAnimator.SetBool("isCrouching", true);
+            StartCoroutine(IdleCrouchBool());
             canJump = false;
         }
         else
         {
             characterController.height = 2.0f;
             characterController.center = new Vector3(0f, 0f, 0f);
+            canAttack = true;
+            canInteract = true;
+            playerAnimator.SetBool("isStandingUp", true);
+            playerAnimator.SetBool("isCrouched", false);
             canJump = true;
         }
+    }
+
+    IEnumerator IdleCrouchBool()
+    {
+        yield return new WaitForSeconds(0.5f);
+        playerAnimator.SetBool("isCrouched", true);
+        playerAnimator.SetBool("isCrouching", false);
     }
 
     public void ChangePlayerState(PlayerMovementState newState)
@@ -258,7 +279,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
         if (isDusted)
         {
-            speedModifier = 0.8f;
+            speedModifier = 0.6f;
             characterController.Move(direction * (speedModifier / (grabIncrement + 1)) * Time.deltaTime);
         }
         
@@ -305,6 +326,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         {
             gravity = -9.81f;
             hanging = false;
+            PlaySoundEffect(playerSounds.JumpSounds[Random.Range(0, playerSounds.JumpSounds.Count - 1)]);
             velocity += jumpPower;
             playerAnimator.SetBool("isHanging", false);
             playerAnimator.SetBool("isJumping", true);
@@ -313,6 +335,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         else
         {
             if (!IsGrounded()) return;
+            PlaySoundEffect(playerSounds.JumpSounds[Random.Range(0, playerSounds.JumpSounds.Count - 1)]);
             velocity += jumpPower;
             playerAnimator.SetBool("isJumping", true);
         }
@@ -340,6 +363,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         playerHealth.Damage(damageValue);
         onDamage.Invoke(damageValue);
+        PlaySoundEffect(playerSounds.HitSounds[Random.Range(0, playerSounds.HitSounds.Count - 1)]);
     }
 
     public void Die()
@@ -409,11 +433,14 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         if (!isGrabbed && !attackCooldown && !isHoldingItem)
         {
-            //Logic, anim trigger, etc.
-            attackCooldown = true;
-            playerAnimator.SetBool("isAttacking", true);
-            StartCoroutine(AttackAnimDelay());
-            StartCoroutine(AttackCooldown());
+            if (canAttack)
+            {
+                attackCooldown = true;
+                playerAnimator.SetBool("isAttacking", true);
+                PlaySoundEffect(playerSounds.AttackSounds[Random.Range(0, playerSounds.AttackSounds.Count - 1)]);
+                StartCoroutine(AttackAnimDelay());
+                StartCoroutine(AttackCooldown());
+            }
         }
         else
         {
@@ -490,6 +517,17 @@ public class PlayerController : MonoBehaviour, IDamageable
         Debug.Log("Hello I am Active");
         isDusted = true;
         currentDustTimer = dustTimer;
+    }
+
+    public void PlaySoundEffect(AudioClip soundEffect)
+    {
+        AudioSource audio = GetComponent<AudioSource>();
+        audio.PlayOneShot(soundEffect);
+    }
+
+    public void PlayWalkSound()
+    {
+        PlaySoundEffect(playerSounds.WalkSounds[Random.Range(0, playerSounds.WalkSounds.Count - 1)]);
     }
 }
 

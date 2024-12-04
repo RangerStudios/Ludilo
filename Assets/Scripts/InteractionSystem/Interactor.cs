@@ -9,13 +9,14 @@ public class Interactor : MonoBehaviour
     [SerializeField] private Transform interactionPoint;
     [SerializeField] private float interactionPointRadius = 0.5f;
     [SerializeField] private LayerMask interactableMask;
+    private PlayerController playerController;
 
     private readonly Collider[] colliders = new Collider[3];
-    [SerializeField] private int numFound;
+    [SerializeField] public int numFound;
 
     void Awake()
     {
-
+        playerController = GetComponent<PlayerController>();
     }
     void OnEnable()
     {
@@ -36,14 +37,14 @@ public class Interactor : MonoBehaviour
 
     public void Interaction()
     {
-        if(numFound > 0)
+        if(numFound > 0 && playerController.canInteract)
         {
             var interactable = colliders[0].GetComponent<Interactable>();
 
             if (interactable != null)
-        {
-            interactable.Interact(this);
-        } 
+            {
+                interactable.Interact(this);
+            } 
         }
     }
 

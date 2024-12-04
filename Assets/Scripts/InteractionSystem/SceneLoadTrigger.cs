@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-//using UnityEditor.SearchService;
+#if UNITY_EDITOR
+using UnityEditor.SearchService; //DONT DELETE THIS
+#endif
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Scene = UnityEngine.SceneManagement.Scene;
@@ -9,11 +12,14 @@ public class SceneLoadTrigger : MonoBehaviour
 {
     [SerializeField] private SceneField[] scenesToLoad;
     [SerializeField] private SceneField[] scenesToUnload;
-    private GameObject player;
+    public GameObject player;
+    public GameObject mainCam;
+    
 
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        mainCam = GameObject.FindGameObjectWithTag("MainCamera");
     }
 
     private void OnTriggerEnter(Collider other)
@@ -36,15 +42,18 @@ public class SceneLoadTrigger : MonoBehaviour
                 Scene loadedScene = SceneManager.GetSceneAt(j);
                 if (loadedScene.name == scenesToLoad[i].SceneName)
                 {
+                    SceneManager.MoveGameObjectToScene(mainCam, loadedScene);
+                    SceneManager.MoveGameObjectToScene(player, loadedScene);
                     isSceneLoaded = true;
+                    Destroy(this);
                     break;
                 }
-            }
-
-            if (!isSceneLoaded)
-            {
-                SceneManager.LoadSceneAsync(scenesToLoad[i], LoadSceneMode.Additive);
-            }
+                
+                if (!isSceneLoaded)
+                {
+                    SceneManager.LoadSceneAsync(scenesToLoad[i], LoadSceneMode.Additive); 
+                }
+            }    
         }
     }
 
