@@ -2499,21 +2499,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Art Team
-
-    Lead Artist -Victor Aldana
-
-    Modeling - Ryan Rodrieguez
-
-    Modeling
-    - Will Kidwell
-
-    Modeling - Max Willis
-
-    Texture Artist - Andrew Sealing
-
-    Tech
-    Artist - Connor Jarvis Ruble'
+  m_text: "Lead Artist -Victor Aldana\nModeling - Ryan Rodrieguez\nModeling - Will
+    Kidwell\nModeling - Max Willis\nTexture Artist - Andrew Sealing\nLighting and
+    VFX Artist \n- Connor Jarvis Ruble"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bf538a0fb9e0c9f4fb9a3541e4ff70eb, type: 2}
   m_sharedMaterial: {fileID: -5439720996110812636, guid: bf538a0fb9e0c9f4fb9a3541e4ff70eb,
