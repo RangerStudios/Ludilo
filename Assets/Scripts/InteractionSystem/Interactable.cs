@@ -2,10 +2,15 @@ using UnityEngine;
 using UnityEngine.Events;
 
 
-public class Interactable : MonoBehaviour
+public class Interactable : MonoBehaviour, IPlaySounds
 {
    
     public UnityEvent OnInteract;
+
+    public void Awake()
+    {
+        AudioSource audioSource = gameObject.AddComponent(typeof(AudioSource)) as AudioSource;
+    }
 
     protected bool Interact()
     {
@@ -19,4 +24,9 @@ public class Interactable : MonoBehaviour
         return true; 
     }
 
+    public void PlaySoundEffect(AudioClip soundEffect)
+    {
+        AudioSource audio = GetComponent<AudioSource>();
+        audio.PlayOneShot(soundEffect);
+    }
 }

@@ -9,6 +9,7 @@ using UnityEngine.UIElements;
 public class CamTriggerVolume : TriggerVolume
 {
     [SerializeField] private CinemachineVirtualCamera cam;
+    [SerializeField] bool followPlayer;
 
 
     //BoxCollider box;
@@ -32,8 +33,12 @@ public class CamTriggerVolume : TriggerVolume
         if(collider.gameObject.CompareTag("Player"))
         {
             if (CamSwitcher.ActiveCamera != cam) CamSwitcher.SwitchCamera(cam);
-            //cam.Follow = player
             cam.LookAt = collider.transform;
+            
+            if (followPlayer)
+            {
+                cam.Follow = collider.transform;
+            }
         }
     }
 }

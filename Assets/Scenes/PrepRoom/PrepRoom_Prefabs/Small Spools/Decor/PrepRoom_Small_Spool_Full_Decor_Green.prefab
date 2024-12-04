@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2815217801517183018}
   - component: {fileID: 8049329966408422561}
   - component: {fileID: 2691112094721211472}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: PrepRoom_Small_Spool_Full_Decor_Green
   m_TagString: Untagged
   m_Icon: {fileID: 0}
