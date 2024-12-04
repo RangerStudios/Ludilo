@@ -28,8 +28,7 @@ public class FadeScript : MonoBehaviour //This script is used for trigger based 
     {
         fadeOutAnimator.SetTrigger("FadeOut");
         player.GetComponent<CapsuleCollider>().enabled = true;
-        playerController.canAttack = false;
-        playerController.characterController.enabled = false;
+        playerController.enabled = false;
         yield return new WaitForSeconds(1.0f);
         fadeOutAnimator.SetTrigger("FadeIn");
         thanksMessage.SetActive(true);
