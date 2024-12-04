@@ -191,10 +191,12 @@ MonoBehaviour:
   heldObject: {fileID: 0}
   radius: 2
   distance: 1.4
+  rayDist: 1
   playerController: {fileID: 0}
   playerInteractor: {fileID: 0}
   player: {fileID: 0}
   playerTransform: {fileID: 0}
+  pullDrawerInst: {fileID: 0}
 --- !u!153 &3522932791196361270
 ConfigurableJoint:
   m_ObjectHideFlags: 0
