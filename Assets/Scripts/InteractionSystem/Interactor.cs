@@ -11,11 +11,8 @@ public class Interactor : MonoBehaviour
     [SerializeField] private LayerMask interactableMask;
     private PlayerController playerController;
 
-    private readonly Collider[] colliders = new Collider[1];
+    private readonly Collider[] colliders = new Collider[3];
     [SerializeField] public int numFound;
-    public Transform interactablePos;
-    [SerializeField] float interactableDistanceFloat;
-
 
     void Awake()
     {
@@ -34,7 +31,7 @@ public class Interactor : MonoBehaviour
     private void Update()
     {
         numFound = Physics.OverlapSphereNonAlloc(interactionPoint.position, interactionPointRadius, colliders, interactableMask);
-        
+
         
     }
 
@@ -43,10 +40,8 @@ public class Interactor : MonoBehaviour
         if(numFound > 0 && playerController.canInteract)
         {
             var interactable = colliders[0].GetComponent<Interactable>();
-            Transform interactablePos = interactable.transform;
-            float interactDist = Vector3.Distance(interactionPoint.position, interactablePos.position);
 
-            if (interactable != null && interactDist < interactableDistanceFloat)
+            if (interactable != null)
             {
                 interactable.Interact(this);
             } 
