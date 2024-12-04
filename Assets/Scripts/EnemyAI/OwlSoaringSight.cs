@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class OwlSoaringSight : MonoBehaviour
@@ -52,7 +53,7 @@ public class OwlSoaringSight : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Waow");
+            //Debug.Log("Waow");
             // Shoot Raycast to other
             // if it connects, set seen bool to true
             // if not, set bool to false.
@@ -63,23 +64,33 @@ public class OwlSoaringSight : MonoBehaviour
             {
                 if (hit.collider.gameObject.CompareTag("Player"))
                 {
-                    Debug.Log("Seen!");
-                    SeesPlayer();
+                    //Debug.Log("Seen!");
+                    seesBool = true;
+
                 }
                 else
                 {
-                    DoesntSeePlayer();
-                    Debug.Log("Player in Range, not seen.");
+                    seesBool = false;
+                   // Debug.Log("Player in Range, not seen.");
                 }
             }
             else
             {
-                DoesntSeePlayer();
-                Debug.LogError("Raycast hit nothing.");
+                
+                //Debug.LogError("Raycast hit nothing.");
             }
         }
         else
         {
+            
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            
             DoesntSeePlayer();
         }
     }
@@ -99,6 +110,6 @@ public class OwlSoaringSight : MonoBehaviour
         // Owl Gets You, call game manager for PlayerFell.
         gameManager.PlayerFell();
         DoesntSeePlayer();
-        Debug.Log("Owl got you");
+       // Debug.Log("Owl got you");
     }
 }
