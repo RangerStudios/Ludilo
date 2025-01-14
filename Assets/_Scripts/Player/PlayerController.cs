@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
     [SerializeField] public bool canInteract;
     [SerializeField] bool attackCooldown;
     public bool canJump = true;
+    public GameObject menuUI;
 
     //player movement values
     [SerializeField] public float speed;
@@ -99,6 +100,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
         playerStuffing = GetComponent<StuffingController>();
         mainCamera = Camera.main;
         rb = GetComponent<Rigidbody>();
+        menuUI = GameObject.Find("Canvas");
     }
 
     private void Start()
