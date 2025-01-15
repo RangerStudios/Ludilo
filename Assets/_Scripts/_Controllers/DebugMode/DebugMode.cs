@@ -7,14 +7,18 @@ public class DebugMode : MonoBehaviour
     public bool debugOn = false;
     
     GameObject player;
+    GameObject gameManager;
     DebugPlayerController debugController;
     PlayerController playerController;
+    DebugCheckpointSpawn debugCheckpointSpawn;
     
     private void Awake()
     {
         player = GameObject.FindWithTag("Player");
+        gameManager = GameObject.FindWithTag("GameController");
         debugController = player.GetComponent<DebugPlayerController>();
         playerController = player.GetComponent<PlayerController>();
+        debugCheckpointSpawn = gameManager.GetComponent<DebugCheckpointSpawn>();
     }
 
     public void SwitchDebugMode()
@@ -26,7 +30,7 @@ public class DebugMode : MonoBehaviour
             //Debug Turns On
             debugController.enabled = true;
             playerController.enabled = false;
-
+            debugCheckpointSpawn.enabled = true;
             //Debug.Log("On");
         }
         else
@@ -34,7 +38,7 @@ public class DebugMode : MonoBehaviour
             //Debug Turns Off
             debugController.enabled = false;
             playerController.enabled = true;
-
+            debugCheckpointSpawn.enabled = false;
             //Debug.Log("Off");
         }
     }
