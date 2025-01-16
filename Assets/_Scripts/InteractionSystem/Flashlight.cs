@@ -20,7 +20,7 @@ public class Flashlight : MediumItemPickup, IActivatable
     public void OnEnable()
     {
 
-        if ((theLight != null))
+        if ((theLight == null))
         {
             theLight = GetComponent<Light>();
         }
