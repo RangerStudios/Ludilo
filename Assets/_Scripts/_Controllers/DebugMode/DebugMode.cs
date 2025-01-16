@@ -5,15 +5,18 @@ using UnityEngine;
 public class DebugMode : MonoBehaviour
 {
     public bool debugOn = false;
+    public bool noClipOn = false;
     
     GameObject player;
     GameObject gameManager;
+    GameObject debugCam;
     DebugPlayerController debugController;
     PlayerController playerController;
     DebugCheckpointSpawn debugCheckpointSpawn;
     
     private void Awake()
     {
+        PlayerInput.onSelect += NoClipToggle;
         player = GameObject.FindWithTag("Player");
         gameManager = GameObject.FindWithTag("GameController");
         debugController = player.GetComponent<DebugPlayerController>();
@@ -28,16 +31,33 @@ public class DebugMode : MonoBehaviour
         if(debugOn)
         {
             //Debug Turns On
-            debugController.enabled = true;
             debugCheckpointSpawn.enabled = true;
             //Debug.Log("On");
         }
         else
         {
             //Debug Turns Off
-            debugController.enabled = false;
             debugCheckpointSpawn.enabled = false;
             //Debug.Log("Off");
+        }
+    }
+
+    public void NoClipToggle()
+    {
+        if(debugOn)
+        {
+            noClipOn = !noClipOn;
+
+            if(noClipOn)
+            {
+                debugController.enabled = true;
+                playerController.enabled = false;
+            }
+            else
+            {
+                debugController.enabled = false;
+                playerController.enabled = true;
+            }
         }
     }
 
