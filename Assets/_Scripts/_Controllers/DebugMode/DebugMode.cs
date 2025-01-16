@@ -29,7 +29,6 @@ public class DebugMode : MonoBehaviour
         {
             //Debug Turns On
             debugController.enabled = true;
-            playerController.enabled = false;
             debugCheckpointSpawn.enabled = true;
             //Debug.Log("On");
         }
@@ -37,7 +36,6 @@ public class DebugMode : MonoBehaviour
         {
             //Debug Turns Off
             debugController.enabled = false;
-            playerController.enabled = true;
             debugCheckpointSpawn.enabled = false;
             //Debug.Log("Off");
         }
