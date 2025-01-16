@@ -247,6 +247,7 @@ GameObject:
   - component: {fileID: 1852948712926383237}
   - component: {fileID: 719091388218144024}
   - component: {fileID: 7865559701058627419}
+  - component: {fileID: 8400620590872089056}
   - component: {fileID: 4130582590626628860}
   m_Layer: 6
   m_Name: PlayerPrototype 1
@@ -322,6 +323,7 @@ MonoBehaviour:
   canInteract: 0
   attackCooldown: 0
   canJump: 1
+  menuUI: {fileID: 0}
   speed: 5.7
   rotationSpeed: 1000
   gravityMultiplier: 1
@@ -518,8 +520,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   numFound: 0
-  interactablePos: {fileID: 0}
-  interactableDistanceFloat: 0.8
 --- !u!114 &7865559701058627419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -542,6 +542,18 @@ MonoBehaviour:
     m_Bits: 2048
   saveNumFound: 0
   enemyNumFound: 0
+--- !u!114 &8400620590872089056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5972491971382029802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28d48cc394d12444ab17b3969498fff0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!82 &4130582590626628860
 AudioSource:
   m_ObjectHideFlags: 0
