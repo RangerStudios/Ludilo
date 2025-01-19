@@ -9,7 +9,7 @@ public class DebugMode : MonoBehaviour
     
     GameObject player;
     GameObject gameManager;
-    GameObject debugCam;
+    [SerializeField] GameObject debugCam;
     DebugPlayerController debugController;
     PlayerController playerController;
     DebugCheckpointSpawn debugCheckpointSpawn;
@@ -21,6 +21,8 @@ public class DebugMode : MonoBehaviour
         gameManager = GameObject.FindWithTag("GameController");
         debugController = player.GetComponent<DebugPlayerController>();
         playerController = player.GetComponent<PlayerController>();
+        debugCam = GameObject.FindWithTag("NoClipCamera");
+        debugCam.SetActive(false);
         debugCheckpointSpawn = gameManager.GetComponent<DebugCheckpointSpawn>();
     }
 
@@ -51,11 +53,13 @@ public class DebugMode : MonoBehaviour
             if(noClipOn)
             {
                 debugController.enabled = true;
+                debugCam.SetActive(true);
                 playerController.enabled = false;
             }
             else
             {
                 debugController.enabled = false;
+                debugCam.SetActive(false);
                 playerController.enabled = true;
             }
         }
