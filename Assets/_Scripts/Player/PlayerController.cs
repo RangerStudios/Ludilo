@@ -76,6 +76,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
         PlayerInput.onRagdoll += Ragdoll;
         PlayerInput.onCrouch += Crouch;
         PlayerInput.onAttack += Attack;
+        //PlayerInput.onSelect +=
         Pinhead.GrabPlayer += Grabbed;
         Pinhead.ReleasePlayer += Released;
         DustExplode.DustPlayer += Dusted;
@@ -88,6 +89,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
         PlayerInput.onRagdoll -= Ragdoll;
         PlayerInput.onCrouch -= Crouch;
         PlayerInput.onAttack -= Attack;
+        //PlayerInput.onSelect +=
         Pinhead.GrabPlayer -= Grabbed;
         Pinhead.ReleasePlayer -= Released;
         DustExplode.DustPlayer -= Dusted;
