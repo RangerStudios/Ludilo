@@ -20,22 +20,30 @@ public class DebugPlayerController : MonoBehaviour
     public Transform playerTransform;
     public Transform playerTransformObj;
 
-    public float noclipMoveSpeed;
-    public float rotationSpeed;
+    private float noclipMoveSpeed = 10;
+    private float upSpeed = 3;
+    private float rotationSpeed = 1000;
+
+    [SerializeField] bool upActive = false;
+    [SerializeField] bool downActive = false;
     
 
     void OnEnable()
     {
         PlayerInput.onMove += MovementInput;
-        //PlayerInput.onJump += Up;
-        //PlayerInput.onCrouch += Down;
+        PlayerInput.onJump += Up;
+        PlayerInput.onCrouch += Down;
+
+         Physics.IgnoreLayerCollision(6, 12, true); // Disable collisions
     }
 
     void OnDisable()
     {
         PlayerInput.onMove -= MovementInput;
-        //PlayerInput.onJump -= Up;
-        //PlayerInput.onCrouch -= Down;
+        PlayerInput.onJump -= Up;
+        PlayerInput.onCrouch -= Down;
+
+         Physics.IgnoreLayerCollision(6, 12, false);// Enable collisions
     }
     
     void Awake()
@@ -49,6 +57,16 @@ public class DebugPlayerController : MonoBehaviour
     {
         ApplyRotation();
         ApplyMovement();
+
+        if (upActive)
+        {
+            UpMove();
+        }
+
+        if (downActive)
+        {
+            DownMove();
+        }
     }
 
     void MovementInput(Vector2 input)
@@ -70,15 +88,37 @@ public class DebugPlayerController : MonoBehaviour
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed *Time.deltaTime);
     }
 
-    public void DisableBaseController()
+    private void Up()
     {
-        //Disabling basic player controller, enable movement logic in this script
+        upActive = !upActive;
 
+        if (downActive)
+        {
+            downActive = false;
+        }
     }
 
-    public void EnableBaseController()
+    private void UpMove()
     {
-        //the inverse of the above; disable movement logic in this controller, enable PlayerController.cs
+        Vector3 upVector = new Vector3(0, 1, 0); // Move only in the Y direction
 
+        characterController.Move(upVector * upSpeed * Time.deltaTime); // Apply the movement
+    }
+
+    private void Down()
+    {
+        downActive = !downActive;
+
+        if (upActive)
+        {
+            upActive = false;
+        }
+    }
+
+    private void DownMove()
+    {
+        Vector3 downVector = new Vector3(0, -1, 0); // Move only in the Y direction
+
+        characterController.Move(downVector * upSpeed * Time.deltaTime); // Apply the movement
     }
 }
