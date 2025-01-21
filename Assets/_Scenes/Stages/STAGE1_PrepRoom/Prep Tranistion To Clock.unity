@@ -46161,7 +46161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsGlobal: 0
   priority: 1
-  blendDistance: 2
+  blendDistance: 6
   weight: 1
   sharedProfile: {fileID: 11400000, guid: 082718192f7004546817d00df912db54, type: 2}
 --- !u!65 &2128670492
@@ -46183,7 +46183,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 28.2, y: 30, z: 75}
+  m_Size: {x: 26.5, y: 30, z: 70.88}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2129918531
 GameObject:
