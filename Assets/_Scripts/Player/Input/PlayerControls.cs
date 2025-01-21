@@ -107,6 +107,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Button"",
+                    ""id"": ""9d4d79c8-3771-46ff-943c-eeb3b9fc2d83"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -351,6 +360,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""edd02707-c47f-4e79-80e2-43ff70504c03"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e259f0c8-89a6-42bb-b83f-c93e97ab745b"",
+                    ""path"": ""<Keyboard>/v"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -368,6 +399,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
+        m_Player_Select = m_Player.FindAction("Select", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -438,6 +470,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Pause;
     private readonly InputAction m_Player_Crouch;
     private readonly InputAction m_Player_Attack;
+    private readonly InputAction m_Player_Select;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -451,6 +484,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
         public InputAction @Attack => m_Wrapper.m_Player_Attack;
+        public InputAction @Select => m_Wrapper.m_Player_Select;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -487,6 +521,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Attack.started += instance.OnAttack;
             @Attack.performed += instance.OnAttack;
             @Attack.canceled += instance.OnAttack;
+            @Select.started += instance.OnSelect;
+            @Select.performed += instance.OnSelect;
+            @Select.canceled += instance.OnSelect;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -518,6 +555,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Attack.started -= instance.OnAttack;
             @Attack.performed -= instance.OnAttack;
             @Attack.canceled -= instance.OnAttack;
+            @Select.started -= instance.OnSelect;
+            @Select.performed -= instance.OnSelect;
+            @Select.canceled -= instance.OnSelect;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -546,5 +586,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnPause(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
+        void OnSelect(InputAction.CallbackContext context);
     }
 }

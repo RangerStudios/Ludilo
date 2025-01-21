@@ -5,19 +5,24 @@ using UnityEngine;
 public class DebugMode : MonoBehaviour
 {
     public bool debugOn = false;
+    public bool noClipOn = false;
     
     GameObject player;
     GameObject gameManager;
+    [SerializeField] GameObject debugCam;
     DebugPlayerController debugController;
     PlayerController playerController;
     DebugCheckpointSpawn debugCheckpointSpawn;
     
     private void Awake()
     {
+        PlayerInput.onSelect += NoClipToggle;
         player = GameObject.FindWithTag("Player");
         gameManager = GameObject.FindWithTag("GameController");
         debugController = player.GetComponent<DebugPlayerController>();
         playerController = player.GetComponent<PlayerController>();
+        debugCam = GameObject.FindWithTag("NoClipCamera");
+        debugCam.SetActive(false);
         debugCheckpointSpawn = gameManager.GetComponent<DebugCheckpointSpawn>();
     }
 
@@ -28,18 +33,35 @@ public class DebugMode : MonoBehaviour
         if(debugOn)
         {
             //Debug Turns On
-            debugController.enabled = true;
-            playerController.enabled = false;
             debugCheckpointSpawn.enabled = true;
             //Debug.Log("On");
         }
         else
         {
             //Debug Turns Off
-            debugController.enabled = false;
-            playerController.enabled = true;
             debugCheckpointSpawn.enabled = false;
             //Debug.Log("Off");
+        }
+    }
+
+    public void NoClipToggle()
+    {
+        if(debugOn)
+        {
+            noClipOn = !noClipOn;
+
+            if(noClipOn)
+            {
+                debugController.enabled = true;
+                debugCam.SetActive(true);
+                playerController.enabled = false;
+            }
+            else
+            {
+                debugController.enabled = false;
+                debugCam.SetActive(false);
+                playerController.enabled = true;
+            }
         }
     }
 

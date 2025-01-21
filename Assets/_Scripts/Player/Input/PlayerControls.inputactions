@@ -1,5 +1,5 @@
 {
-    "name": "Player",
+    "name": "PlayerControls",
     "maps": [
         {
             "name": "Player",
@@ -81,6 +81,15 @@
                     "name": "Attack",
                     "type": "Button",
                     "id": "92cf1e09-9e44-4a0a-88b5-d9570fdd8100",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Select",
+                    "type": "Button",
+                    "id": "9d4d79c8-3771-46ff-943c-eeb3b9fc2d83",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -327,6 +336,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "edd02707-c47f-4e79-80e2-43ff70504c03",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e259f0c8-89a6-42bb-b83f-c93e97ab745b",
+                    "path": "<Keyboard>/v",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

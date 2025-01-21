@@ -16,6 +16,7 @@ public class PlayerInput : MonoBehaviour, PlayerControls.IPlayerActions
     public static UnityAction onPause = delegate { };
     public static UnityAction onHeal = delegate { };
     public static UnityAction onAttack = delegate { };
+    public static UnityAction onSelect = delegate { };
 
     void OnEnable()
     {
@@ -100,6 +101,15 @@ public class PlayerInput : MonoBehaviour, PlayerControls.IPlayerActions
         if(context.started)
         {
             onAttack();
+        }
+        if(!context.started) return;
+    }
+
+    public void OnSelect(InputAction.CallbackContext context)
+    {
+        if(context.started)
+        {
+            onSelect();
         }
         if(!context.started) return;
     }
