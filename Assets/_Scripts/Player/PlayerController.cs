@@ -11,6 +11,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
 {
     //setup
+    [Header("Component References")]
     private Vector2 movementVector;
     public CharacterController characterController;
     public Animator playerAnimator;
@@ -21,6 +22,8 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
     private Vector3 direction;
     private Camera mainCamera;
     Rigidbody rb;
+    [Space(10)]
+    [Header("Booleans")]
     [SerializeField] bool moveInput;
     [SerializeField] bool ragdolling = false;
     [SerializeField] bool crouching = false;
@@ -32,8 +35,11 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
     public GameObject menuUI;
 
     //player movement values
+    [Space(10)]
+    [Header("Player Movement Values")]
     [SerializeField] public float speed;
     [SerializeField] public float rotationSpeed;
+    [SerializeField] float acceleration;
     private float gravity = -9.81f;
     [SerializeField] private float gravityMultiplier;
     [SerializeField] private float jumpPower;
@@ -124,8 +130,6 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
             }
         }
         ApplyRotation();
-        ApplyGravity();
-        ApplyMovement();
         LedgeGrab();
 
         if (movementVector.sqrMagnitude == 0)
@@ -170,6 +174,14 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
             playerAnimator.SetBool("isCrouched", false);
             canJump = true;
         }
+    }
+
+    void FixedUpdate()
+    {
+        //All movement calculations and similar should be in fixed update, same with gravity
+
+        ApplyGravity();
+        ApplyMovement();
     }
 
     IEnumerator IdleCrouchBool()
@@ -267,20 +279,27 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
                 break;
 
             default:
-                
-                    characterController.Move(direction * (speed * speedModifier) * Time.deltaTime);
+
+                    var factor = acceleration * Time.fixedDeltaTime;
+                    Vector3 playerVelocity = new();
+
+                    playerVelocity.x = Mathf.Lerp(playerVelocity.x, direction.x * speed * speedModifier, factor);
+                    playerVelocity.z = Mathf.Lerp(playerVelocity.z, direction.z * speed * speedModifier, factor);
+                    playerVelocity.y = direction.y;
+
+                    characterController.Move(playerVelocity * Time.fixedDeltaTime);
                     gameObject.GetComponent<CapsuleCollider>().enabled = false;
                     characterController.enabled = true;
                     GetComponent<Rigidbody>().isKinematic = true;
                     canJump = true;
                     canCrouch = true;
-                    speedModifier = 1f;
+                    //speedModifier = 1f;
                     //Debug.Log("Default State");
                 
                break;
         }
 
-
+        //TO:DO Adjust the application of the speed debuff so it actually works
         if (isDusted)
         {
             speedModifier = 0.6f;
@@ -301,7 +320,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
         }
         else
         {
-            velocity += gravity * gravityMultiplier * Time.deltaTime;
+            velocity += gravity * gravityMultiplier * Time.fixedDeltaTime;
             playerAnimator.SetBool("isFalling", true);
             playerAnimator.SetBool("isGrounded", false);
         }
