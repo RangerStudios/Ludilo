@@ -25841,7 +25841,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 0.8745098, g: 0.9411765, b: 1, a: 1}
-  m_Intensity: 0.5
+  m_Intensity: 0.4
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -46141,7 +46141,7 @@ Transform:
   m_GameObject: {fileID: 2128670489}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 56.79, y: 21.74, z: -45.7}
+  m_LocalPosition: {x: 56.79, y: 21.74, z: -60.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -46161,7 +46161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsGlobal: 0
   priority: 1
-  blendDistance: 2
+  blendDistance: 6
   weight: 1
   sharedProfile: {fileID: 11400000, guid: 082718192f7004546817d00df912db54, type: 2}
 --- !u!65 &2128670492
@@ -46183,7 +46183,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 28.2, y: 30, z: 110}
+  m_Size: {x: 26.5, y: 30, z: 70.88}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2129918531
 GameObject:
