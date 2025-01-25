@@ -291,13 +291,15 @@ MonoBehaviour:
   activated: 0
   heldObject: {fileID: 0}
   radius: 2
-  distance: 1.4
-  rayDist: 0
+  distance: 5
+  rayDist: 1.5
   playerController: {fileID: 0}
   playerInteractor: {fileID: 0}
   player: {fileID: 0}
   playerTransform: {fileID: 0}
   theLight: {fileID: 8223859829008443809}
+  beamRadius: 0
+  enemiesLayer: 0
   clickOn: {fileID: 0}
   clickOff: {fileID: 0}
 --- !u!65 &1277551062770602938
@@ -319,8 +321,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1.2544632, z: 1}
+  m_Center: {x: 0, y: 0.15752792, z: 0}
 --- !u!54 &6019996048700703785
 Rigidbody:
   m_ObjectHideFlags: 0

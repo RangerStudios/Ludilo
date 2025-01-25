@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Flashlight : MediumItemPickup, IActivatable
 {
@@ -39,6 +41,7 @@ public class Flashlight : MediumItemPickup, IActivatable
         }
 
     }
+    
     public void Activate()
     {
         //Code goes into here to 

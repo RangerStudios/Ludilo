@@ -11,6 +11,7 @@ public class MediumItemPickup : Interactable
     public float radius = 2f;
     public float distance = 1.4f;
     public float rayDist;
+    float diffForce = 500;
     //public float height = 0.3f;
     public PlayerController playerController;    
     public Interactor playerInteractor;
@@ -47,17 +48,28 @@ public class MediumItemPickup : Interactable
         var t = playerTransform;
         if(heldObject)
         {
-            
             playerController.canJump = false;
             playerController.speed = 3;
             playerController.rotationSpeed = 250f;
+
+            Debug.Log("SomethinG!");
+            var rigidbody = heldObject.GetComponent<Rigidbody>();
+            var moveTo = t.position + distance * t.forward;
+            var difference = moveTo - heldObject.transform.position;
+            rigidbody.AddForce(difference * diffForce);
+            heldObject.transform.rotation = t.rotation;
+            
+            if(playerInteractor.numFound == 0)
+        {
+            DropMediumItem();
+        }
             if(!activated)
             {
-                var rigidbody = heldObject.GetComponent<Rigidbody>();
+                //var rigidbody = heldObject.GetComponent<Rigidbody>();
                 rigidbody.drag = 1f;
                 rigidbody.useGravity = true;
                 rigidbody.constraints = RigidbodyConstraints.None;
-                heldObject = null;
+                DropMediumItem();
                 playerController.speed = 5.7f;
                 playerController.rotationSpeed = 1000f;
             }
@@ -93,16 +105,7 @@ public class MediumItemPickup : Interactable
         var t = playerTransform;
         if(heldObject)
         {
-            var rigidbody = heldObject.GetComponent<Rigidbody>();
-            var moveTo = t.position + distance * t.forward;
-            var difference = moveTo - heldObject.transform.position;
-            rigidbody.AddForce(difference * 500);
-            heldObject.transform.rotation = t.rotation;
-
-            if(playerInteractor.numFound == 0)
-        {
-            DropMediumItem();
-        }
+            
         }
     }
 
@@ -110,6 +113,7 @@ public class MediumItemPickup : Interactable
     {
         if(heldObject)
         {
+            heldObject = null;
             activated = false;
             playerController.isHoldingItem = false;
             playerController.canJump = true;
