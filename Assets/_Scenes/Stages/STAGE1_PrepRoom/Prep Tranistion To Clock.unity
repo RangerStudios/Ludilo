@@ -770,7 +770,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &66106275
 Transform:
   m_ObjectHideFlags: 0
@@ -7832,6 +7832,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Prop_plug
       objectReference: {fileID: 0}
+    - target: {fileID: 7986004844576833363, guid: 4a2da0d8e0c577b4a9e828bd4f3745c4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8085,6 +8090,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Long_Light_Bulb (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4932824ef66daff4992078b00e113ef2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4932824ef66daff4992078b00e113ef2,
         type: 3}
@@ -9024,7 +9034,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &416502267
 Transform:
   m_ObjectHideFlags: 0
@@ -9822,6 +9832,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Long_Light_Bulb (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4932824ef66daff4992078b00e113ef2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14875,7 +14890,7 @@ Transform:
   m_GameObject: {fileID: 716819111}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 52.33, y: 13.573, z: 25.8}
+  m_LocalPosition: {x: 40.73, y: 13.573, z: 25.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14916,8 +14931,8 @@ Light:
   m_Type: 3
   m_Shape: 0
   m_Color: {r: 1, g: 0.68235296, b: 0.42745098, a: 1}
-  m_Intensity: 1
-  m_Range: 10
+  m_Intensity: 1.5
+  m_Range: 14
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -14957,7 +14972,7 @@ Light:
   m_RenderingLayerMask: 1
   m_Lightmapping: 2
   m_LightShadowCasterMode: 0
-  m_AreaSize: {x: 56.380524, y: 13.877262}
+  m_AreaSize: {x: 32.06964, y: 13.877262}
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
@@ -32748,6 +32763,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Long_Light_Bulb
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4932824ef66daff4992078b00e113ef2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -35852,8 +35872,8 @@ ReflectionProbe:
   m_TimeSlicingMode: 0
   m_Resolution: 128
   m_UpdateFrequency: 0
-  m_BoxSize: {x: 34.23265, y: 25.509388, z: 84.07078}
-  m_BoxOffset: {x: 2.971901, y: 2.105175, z: 1.6230049}
+  m_BoxSize: {x: 27.951935, y: 25.509388, z: 84.07078}
+  m_BoxOffset: {x: -0.16845703, y: 2.105175, z: 1.6230049}
   m_NearClip: 0.3
   m_FarClip: 1000
   m_ShadowDistance: 100
@@ -37761,7 +37781,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1756215332
 Transform:
   m_ObjectHideFlags: 0
@@ -38283,7 +38303,7 @@ Light:
   m_Type: 3
   m_Shape: 0
   m_Color: {r: 1, g: 0.6805868, b: 0.4292453, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.75
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
