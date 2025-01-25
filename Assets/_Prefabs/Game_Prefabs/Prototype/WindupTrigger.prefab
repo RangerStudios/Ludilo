@@ -66,5 +66,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a736d84476d0ee2479ee53e6bebfac38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  windupKey: {fileID: 0}
-  windupKeyScript: {fileID: 0}
+  insertedKey: {fileID: 0}
+  egg: {fileID: 0}
