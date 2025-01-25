@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
     public Attacker attackScript;
     public PlayerHealthScriptableObject savedPlayerHealth;
     private Vector3 inputDirection;
+    private Vector3 movementDirection;
     private Camera mainCamera;
     Rigidbody rb;
     [Space(10)]
@@ -216,13 +217,13 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
         {
             case PlayerMovementState.Default:
                     if (movementVector.sqrMagnitude == 0) return;
-                    inputDirection = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0.0f) * new Vector3(movementVector.x, 0.0f, movementVector.y);
-                    var targetRotation = Quaternion.LookRotation(inputDirection, Vector3.up);
+                    movementDirection = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0.0f) * new Vector3(movementVector.x, 0.0f, movementVector.y);
+                    var targetRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
                     transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed *Time.deltaTime);
                 break;
             case PlayerMovementState.Dragging:
                 if (movementVector.sqrMagnitude == 0) return;
-                inputDirection = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0.0f) * new Vector3(movementVector.x, 0.0f, movementVector.y); 
+                movementDirection = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0.0f) * new Vector3(movementVector.x, 0.0f, movementVector.y); 
                 Debug.Log("Drag State"); 
                 break;             
         }
@@ -255,7 +256,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
             case PlayerMovementState.OnLadder:
                 if (onLadder && !exitLadder)
                 {
-                    float vertInput = movementVector.y;
+                    float vertInput = inputDirection.y;
                     inputDirection = new Vector3(0, vertInput, 0);
                     characterController.Move(inputDirection * climbSpeed * Time.deltaTime);
                 }
@@ -276,13 +277,13 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
             default:
 
                     var factor = acceleration * Time.fixedDeltaTime;
-                    Vector3 playerdownForce = new();
+                    Vector3 playerVelocity = new();
 
-                    playerdownForce.x = Mathf.Lerp(playerdownForce.x, inputDirection.x * speed * speedModifier, factor);
-                    playerdownForce.z = Mathf.Lerp(playerdownForce.z, inputDirection.z * speed * speedModifier, factor);
-                    playerdownForce.y = inputDirection.y;
+                    playerVelocity.x = Mathf.Lerp(playerVelocity.x, movementDirection.x * speed * speedModifier, factor);
+                    playerVelocity.z = Mathf.Lerp(playerVelocity.z, movementDirection.z * speed * speedModifier, factor);
+                    playerVelocity.y = movementDirection.y;
 
-                    characterController.Move(playerdownForce * Time.fixedDeltaTime);
+                    characterController.Move(playerVelocity * Time.fixedDeltaTime);
                     gameObject.GetComponent<CapsuleCollider>().enabled = false;
                     characterController.enabled = true;
                     GetComponent<Rigidbody>().isKinematic = true;
@@ -320,13 +321,16 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
             playerAnimator.SetBool("isGrounded", false);
         }
         
-        inputDirection.y = downForce;
+        movementDirection.y = downForce;
     }
     public void MovementInput(Vector2 input)
     {
+
+        movementVector = input;
         if(characterController.enabled)
         {
             inputDirection = new Vector3(input.x, 0.0f, input.y);
+            movementDirection = inputDirection;
             playerAnimator.SetBool("isRagdoll", false);
         }  
     }
