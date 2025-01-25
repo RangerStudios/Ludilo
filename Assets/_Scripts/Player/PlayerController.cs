@@ -24,7 +24,6 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
     Rigidbody rb;
     [Space(10)]
     [Header("Booleans")]
-    [SerializeField] bool moveInput;
     [SerializeField] bool ragdolling = false;
     [SerializeField] bool crouching = false;
     [SerializeField] bool canCrouch;
@@ -48,7 +47,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
     public float dustTimer;
     public float currentDustTimer;
 
-    PlayerMovementState currentState;
+    [SerializeField] PlayerMovementState currentState;
 
     //interaction
     public delegate void Interact();
@@ -132,6 +131,11 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
         ApplyRotation();
         LedgeGrab();
 
+        //NOTE: Animator parameters don't need if-statements between them and can just be assigned like so
+        playerAnimator.SetBool("isHolding", isHoldingItem);
+
+        //Don't make an if-statement if you don't have to. Makes the code cleaner and easier to read
+
         if (movementVector.sqrMagnitude == 0)
         {
             playerAnimator.SetBool("isMoving", false);
@@ -139,16 +143,6 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
         else
         {
             playerAnimator.SetBool("isMoving", true);
-            moveInput = true;
-        }
-
-        if(isHoldingItem == true)
-        {
-            playerAnimator.SetBool("isHolding", true);
-        }
-        else
-        {
-            playerAnimator.SetBool("isHolding", false);
         }
 
 
@@ -344,8 +338,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
         {
             return;
         }
-
-        if (hanging)
+        if(currentState == PlayerMovementState.Hanging)
         {
             gravity = -9.81f;
             hanging = false;
