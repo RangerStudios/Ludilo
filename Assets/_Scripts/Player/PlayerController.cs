@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
@@ -19,7 +20,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
     public StuffingController playerStuffing;
     public Attacker attackScript;
     public PlayerHealthScriptableObject savedPlayerHealth;
-    private Vector3 direction;
+    private Vector3 inputDirection;
     private Camera mainCamera;
     Rigidbody rb;
     [Space(10)]
@@ -42,7 +43,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
     private float gravity = -9.81f;
     [SerializeField] private float gravityMultiplier;
     [SerializeField] private float jumpPower;
-    private float velocity;
+    private float downForce;
 
     public float dustTimer;
     public float currentDustTimer;
@@ -191,8 +192,10 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
         switch (currentState)
         {
             case PlayerMovementState.Ragdolling:
+                //Call the Ragdoll function
                 break;
             case PlayerMovementState.Hanging:
+                //This is where we call everything that needs to happen when the player first starts hanging
                 break;
             case PlayerMovementState.OnLadder:
                 break;
@@ -201,6 +204,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
             case PlayerMovementState.Grabbed:
                 break;
             case PlayerMovementState.OnGround:
+                //Location we can use to trigger hard-fall animations or similar effects when the player FIRST touches the ground
                 break; 
         }
     }
@@ -211,17 +215,14 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
         switch(currentState)
         {
             case PlayerMovementState.Default:
-                if(!ragdolling && !hanging)
-                {
                     if (movementVector.sqrMagnitude == 0) return;
-                    direction = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0.0f) * new Vector3(movementVector.x, 0.0f, movementVector.y);
-                    var targetRotation = Quaternion.LookRotation(direction, Vector3.up);
+                    inputDirection = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0.0f) * new Vector3(movementVector.x, 0.0f, movementVector.y);
+                    var targetRotation = Quaternion.LookRotation(inputDirection, Vector3.up);
                     transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed *Time.deltaTime);
-                }
                 break;
             case PlayerMovementState.Dragging:
                 if (movementVector.sqrMagnitude == 0) return;
-                direction = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0.0f) * new Vector3(movementVector.x, 0.0f, movementVector.y); 
+                inputDirection = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0.0f) * new Vector3(movementVector.x, 0.0f, movementVector.y); 
                 Debug.Log("Drag State"); 
                 break;             
         }
@@ -255,8 +256,8 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
                 if (onLadder && !exitLadder)
                 {
                     float vertInput = movementVector.y;
-                    direction = new Vector3(0, vertInput, 0);
-                    characterController.Move(direction * climbSpeed * Time.deltaTime);
+                    inputDirection = new Vector3(0, vertInput, 0);
+                    characterController.Move(inputDirection * climbSpeed * Time.deltaTime);
                 }
                 else if (onLadder && exitLadder)
                 {
@@ -266,22 +267,22 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
                 }
                 break;
             case PlayerMovementState.Dragging:
-                characterController.Move(direction * (speed * speedModifier) * Time.deltaTime);
+                //characterController.Move(inputDirection * (speed * speedModifier) * Time.deltaTime);
                 canJump = false;
                 speedModifier = 0.2f;
                 rotationSpeed = 250f;
-                break;
+                goto default;
 
             default:
 
                     var factor = acceleration * Time.fixedDeltaTime;
-                    Vector3 playerVelocity = new();
+                    Vector3 playerdownForce = new();
 
-                    playerVelocity.x = Mathf.Lerp(playerVelocity.x, direction.x * speed * speedModifier, factor);
-                    playerVelocity.z = Mathf.Lerp(playerVelocity.z, direction.z * speed * speedModifier, factor);
-                    playerVelocity.y = direction.y;
+                    playerdownForce.x = Mathf.Lerp(playerdownForce.x, inputDirection.x * speed * speedModifier, factor);
+                    playerdownForce.z = Mathf.Lerp(playerdownForce.z, inputDirection.z * speed * speedModifier, factor);
+                    playerdownForce.y = inputDirection.y;
 
-                    characterController.Move(playerVelocity * Time.fixedDeltaTime);
+                    characterController.Move(playerdownForce * Time.fixedDeltaTime);
                     gameObject.GetComponent<CapsuleCollider>().enabled = false;
                     characterController.enabled = true;
                     GetComponent<Rigidbody>().isKinematic = true;
@@ -297,7 +298,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
         if (isDusted)
         {
             speedModifier = 0.6f;
-            characterController.Move(direction * (speedModifier / (grabIncrement + 1)) * Time.deltaTime);
+            characterController.Move(inputDirection * (speedModifier / (grabIncrement + 1)) * Time.deltaTime);
         }
         
         
@@ -305,28 +306,27 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
 
     private void ApplyGravity()
     {
-        if (IsGrounded() && velocity < 0.0f)
+        if (IsGrounded() && downForce < 0.0f)
         {
-            velocity = -1.0f;
+            downForce = -1.0f;
             playerAnimator.SetBool("isGrounded", true);
             playerAnimator.SetBool("isJumping", false);
             playerAnimator.SetBool("isFalling", false);
         }
         else
         {
-            velocity += gravity * gravityMultiplier * Time.fixedDeltaTime;
+            downForce += gravity * gravityMultiplier * Time.fixedDeltaTime;
             playerAnimator.SetBool("isFalling", true);
             playerAnimator.SetBool("isGrounded", false);
         }
         
-        direction.y = velocity;
+        inputDirection.y = downForce;
     }
     public void MovementInput(Vector2 input)
     {
-        movementVector = input;
         if(characterController.enabled)
         {
-            direction = new Vector3(movementVector.x, 0.0f, movementVector.y);
+            inputDirection = new Vector3(input.x, 0.0f, input.y);
             playerAnimator.SetBool("isRagdoll", false);
         }  
     }
@@ -343,7 +343,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
             gravity = -9.81f;
             hanging = false;
             PlaySoundEffect(playerSounds.JumpSounds[Random.Range(0, playerSounds.JumpSounds.Count - 1)]);
-            velocity += jumpPower;
+            downForce += jumpPower;
             playerAnimator.SetBool("isHanging", false);
             playerAnimator.SetBool("isJumping", true);
             ChangePlayerState(PlayerMovementState.Default);
@@ -352,7 +352,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
         {
             if (!IsGrounded()) return;
             PlaySoundEffect(playerSounds.JumpSounds[Random.Range(0, playerSounds.JumpSounds.Count - 1)]);
-            velocity += jumpPower;
+            downForce += jumpPower;
             playerAnimator.SetBool("isJumping", true);
         }
         
@@ -409,9 +409,9 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
 
     void LedgeGrab()
     {
-        direction.y = velocity;
+        inputDirection.y = downForce;
 
-        if(velocity < 0.0f && !hanging && !IsGrounded())
+        if(downForce < 0.0f && !hanging && !IsGrounded())
         {
             RaycastHit downHit;
             Vector3 lineDownStart = (transform.position + Vector3.up * 1.8f) + transform.forward;
@@ -430,7 +430,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
                 if(fwdHit.collider != null)
                 {
                     gravity = 0.0f;
-                    velocity = 0.0f;
+                    downForce = 0.0f;
 
                     ChangePlayerState(PlayerMovementState.Hanging);
                     hanging = true;
@@ -504,7 +504,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
     {
         characterController.enabled = false;
         characterController.transform.position = activeLadder.GetEndPosition();
-        direction = Vector3.zero;
+        inputDirection = Vector3.zero;
         onLadder = false;
         exitLadder = false;
         characterController.enabled = true;
