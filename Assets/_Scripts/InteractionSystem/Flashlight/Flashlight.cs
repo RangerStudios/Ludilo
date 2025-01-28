@@ -12,7 +12,7 @@ public class Flashlight : MediumItemPickup, IActivatable
 
     [Header("Flashlight")]
     [SerializeField]
-    Light theLight;
+    Light theLight; //TO DO: make it a point light instead of a directional
 
     [Tooltip("Radius of the light cone")]    
     [SerializeField]

@@ -46,9 +46,9 @@ public class MediumItemPickup : Interactable
     {
     
         var t = playerTransform;
-        if(heldObject) //Object Holding Rework: Make the heldObject a child of the player
+        if(heldObject) //Object Holding Rework: Make the heldObject a child of the player, make sure objects face forward when picked up
                        //make sure theres no physics funny business (i.e. object stops player when hitting a wall as opposed to object getting stuck and leaving player range)
-        {
+        {               
             playerController.canJump = false;
             playerController.speed = 3;
             playerController.rotationSpeed = 250f;
