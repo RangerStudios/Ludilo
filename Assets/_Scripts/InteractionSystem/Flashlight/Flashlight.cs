@@ -40,21 +40,39 @@ public class Flashlight : MediumItemPickup, IActivatable
             theLight = GetComponent<Light>();
         }
 
+        theLight.enabled = false;
+
+        //Player Input for Activation
+        PlayerInput.onAttack += Activate;
     }
     
     public void Activate()
     {
         //Code goes into here to 
         //Activate 
-        TurnOnFlashlight();
-
+        if(heldObject)
+        {
+            
+            if(isOn)
+            {
+                TurnOffFlashlight();
+            }
+            else
+            {
+                TurnOnFlashlight();
+            }
+        }
+        else
+        {
+            return;
+        }
+        
     }
 
     public void Deactivate()
     {
         //Handle what happens when flashlight turns off
         //Disable the dynamic light
-        theLight.enabled = false;
     }
 
     void FixedUpdate()
@@ -83,6 +101,13 @@ public class Flashlight : MediumItemPickup, IActivatable
         lightBeam = new Ray(theLight.transform.position, transform.forward);
         Physics.Raycast(lightBeam, out hit);
         theLight.enabled = true;
+        isOn = true;
+    }
+
+    void TurnOffFlashlight()
+    {
+        theLight.enabled = false;
+        isOn = false;
     }
 
     

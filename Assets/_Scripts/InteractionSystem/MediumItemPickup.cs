@@ -46,18 +46,15 @@ public class MediumItemPickup : Interactable
     {
     
         var t = playerTransform;
-        if(heldObject)
+        if(heldObject) //Object Holding Rework: Make the heldObject a child of the player
+                       //make sure theres no physics funny business (i.e. object stops player when hitting a wall as opposed to object getting stuck and leaving player range)
         {
             playerController.canJump = false;
             playerController.speed = 3;
             playerController.rotationSpeed = 250f;
 
-            Debug.Log("SomethinG!");
             var rigidbody = heldObject.GetComponent<Rigidbody>();
-            var moveTo = t.position + distance * t.forward;
-            var difference = moveTo - heldObject.transform.position;
-            rigidbody.AddForce(difference * diffForce);
-            heldObject.transform.rotation = t.rotation;
+            heldObject.transform.parent = player.transform;
             
             if(playerInteractor.numFound == 0)
         {
@@ -111,8 +108,9 @@ public class MediumItemPickup : Interactable
 
     public void DropMediumItem()
     {
-        if(heldObject)
+        if(heldObject) //remove object as child here
         {
+            heldObject.transform.parent = null;
             heldObject = null;
             activated = false;
             playerController.isHoldingItem = false;
