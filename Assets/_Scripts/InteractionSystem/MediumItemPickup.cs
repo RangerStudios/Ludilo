@@ -65,7 +65,7 @@ public class MediumItemPickup : Interactable
                 //var rigidbody = heldObject.GetComponent<Rigidbody>();
                 rigidbody.drag = 1f;
                 rigidbody.useGravity = true;
-                rigidbody.constraints = RigidbodyConstraints.None;
+                //rigidbody.constraints = RigidbodyConstraints.None;
                 DropMediumItem();
                 playerController.speed = 5.7f;
                 playerController.rotationSpeed = 1000f;
