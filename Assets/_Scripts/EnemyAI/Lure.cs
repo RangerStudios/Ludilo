@@ -48,9 +48,10 @@ public class Lure : MonoBehaviour
                 ILureable lureable = sight.collider.GetComponent<ILureable>();
                 if (lureable != null)
                 {
-                    Debug.Log("Lure target found.");
+                    lureable.OnLure(transform);
+                    //Debug.Log("Lure Target Located");
                 }
-                Debug.Log("Ping!");
+                //Debug.Log("Ping!");
             }
             
         }
