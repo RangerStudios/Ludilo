@@ -1,0 +1,108 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4773731929265599273
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2512070838625306583}
+  m_Layer: 0
+  m_Name: Prop_Cardboard_Box_Closed
+  m_TagString: Untagged
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2512070838625306583
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4773731929265599273}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.5700002, y: 5.5100007, z: 21.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3870222146384245777}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &7484961677582246889
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2512070838625306583}
+    m_Modifications:
+    - target: {fileID: 5938601340189448184, guid: 487f702eb6c7bc9418fc5c0def0248c9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.2773242
+      objectReference: {fileID: 0}
+    - target: {fileID: 5938601340189448184, guid: 487f702eb6c7bc9418fc5c0def0248c9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.3100009
+      objectReference: {fileID: 0}
+    - target: {fileID: 5938601340189448184, guid: 487f702eb6c7bc9418fc5c0def0248c9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.07291317
+      objectReference: {fileID: 0}
+    - target: {fileID: 5938601340189448184, guid: 487f702eb6c7bc9418fc5c0def0248c9,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5938601340189448184, guid: 487f702eb6c7bc9418fc5c0def0248c9,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5938601340189448184, guid: 487f702eb6c7bc9418fc5c0def0248c9,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5938601340189448184, guid: 487f702eb6c7bc9418fc5c0def0248c9,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5938601340189448184, guid: 487f702eb6c7bc9418fc5c0def0248c9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5938601340189448184, guid: 487f702eb6c7bc9418fc5c0def0248c9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5938601340189448184, guid: 487f702eb6c7bc9418fc5c0def0248c9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6422685955107769666, guid: 487f702eb6c7bc9418fc5c0def0248c9,
+        type: 3}
+      propertyPath: m_Name
+      value: Cardboard box_Close_Prefab (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 487f702eb6c7bc9418fc5c0def0248c9, type: 3}
+--- !u!4 &3870222146384245777 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5938601340189448184, guid: 487f702eb6c7bc9418fc5c0def0248c9,
+    type: 3}
+  m_PrefabInstance: {fileID: 7484961677582246889}
+  m_PrefabAsset: {fileID: 0}
