@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface ILureable
 {
-    void OnLure();
+    void OnLure(Transform lurePosition);
     
 }
