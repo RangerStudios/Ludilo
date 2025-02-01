@@ -289,7 +289,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
                     GetComponent<Rigidbody>().isKinematic = true;
                     canJump = true;
                     canCrouch = true;
-                    //speedModifier = 1f;
+                    speedModifier = 1f;
                     //Debug.Log("Default State");
                 
                break;

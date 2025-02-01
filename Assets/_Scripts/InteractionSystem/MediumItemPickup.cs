@@ -28,7 +28,7 @@ public class MediumItemPickup : Interactable
     }
 
     public void DragState()
-    {
+    {   
         if(activated == false && playerController.isHoldingItem == false)
         {
             activated = true;
@@ -52,6 +52,7 @@ public class MediumItemPickup : Interactable
             playerController.canJump = false;
             playerController.speed = 3;
             playerController.rotationSpeed = 250f;
+            //playerController.ChangePlayerState(PlayerMovementState.Dragging);
 
             var rigidbody = heldObject.GetComponent<Rigidbody>();
             heldObject.transform.parent = player.transform;
@@ -95,6 +96,7 @@ public class MediumItemPickup : Interactable
           
         }
         }
+        
     }
 
     private void FixedUpdate()
@@ -115,6 +117,11 @@ public class MediumItemPickup : Interactable
             activated = false;
             playerController.isHoldingItem = false;
             playerController.canJump = true;
+            //playerController.ChangePlayerState(PlayerMovementState.Default);
+        }
+        else
+        {
+            //playerController.ChangePlayerState(PlayerMovementState.Dragging);
         }
     }
 }
