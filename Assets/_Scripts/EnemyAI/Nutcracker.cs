@@ -12,8 +12,8 @@ public class Nutcracker : MonoBehaviour, IFlashable
     public GameObject attackObject;
 
     // Bools for states. One for while the enemy is attacking, one for while the enemy is in cooldown.
-    public bool isAttacking;
-    public bool hasAttacked;
+    [SerializeField] private bool isAttacking;
+    [SerializeField] private bool hasAttacked;
 
     // Timer float that ticks up towards a specified float value.
     [SerializeField] private float currentTimer = 0f;
