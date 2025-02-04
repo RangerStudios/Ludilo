@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 1882941676006137492}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.7417672, y: -0.49269962, z: -0.26256275}
+  m_LocalPosition: {x: 4.25, y: 3.5, z: -0.000003695488}
   m_LocalScale: {x: 2, y: 0.5, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -132,8 +132,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
+  m_Constraints: 122
+  m_CollisionDetection: 1
 --- !u!59 &5701423737584378211
 HingeJoint:
   m_ObjectHideFlags: 0
@@ -143,7 +143,7 @@ HingeJoint:
   m_GameObject: {fileID: 1882941676006137492}
   m_ConnectedBody: {fileID: 8511489789134827309}
   m_ConnectedArticulationBody: {fileID: 0}
-  m_Anchor: {x: -0.1, y: 7, z: 0}
+  m_Anchor: {x: 0, y: -1, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
@@ -237,8 +237,8 @@ Transform:
   m_GameObject: {fileID: 7912045519538955180}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.07176733, y: -0.09269953, z: -0.37434387}
-  m_LocalScale: {x: 0.7, y: 6.2298, z: 0.7}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 0.7, y: 2, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6857175192929426068}
@@ -371,7 +371,7 @@ Transform:
   m_GameObject: {fileID: 7927299836371735402}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.2182326, y: -0.49269962, z: -0.26256275}
+  m_LocalPosition: {x: -4.5, y: 3.5, z: 0.0000044107437}
   m_LocalScale: {x: 2, y: 0.5, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -473,8 +473,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
+  m_Constraints: 122
+  m_CollisionDetection: 1
 --- !u!59 &2109850663129439700
 HingeJoint:
   m_ObjectHideFlags: 0
@@ -484,12 +484,12 @@ HingeJoint:
   m_GameObject: {fileID: 7927299836371735402}
   m_ConnectedBody: {fileID: 8511489789134827309}
   m_ConnectedArticulationBody: {fileID: 0}
-  m_Anchor: {x: -0.1, y: 7, z: 0}
+  m_Anchor: {x: 0, y: -1, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   serializedVersion: 2
-  m_UseSpring: 0
+  m_UseSpring: 1
   m_Spring:
     spring: 0
     damper: 3
@@ -544,8 +544,8 @@ Transform:
   m_GameObject: {fileID: 8516874103334937136}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.07176733, y: 3.0373, z: -0.37434387}
-  m_LocalScale: {x: 5, y: 0.2, z: 1}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalScale: {x: 6, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6857175192929426068}
@@ -657,7 +657,7 @@ HingeJoint:
   m_GameObject: {fileID: 8516874103334937136}
   m_ConnectedBody: {fileID: 0}
   m_ConnectedArticulationBody: {fileID: 0}
-  m_Anchor: {x: 0, y: 0.5, z: 0}
+  m_Anchor: {x: 0, y: -1, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
