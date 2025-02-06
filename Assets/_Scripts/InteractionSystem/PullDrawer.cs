@@ -51,7 +51,7 @@ public class PullDrawer : Interactable
         if(heldObject)
         {
             
-            //playerController.canJump = false;
+            playerController.canJump = false;
             //playerController.speed = 1;
             //playerController.rotationSpeed = 250f;
             
