@@ -10,6 +10,7 @@ public class Interactor : MonoBehaviour
     [SerializeField] private float interactionPointRadius = 0.5f;
     [SerializeField] private LayerMask interactableMask;
     private PlayerController playerController;
+    //bool interacting;
 
     private readonly Collider[] colliders = new Collider[3];
     [SerializeField] public int numFound;
@@ -21,6 +22,7 @@ public class Interactor : MonoBehaviour
     void OnEnable()
     {
         PlayerInput.onInteract += Interaction;
+        //"InteractionPerformed" and "InteractionCancelled" methods may work for press and hold functionality.
     }
 
     void OnDisable()
