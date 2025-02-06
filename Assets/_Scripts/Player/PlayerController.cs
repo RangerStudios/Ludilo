@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
     [SerializeField] public bool canAttack;
     [SerializeField] public bool canInteract;
     [SerializeField] bool attackCooldown;
-    public bool canJump = true;
+    public bool canJump;
     public GameObject menuUI;
 
     //player movement values
@@ -202,6 +202,8 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
                 break;
             case PlayerMovementState.Dragging:
                 break;
+            case PlayerMovementState.HoldingMediumItem:
+                break;
             case PlayerMovementState.Grabbed:
                 break;
             case PlayerMovementState.OnGround:
@@ -215,7 +217,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
 
         switch(currentState)
         {
-            case PlayerMovementState.Default:
+            default:
                     if (movementVector.sqrMagnitude == 0) return;
                     movementDirection = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0.0f) * new Vector3(movementVector.x, 0.0f, movementVector.y);
                     var targetRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
@@ -225,7 +227,10 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
                 if (movementVector.sqrMagnitude == 0) return;
                 movementDirection = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0.0f) * new Vector3(movementVector.x, 0.0f, movementVector.y); 
                 Debug.Log("Drag State"); 
-                break;             
+                break;
+            case PlayerMovementState.HoldingMediumItem:
+                Debug.Log("Medium State");
+                goto default;             
         }
 
     }
@@ -269,11 +274,13 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
                 break;
             case PlayerMovementState.Dragging:
                 //characterController.Move(inputDirection * (speed * speedModifier) * Time.deltaTime);
-                canJump = false;
                 speedModifier = 0.2f;
                 rotationSpeed = 250f;
                 goto default;
-
+            case PlayerMovementState.HoldingMediumItem:
+                speedModifier = 0.4f;
+                rotationSpeed = 250f;
+                goto default;
             default:
 
                     var factor = acceleration * Time.fixedDeltaTime;
@@ -287,9 +294,9 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
                     gameObject.GetComponent<CapsuleCollider>().enabled = false;
                     characterController.enabled = true;
                     GetComponent<Rigidbody>().isKinematic = true;
-                    canJump = true;
+                    //canJump = true;
                     canCrouch = true;
-                    //speedModifier = 1f;
+                    speedModifier = 1f;
                     //Debug.Log("Default State");
                 
                break;
@@ -557,6 +564,7 @@ public enum PlayerMovementState{
     OnGround,
     Hanging,
     Dragging,
+    HoldingMediumItem,
     Grabbed,
     OnLadder
 }
