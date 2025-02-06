@@ -26,7 +26,6 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
     Rigidbody rb;
     [Space(10)]
     [Header("Booleans")]
-    [SerializeField] bool ragdolling = false;
     [SerializeField] bool crouching = false;
     [SerializeField] bool canCrouch;
     [SerializeField] public bool canAttack;
@@ -80,7 +79,6 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
     {
         PlayerInput.onMove += MovementInput;
         PlayerInput.onJump += Jump;
-        PlayerInput.onRagdoll += Ragdoll;
         PlayerInput.onCrouch += Crouch;
         PlayerInput.onAttack += Attack;
         //PlayerInput.onSelect +=
@@ -93,7 +91,6 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
     {
         PlayerInput.onMove -= MovementInput;
         PlayerInput.onJump -= Jump;
-        PlayerInput.onRagdoll -= Ragdoll;
         PlayerInput.onCrouch -= Crouch;
         PlayerInput.onAttack -= Attack;
         //PlayerInput.onSelect +=
@@ -192,9 +189,6 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
         currentState = newState;
         switch (currentState)
         {
-            case PlayerMovementState.Ragdolling:
-                //Call the Ragdoll function
-                break;
             case PlayerMovementState.Hanging:
                 //This is where we call everything that needs to happen when the player first starts hanging
                 break;
@@ -242,17 +236,6 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
 
         switch(currentState)
         {
-            case PlayerMovementState.Ragdolling:
-                gameObject.GetComponent<CapsuleCollider>().enabled = true;
-                characterController.enabled = false;
-                movementVector = Vector2.zero;
-                GetComponent<Rigidbody>().isKinematic = false;
-                rb.AddForce(transform.forward);
-                //playerAnimator.SetBool("isRagdoll", true);
-                canJump = false;
-                canCrouch = false;
-                //Debug.Log("RagdollState");
-            break;
             case PlayerMovementState.Hanging:
                 canCrouch = false;
                 //Debug.Log("Hang State");
@@ -338,7 +321,6 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
         {
             inputDirection = new Vector3(input.x, 0.0f, input.y);
             movementDirection = inputDirection;
-            playerAnimator.SetBool("isRagdoll", false);
         }  
     }
 
@@ -401,23 +383,6 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
     }
     
 
-    public void Ragdoll()
-    {
-        RagdollState();
-    }
-
-    public void RagdollState()
-    {
-        ragdolling = !ragdolling;
-        if (ragdolling)
-        {
-            ChangePlayerState(PlayerMovementState.Ragdolling);
-        }
-        else
-        {
-            ChangePlayerState(PlayerMovementState.Default);
-        }
-    }
 
     void LedgeGrab()
     {
@@ -561,7 +526,6 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
 
 public enum PlayerMovementState{
     Default,
-    Ragdolling,
     OnGround,
     Hanging,
     Dragging,

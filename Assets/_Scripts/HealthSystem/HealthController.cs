@@ -14,12 +14,12 @@ public class HealthController : MonoBehaviour
 
     void OnEnable()
     {
-        PlayerInput.onHeal += Heal;
+
     }
 
     void OnDisable()
     {
-        PlayerInput.onHeal += Heal;
+
     }
     public void Damage()
     {
