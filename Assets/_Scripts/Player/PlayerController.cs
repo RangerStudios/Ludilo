@@ -226,10 +226,10 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
             case PlayerMovementState.Dragging:
                 if (movementVector.sqrMagnitude == 0) return;
                 movementDirection = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0.0f) * new Vector3(movementVector.x, 0.0f, movementVector.y); 
-                Debug.Log("Drag State"); 
+                //Debug.Log("Drag State"); 
                 break;
             case PlayerMovementState.HoldingMediumItem:
-                Debug.Log("Medium State");
+                //Debug.Log("Medium State");
                 goto default;             
         }
 
