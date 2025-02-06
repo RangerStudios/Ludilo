@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
     [SerializeField] public bool canAttack;
     [SerializeField] public bool canInteract;
     [SerializeField] bool attackCooldown;
-    public bool canJump;
+    public bool canJump = true;
     public GameObject menuUI;
 
     //player movement values
@@ -168,7 +168,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
             canInteract = true;
             playerAnimator.SetBool("isStandingUp", true);
             playerAnimator.SetBool("isCrouched", false);
-            canJump = true;
+            //canJump = true;
         }
     }
 
@@ -382,6 +382,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
     public void CrouchState()
     {
         crouching = !crouching;
+        canJump = !canJump;
     }
 
     private bool IsGrounded() => characterController.isGrounded;

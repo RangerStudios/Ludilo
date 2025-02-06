@@ -994,7 +994,7 @@ MonoBehaviour:
   canAttack: 0
   canInteract: 0
   attackCooldown: 0
-  canJump: 0
+  canJump: 1
   menuUI: {fileID: 0}
   speed: 4
   rotationSpeed: 1000
