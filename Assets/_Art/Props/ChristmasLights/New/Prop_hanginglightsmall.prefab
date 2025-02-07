@@ -40,6 +40,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7664637056753205274}
     m_Modifications:
+    - target: {fileID: -8871682200731767068, guid: 7477c687c69e8144a88f055536d6b590,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ce44f38a2cbc0ae40a5d3cad2615858a, type: 2}
     - target: {fileID: -8679921383154817045, guid: 7477c687c69e8144a88f055536d6b590,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -90,11 +95,71 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3312965169343388800, guid: 7477c687c69e8144a88f055536d6b590,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ce44f38a2cbc0ae40a5d3cad2615858a, type: 2}
+    - target: {fileID: -2172033297621470947, guid: 7477c687c69e8144a88f055536d6b590,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ce44f38a2cbc0ae40a5d3cad2615858a, type: 2}
+    - target: {fileID: -2052711402316639863, guid: 7477c687c69e8144a88f055536d6b590,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ce44f38a2cbc0ae40a5d3cad2615858a, type: 2}
+    - target: {fileID: -1675640293558577684, guid: 7477c687c69e8144a88f055536d6b590,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ce44f38a2cbc0ae40a5d3cad2615858a, type: 2}
+    - target: {fileID: -1216829651426016472, guid: 7477c687c69e8144a88f055536d6b590,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ce44f38a2cbc0ae40a5d3cad2615858a, type: 2}
     - target: {fileID: 919132149155446097, guid: 7477c687c69e8144a88f055536d6b590,
         type: 3}
       propertyPath: m_Name
       value: Hanging Lights wire_small_Lights
       objectReference: {fileID: 0}
+    - target: {fileID: 1259178792801714128, guid: 7477c687c69e8144a88f055536d6b590,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ce44f38a2cbc0ae40a5d3cad2615858a, type: 2}
+    - target: {fileID: 1623353013560924242, guid: 7477c687c69e8144a88f055536d6b590,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ce44f38a2cbc0ae40a5d3cad2615858a, type: 2}
+    - target: {fileID: 6080746990574228043, guid: 7477c687c69e8144a88f055536d6b590,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ce44f38a2cbc0ae40a5d3cad2615858a, type: 2}
+    - target: {fileID: 6142376678478992254, guid: 7477c687c69e8144a88f055536d6b590,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ce44f38a2cbc0ae40a5d3cad2615858a, type: 2}
+    - target: {fileID: 7041683469499244986, guid: 7477c687c69e8144a88f055536d6b590,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ce44f38a2cbc0ae40a5d3cad2615858a, type: 2}
+    - target: {fileID: 7404213644327010325, guid: 7477c687c69e8144a88f055536d6b590,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ce44f38a2cbc0ae40a5d3cad2615858a, type: 2}
+    - target: {fileID: 8309684590737040115, guid: 7477c687c69e8144a88f055536d6b590,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ce44f38a2cbc0ae40a5d3cad2615858a, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

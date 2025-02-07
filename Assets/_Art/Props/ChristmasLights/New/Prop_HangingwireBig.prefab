@@ -40,6 +40,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5919370968564856394}
     m_Modifications:
+    - target: {fileID: -9175198657924800472, guid: be081bc7c5fead845afade155d1227cd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 03262503e447a9c489db58072a9f43e7, type: 2}
+    - target: {fileID: -9024982312907359384, guid: be081bc7c5fead845afade155d1227cd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 03262503e447a9c489db58072a9f43e7, type: 2}
     - target: {fileID: -8679921383154817045, guid: be081bc7c5fead845afade155d1227cd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -90,11 +100,36 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7032617237467936529, guid: be081bc7c5fead845afade155d1227cd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 03262503e447a9c489db58072a9f43e7, type: 2}
+    - target: {fileID: -6698741574301791199, guid: be081bc7c5fead845afade155d1227cd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 03262503e447a9c489db58072a9f43e7, type: 2}
+    - target: {fileID: -4672440665357602773, guid: be081bc7c5fead845afade155d1227cd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 03262503e447a9c489db58072a9f43e7, type: 2}
     - target: {fileID: 919132149155446097, guid: be081bc7c5fead845afade155d1227cd,
         type: 3}
       propertyPath: m_Name
       value: Hanging Lights wire_Big_Lights
       objectReference: {fileID: 0}
+    - target: {fileID: 4555552990878371068, guid: be081bc7c5fead845afade155d1227cd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 03262503e447a9c489db58072a9f43e7, type: 2}
+    - target: {fileID: 8069958886053431404, guid: be081bc7c5fead845afade155d1227cd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 03262503e447a9c489db58072a9f43e7, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

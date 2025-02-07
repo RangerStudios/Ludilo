@@ -33,6 +33,7 @@ public class MediumItemPickup : Interactable
         {
             activated = true;
             playerController.isHoldingItem = true;
+            playerController.ChangePlayerState(PlayerMovementState.HoldingMediumItem);
         }
         else
         {
@@ -50,8 +51,8 @@ public class MediumItemPickup : Interactable
                        //make sure theres no physics funny business (i.e. object stops player when hitting a wall as opposed to object getting stuck and leaving player range)
         {               
             playerController.canJump = false;
-            playerController.speed = 3;
-            playerController.rotationSpeed = 250f;
+            //playerController.speed = 3;
+            //playerController.rotationSpeed = 250f;
 
             var rigidbody = heldObject.GetComponent<Rigidbody>();
             heldObject.transform.parent = player.transform;
@@ -115,6 +116,11 @@ public class MediumItemPickup : Interactable
             activated = false;
             playerController.isHoldingItem = false;
             playerController.canJump = true;
+            playerController.ChangePlayerState(PlayerMovementState.Default);
+        }
+        else
+        {
+            playerController.ChangePlayerState(PlayerMovementState.HoldingMediumItem);
         }
     }
 }
