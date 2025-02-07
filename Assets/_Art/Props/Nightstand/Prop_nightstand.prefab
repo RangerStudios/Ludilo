@@ -90,11 +90,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6956395885858268048, guid: 6f90452216930c84eb2f9bd65e4eb59f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3b47b6d9c29c7664fb0d3f369f3f9463, type: 2}
+    - target: {fileID: -4948890907969140864, guid: 6f90452216930c84eb2f9bd65e4eb59f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3b47b6d9c29c7664fb0d3f369f3f9463, type: 2}
+    - target: {fileID: -4683669308469848369, guid: 6f90452216930c84eb2f9bd65e4eb59f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3b47b6d9c29c7664fb0d3f369f3f9463, type: 2}
+    - target: {fileID: -4043266654601684411, guid: 6f90452216930c84eb2f9bd65e4eb59f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3b47b6d9c29c7664fb0d3f369f3f9463, type: 2}
+    - target: {fileID: -508212911625266482, guid: 6f90452216930c84eb2f9bd65e4eb59f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3b47b6d9c29c7664fb0d3f369f3f9463, type: 2}
     - target: {fileID: 919132149155446097, guid: 6f90452216930c84eb2f9bd65e4eb59f,
         type: 3}
       propertyPath: m_Name
       value: nightstand
       objectReference: {fileID: 0}
+    - target: {fileID: 8907187555131382352, guid: 6f90452216930c84eb2f9bd65e4eb59f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3b47b6d9c29c7664fb0d3f369f3f9463, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
