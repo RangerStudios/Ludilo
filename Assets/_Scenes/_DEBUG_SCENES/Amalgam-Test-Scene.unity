@@ -2131,6 +2131,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LureTest
       objectReference: {fileID: 0}
+    - target: {fileID: 6455060202969856043, guid: f2a439545ae05e248bbdd6da4c55e687,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8983654548204036483, guid: f2a439545ae05e248bbdd6da4c55e687,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2198,6 +2203,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Amalgam
+      objectReference: {fileID: 0}
+    - target: {fileID: 451876766249113512, guid: 703178df91e3b8b4a8b45faec1076ab4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6121036230376364554, guid: 703178df91e3b8b4a8b45faec1076ab4,
         type: 3}
@@ -2431,6 +2441,74 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b86387864bc226045ad0cdd81eae5c5f, type: 3}
+--- !u!1001 &2918354721230983774
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1389518766400332705, guid: 71c311d393b47ae428515738e548989d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.8906546
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389518766400332705, guid: 71c311d393b47ae428515738e548989d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389518766400332705, guid: 71c311d393b47ae428515738e548989d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -15.137079
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389518766400332705, guid: 71c311d393b47ae428515738e548989d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389518766400332705, guid: 71c311d393b47ae428515738e548989d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389518766400332705, guid: 71c311d393b47ae428515738e548989d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389518766400332705, guid: 71c311d393b47ae428515738e548989d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389518766400332705, guid: 71c311d393b47ae428515738e548989d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389518766400332705, guid: 71c311d393b47ae428515738e548989d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389518766400332705, guid: 71c311d393b47ae428515738e548989d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4141359705060666848, guid: 71c311d393b47ae428515738e548989d,
+        type: 3}
+      propertyPath: m_Name
+      value: Nutcracker
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 71c311d393b47ae428515738e548989d, type: 3}
 --- !u!1001 &5062702505555548986
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2612,6 +2690,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AmalgamTethered
       objectReference: {fileID: 0}
+    - target: {fileID: 3034817454955167923, guid: 2fd8cff48d8812940869c7121e36240f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6162889297489034432, guid: 2fd8cff48d8812940869c7121e36240f,
         type: 3}
       propertyPath: waypoints.Array.data[0]
@@ -2740,3 +2823,4 @@ SceneRoots:
   - {fileID: 1220933916932862160}
   - {fileID: 1887862141402342868}
   - {fileID: 7022791366472475385}
+  - {fileID: 2918354721230983774}
