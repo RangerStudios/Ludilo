@@ -42,24 +42,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Ragdoll",
-                    "type": "Button",
-                    "id": "f73bde4c-5bb2-43f9-b4b8-3cfbeccc198f",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Heal",
-                    "type": "Button",
-                    "id": "9d7b068f-3a23-4d34-915b-fb3ea1e5f3e3",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Pause",
                     "type": "Button",
                     "id": "8b7ea317-9f14-494c-8f63-384f8df8c510",
@@ -210,7 +192,7 @@
                 {
                     "name": "",
                     "id": "259a2572-4132-427a-94ad-dda04bf9b3cb",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/j",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -226,50 +208,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Interact",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "1eeea113-0f8e-44c6-8586-c9eef7b48536",
-                    "path": "<Keyboard>/c",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Ragdoll",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "82507261-c82c-45fe-b61c-6a7990dc7b34",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Ragdoll",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a9412bee-4e93-48d7-bec5-b01c09cda41f",
-                    "path": "<Keyboard>/r",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Heal",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "104be552-4237-4d60-a1f2-aa33fa49d631",
-                    "path": "<Gamepad>/buttonNorth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Heal",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -298,7 +236,7 @@
                 {
                     "name": "",
                     "id": "df060c16-1ddf-4851-b19f-2e5816e7681c",
-                    "path": "<Keyboard>/leftCtrl",
+                    "path": "<Keyboard>/c",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -320,7 +258,7 @@
                 {
                     "name": "",
                     "id": "672ce7ca-b373-42f8-aba5-fce65596640c",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Keyboard>/k",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
