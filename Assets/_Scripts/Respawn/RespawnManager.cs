@@ -12,6 +12,7 @@ public class RespawnManager : MonoBehaviour
 
     public Transform[] allCheckpoints; 
     public GameObject player;
+    public HealthController playerHealth;
 
     void OnEnable()
     {
@@ -22,6 +23,8 @@ public class RespawnManager : MonoBehaviour
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+
+
         
         allCheckpoints = new Transform[transform.childCount];
         for (int i = 0; i < allCheckpoints.Length; i++)
@@ -46,7 +49,8 @@ public class RespawnManager : MonoBehaviour
                 RespawnAtCheckpoint(recentCheckpoint);
                 break;
             case RespawnCondition.DEATH:
-                RespawnAtSave();
+                playerHealth.health = 2;
+                RespawnAtCheckpoint(recentCheckpoint);
                 break;
             default:
                 Debug.Log("No Conditions Received, respawning at recent checkpoint.");
