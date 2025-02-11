@@ -22,7 +22,6 @@ public class Interactor : MonoBehaviour
     void OnEnable()
     {
         PlayerInput.onInteract += Interaction;
-        //"InteractionPerformed" and "InteractionCancelled" methods may work for press and hold functionality.
     }
 
     void OnDisable()

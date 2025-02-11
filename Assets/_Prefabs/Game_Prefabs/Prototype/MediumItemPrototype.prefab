@@ -177,6 +177,8 @@ MonoBehaviour:
   heldObject: {fileID: 0}
   radius: 2
   distance: 1.4
+  rayDist: 0.7
   playerController: {fileID: 0}
+  playerInteractor: {fileID: 0}
   player: {fileID: 0}
   playerTransform: {fileID: 0}
