@@ -12,7 +12,7 @@ public class Flashlight : MediumItemPickup, IActivatable
 
     [Header("Flashlight")]
     [SerializeField]
-    Light theLight; //TO DO: make it a point light instead of a directional
+    Light theLight; //TO DO: Adjust point light position to match the luring range
 
     [Tooltip("Radius of the light cone")]    
     [SerializeField]
@@ -43,10 +43,10 @@ public class Flashlight : MediumItemPickup, IActivatable
         theLight.enabled = false;
 
         //Player Input for Activation
-        PlayerInput.onAttack += Activate;
+        PlayerInput.onAttack += ToggleFlashlight;
     }
     
-    public void Activate()
+    public void ToggleFlashlight()
     {
         //Code goes into here to 
         //Activate 
