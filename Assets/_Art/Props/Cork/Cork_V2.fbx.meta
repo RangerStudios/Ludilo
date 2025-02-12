@@ -3,7 +3,12 @@ guid: 9fb901d42229f64409f4005d2aa93e0e
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cork
+    second: {fileID: 2100000, guid: e21b61e84813d0541bc28d9377d4f6c5, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
