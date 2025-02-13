@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
 
     [Space(10)]
     [Header("Events")]
-    public static Action OnDeath;
+    public static Action OnDie;
 
     [Space(10)]
     [Header("Booleans")]
@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
     [SerializeField] public bool canAttack;
     [SerializeField] public bool canInteract;
     [SerializeField] bool attackCooldown;
+    //[SerializeField] bool injured;
     public bool canJump = true;
     public GameObject menuUI;
 
@@ -50,8 +51,12 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
     [SerializeField] private float jumpPower;
     private float downForce;
 
+    [Space(10)]
+    [Header("Timers")]
     public float dustTimer;
     public float currentDustTimer;
+    public float healTimer = 5f;
+    public float currentHealTimer;
 
     [SerializeField] PlayerMovementState currentState;
 
@@ -130,6 +135,16 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
                 isDusted = false;
             }
         }
+        if (playerHealth.health == 1)
+        {
+            currentHealTimer += Time.deltaTime;
+            if (currentHealTimer >= healTimer)
+            {
+                playerHealth.health += 1;
+                currentHealTimer = 0f;
+            }
+        }
+        
         ApplyRotation();
         LedgeGrab();
 
@@ -381,11 +396,8 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
 
     public void Die()
     {
-        /*Debug.Log("Player Dies");
-        this.gameObject.SetActive(false);*/
-
-        // Tell Game Manager that I am dead
-        OnDeath();
+        currentHealTimer = 0f;
+        OnDie();
     }
     
 
