@@ -23,7 +23,7 @@ public class RespawnManager : MonoBehaviour
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-
+        playerHealth = player.GetComponent<HealthController>();
 
         
         allCheckpoints = new Transform[transform.childCount];
@@ -62,7 +62,9 @@ public class RespawnManager : MonoBehaviour
     {
         CharacterController cc = player.GetComponent<CharacterController>();
         cc.enabled = false;
+        // fade out
         cc.transform.position = checkpoint.position;
+        // Fade in
         cc.enabled = true;
     }
 
