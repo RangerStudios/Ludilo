@@ -43,10 +43,27 @@ public class Flashlight : MediumItemPickup, IActivatable
         theLight.enabled = false;
 
         //Player Input for Activation
-        PlayerInput.onAttack += ToggleFlashlight;
+        PlayerInput.onAttack += Activate;
     }
-    
-    public void ToggleFlashlight()
+
+    public void Update()
+    {
+        //Just using this for debug checks
+        if(heldObject)
+        {
+            if (isOn)
+            {
+                Debug.Log("Light On");
+            }
+            else
+            {
+                Debug.Log("Light Off");
+            }
+        }
+
+    }
+
+    public void Activate()
     {
         //Code goes into here to 
         //Activate 
