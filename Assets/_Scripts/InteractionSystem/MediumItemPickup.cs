@@ -17,6 +17,7 @@ public class MediumItemPickup : Interactable
     public Interactor playerInteractor;
     public GameObject player;
     public Transform playerTransform;
+    Transform heldObjectTransform;
     
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,7 @@ public class MediumItemPickup : Interactable
         playerController = player.GetComponent<PlayerController>();
         playerTransform = GameObject.FindWithTag("Player").transform;
         playerInteractor = player.GetComponent<Interactor>();
+        
     }
 
     public void DragState()
@@ -32,12 +34,13 @@ public class MediumItemPickup : Interactable
         if(activated == false && playerController.isHoldingItem == false)
         {
             activated = true;
-            playerController.isHoldingItem = true;
+            //playerController.isHoldingItem = true;
+            //playerController.ChangePlayerState(PlayerMovementState.HoldingMediumItem);
         }
         else
         {
             activated = false;
-            playerController.isHoldingItem = false;
+            //playerController.isHoldingItem = false;
         }
     }
 
@@ -48,13 +51,14 @@ public class MediumItemPickup : Interactable
         var t = playerTransform;
         if(heldObject) //Object Holding Rework: Make the heldObject a child of the player, make sure objects face forward when picked up
                        //make sure theres no physics funny business (i.e. object stops player when hitting a wall as opposed to object getting stuck and leaving player range)
-        {               
+        {   
+            heldObjectTransform = heldObject.transform;            
             playerController.canJump = false;
-            playerController.speed = 3;
-            playerController.rotationSpeed = 250f;
 
             var rigidbody = heldObject.GetComponent<Rigidbody>();
             heldObject.transform.parent = player.transform;
+            //heldObjectTransform.rotation = playerTransform.rotation;
+            
             
             if(playerInteractor.numFound == 0)
         {
@@ -67,8 +71,6 @@ public class MediumItemPickup : Interactable
                 rigidbody.useGravity = true;
                 rigidbody.constraints = RigidbodyConstraints.None;
                 DropMediumItem();
-                playerController.speed = 5.7f;
-                playerController.rotationSpeed = 1000f;
             }
         }
         else
@@ -87,14 +89,16 @@ public class MediumItemPickup : Interactable
                         rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
                         rigidbody.drag = 25f;
                         rigidbody.useGravity = false;
+                        playerController.isHoldingItem = true;
+                        playerController.ChangePlayerState(PlayerMovementState.HoldingMediumItem);
                     }
                 }
             }
-        else
+        }
+        if (!heldObject && activated)
         {
-          
-        }
-        }
+            activated = false;
+        } 
     }
 
     private void FixedUpdate()
@@ -115,6 +119,11 @@ public class MediumItemPickup : Interactable
             activated = false;
             playerController.isHoldingItem = false;
             playerController.canJump = true;
+            playerController.ChangePlayerState(PlayerMovementState.Default);
         }
+        //else //Old failsafe, not even sure why it was here because it was fucking stuff up. Leaving it here in case I need it for some reason.
+        //{
+            //playerController.ChangePlayerState(PlayerMovementState.HoldingMediumItem);
+        //}
     }
 }
