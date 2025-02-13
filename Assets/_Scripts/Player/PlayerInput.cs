@@ -18,6 +18,12 @@ public class PlayerInput : MonoBehaviour, PlayerControls.IPlayerActions
     public static UnityAction onAttack = delegate { };
     public static UnityAction onSelect = delegate { };
 
+    bool interacting;
+
+    private void Awake()
+    {
+        
+    }
     void OnEnable()
     {
         if (playerControls == null)
@@ -58,7 +64,10 @@ public class PlayerInput : MonoBehaviour, PlayerControls.IPlayerActions
         {
             onInteract();
         }
-        if (!context.started) return;
+        if (context.canceled) //return;
+        {
+            onInteract();
+        }
     }
     
     public void OnRagdoll(InputAction.CallbackContext context)
