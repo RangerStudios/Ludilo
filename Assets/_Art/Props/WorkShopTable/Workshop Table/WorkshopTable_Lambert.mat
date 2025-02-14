@@ -43,7 +43,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Smoothness: 0.067
+    - _Metallic: 0
+    - _Smoothness: 0
     m_Colors: []
   m_BuildTextureStacks: []
 --- !u!114 &1442916828708665047
