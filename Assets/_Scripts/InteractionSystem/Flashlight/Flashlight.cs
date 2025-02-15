@@ -46,23 +46,6 @@ public class Flashlight : MediumItemPickup, IActivatable
         PlayerInput.onAttack += Activate;
     }
 
-    public void Update()
-    {
-        //Just using this for debug checks
-        if(heldObject)
-        {
-            if (isOn)
-            {
-                Debug.Log("Light On");
-            }
-            else
-            {
-                Debug.Log("Light Off");
-            }
-        }
-
-    }
-
     public void Activate()
     {
         //Code goes into here to 

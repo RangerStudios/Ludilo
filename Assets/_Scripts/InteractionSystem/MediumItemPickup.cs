@@ -83,6 +83,7 @@ public class MediumItemPickup : Interactable
                 {
                     if (hits.transform.tag == "MediumPickUp")
                     {
+                        Debug.Log("Fucks sake");
                         var hitObject = hits.transform.gameObject;
                         heldObject = hitObject;
                         var rigidbody = heldObject.GetComponent<Rigidbody>();
