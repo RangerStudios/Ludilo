@@ -63,7 +63,7 @@ public class Flashlight : MediumItemPickup, IActivatable
             else
             {
                 TurnOnFlashlight();
-                flashlightLure.SetActive(false);
+                
             }
         }
         else
@@ -128,6 +128,7 @@ public class Flashlight : MediumItemPickup, IActivatable
     {
         theLight.enabled = false;
         isOn = false;
+        flashlightLure.SetActive(false);
     }
 
 }
