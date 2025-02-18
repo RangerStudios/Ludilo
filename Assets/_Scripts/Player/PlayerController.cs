@@ -293,7 +293,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
 
                     characterController.Move(playerVelocity * Time.fixedDeltaTime);
                     gameObject.GetComponent<CapsuleCollider>().enabled = false;
-                    characterController.enabled = true;
+                    //characterController.enabled = true;
                     GetComponent<Rigidbody>().isKinematic = true;
                     //canJump = true;
                     canCrouch = true;

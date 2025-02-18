@@ -13,6 +13,7 @@ public class RespawnManager : MonoBehaviour
     public Transform[] allCheckpoints; 
     public GameObject player;
     public HealthController playerHealth;
+    public Animator fadeOut;
 
     void OnEnable()
     {
@@ -60,12 +61,12 @@ public class RespawnManager : MonoBehaviour
 
     public void RespawnAtCheckpoint(Transform checkpoint)
     {
-        CharacterController cc = player.GetComponent<CharacterController>();
-        cc.enabled = false;
-        // fade out
-        cc.transform.position = checkpoint.position;
-        // Fade in
-        cc.enabled = true;
+        //CharacterController cc = player.GetComponent<CharacterController>();
+        //cc.enabled = false;
+        StartCoroutine(FadeOutAnimation(checkpoint));
+        //cc.transform.position = checkpoint.position;
+        //fadeOut.SetTrigger("Respawn");
+        //cc.enabled = true;
     }
 
     public void RespawnAtSave()
@@ -79,5 +80,15 @@ public class RespawnManager : MonoBehaviour
         // Needs further functionality for respawn at save point.
     }
 
+    public IEnumerator FadeOutAnimation(Transform checkpoint)
+    {
+        CharacterController cc = player.GetComponent<CharacterController>();
+        cc.enabled = false;
+        fadeOut.SetTrigger("Death");
+        yield return new WaitForSeconds(2);
+        cc.transform.position = checkpoint.position;
+        fadeOut.SetTrigger("Respawn");
+        cc.enabled = true;
+    }
     
 }
