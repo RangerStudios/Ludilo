@@ -109,17 +109,5 @@ public class SmallItemPickup : Interactable
             playerController.isHoldingItem = false;
         }
     }
-
-    //public void Interaction(InputAction.CallbackContext context)
-    //{
-        //HoldState();
-        //if(!context.started) return;
-        //Debug.Log("Interact");
-    //}
-
-    
-
-    
-
 }
 

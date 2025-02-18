@@ -112,11 +112,4 @@ public class LargeItemPickup : Interactable
             playerController.ChangePlayerState(PlayerMovementState.Dragging);
         }
     }
-
-    //public void Interaction(InputAction.CallbackContext context)
-    //{
-        //DragState();
-        //if(!context.started) return;
-        ///Debug.Log("Interact");
-    //}
 }

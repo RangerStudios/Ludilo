@@ -256,7 +256,6 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
                 }
                 break;
             case PlayerMovementState.Dragging:
-                //characterController.Move(inputDirection * (speed * speedModifier) * Time.deltaTime);
                 speedModifier = 0.2f;
                 rotationSpeed = 250f;
                 goto default;
@@ -277,7 +276,6 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
                     gameObject.GetComponent<CapsuleCollider>().enabled = false;
                     characterController.enabled = true;
                     GetComponent<Rigidbody>().isKinematic = true;
-                    //canJump = true;
                     canCrouch = true;
                     speedModifier = 1f;
                     //Debug.Log("Default State");
@@ -355,7 +353,6 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
     {
         if (canCrouch)
         {
-            //Debug.Log("ButtonPress");
             CrouchState();
         }
         
@@ -447,7 +444,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
 
     IEnumerator AttackCooldown()
     {
-        yield return new WaitForSeconds(1.0f); //1 second is a little sluggish, I know. Planning on tuning it.
+        yield return new WaitForSeconds(1.0f);
         playerAnimator.SetBool("isAttacking", false);
         attackCooldown = false;
 

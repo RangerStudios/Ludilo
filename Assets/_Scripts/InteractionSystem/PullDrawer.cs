@@ -64,6 +64,7 @@ public class PullDrawer : Interactable
                 heldObject = null;
                 playerController.speed = 5.7f;
                 playerController.rotationSpeed = 500f;
+                playerController.canJump = true;
             }
         }
         else
@@ -121,10 +122,10 @@ public class PullDrawer : Interactable
         {
             activated = false;
             playerController.isHoldingItem = false;
-            playerController.canJump = true;
+            
             playerController.ChangePlayerState(PlayerMovementState.Default);
         }
-        else
+        else 
         {
             playerController.ChangePlayerState(PlayerMovementState.Dragging);
         }
