@@ -90,11 +90,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7175194902902170799, guid: bbe958f18f3586f488bd56d8aa804d4a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 22df844477c6b724a94f5b9e75473657, type: 2}
     - target: {fileID: 919132149155446097, guid: bbe958f18f3586f488bd56d8aa804d4a,
         type: 3}
       propertyPath: m_Name
       value: Big LED Bulb
       objectReference: {fileID: 0}
+    - target: {fileID: 5360672959946597714, guid: bbe958f18f3586f488bd56d8aa804d4a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 22df844477c6b724a94f5b9e75473657, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
