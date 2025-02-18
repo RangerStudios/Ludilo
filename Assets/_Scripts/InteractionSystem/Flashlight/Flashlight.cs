@@ -8,7 +8,10 @@ public class Flashlight : MediumItemPickup, IActivatable
 {
     public bool canBeActivated { get; set; }
 
+    public GameObject flashlightLure;
+
     bool isOn;
+    bool lureCreated;
 
     [Header("Flashlight")]
     [SerializeField]
@@ -60,6 +63,7 @@ public class Flashlight : MediumItemPickup, IActivatable
             else
             {
                 TurnOnFlashlight();
+                flashlightLure.SetActive(false);
             }
         }
         else
@@ -90,6 +94,22 @@ public class Flashlight : MediumItemPickup, IActivatable
                 IFlashable flashable = hit.collider.GetComponent<IFlashable>();
                 flashable?.Flash();
             }
+
+            RaycastHit lureHit;
+            //GameObject newLure;
+
+            if(Physics.Raycast(transform.position, player.transform.forward, 15.0f))
+            {
+                var distPos = transform.position + player.transform.forward.normalized * 15.0f;
+                
+                flashlightLure.SetActive(true);
+                
+                flashlightLure.transform.position = distPos;
+            }
+        }
+        else
+        {
+
         }
 
     }
@@ -110,5 +130,4 @@ public class Flashlight : MediumItemPickup, IActivatable
         isOn = false;
     }
 
-    
 }
