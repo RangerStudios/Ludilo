@@ -8,11 +8,14 @@ public class Flashlight : MediumItemPickup, IActivatable
 {
     public bool canBeActivated { get; set; }
 
+    public GameObject flashlightLure;
+
     bool isOn;
+    bool lureCreated;
 
     [Header("Flashlight")]
     [SerializeField]
-    Light theLight; //TO DO: make it a point light instead of a directional
+    Light theLight; //TO DO: Adjust point light position to match the luring range
 
     [Tooltip("Radius of the light cone")]    
     [SerializeField]
@@ -45,7 +48,7 @@ public class Flashlight : MediumItemPickup, IActivatable
         //Player Input for Activation
         PlayerInput.onAttack += Activate;
     }
-    
+
     public void Activate()
     {
         //Code goes into here to 
@@ -60,6 +63,7 @@ public class Flashlight : MediumItemPickup, IActivatable
             else
             {
                 TurnOnFlashlight();
+                
             }
         }
         else
@@ -90,6 +94,22 @@ public class Flashlight : MediumItemPickup, IActivatable
                 IFlashable flashable = hit.collider.GetComponent<IFlashable>();
                 flashable?.Flash();
             }
+
+            RaycastHit lureHit;
+            //GameObject newLure;
+
+            if(Physics.Raycast(transform.position, player.transform.forward, 15.0f))
+            {
+                var distPos = transform.position + player.transform.forward.normalized * 15.0f;
+                
+                flashlightLure.SetActive(true);
+                
+                flashlightLure.transform.position = distPos;
+            }
+        }
+        else
+        {
+
         }
 
     }
@@ -108,7 +128,7 @@ public class Flashlight : MediumItemPickup, IActivatable
     {
         theLight.enabled = false;
         isOn = false;
+        flashlightLure.SetActive(false);
     }
 
-    
 }

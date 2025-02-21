@@ -33,7 +33,10 @@ public class Interactor : MonoBehaviour
     {
         numFound = Physics.OverlapSphereNonAlloc(interactionPoint.position, interactionPointRadius, colliders, interactableMask);
 
-        
+        if(numFound > 0)
+        {
+            //Debug.Log("Hold J to Interact");
+        }
     }
 
     public void Interaction()
