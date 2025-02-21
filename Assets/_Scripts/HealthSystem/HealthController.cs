@@ -8,8 +8,6 @@ public class HealthController : MonoBehaviour
     public int health;
     public bool canHeal;
     public UnityEvent OnDeath;
-    public UnityEvent OnHeal;
-    public StuffingController stuffingController;
     
 
     void OnEnable()
@@ -44,7 +42,7 @@ public class HealthController : MonoBehaviour
         OnDeath.Invoke();
     }
 
-    public void Heal()
+    /*public void Heal()
     {
         if(canHeal == true)
         {
@@ -52,5 +50,5 @@ public class HealthController : MonoBehaviour
             OnHeal.Invoke();
             canHeal = false;
         }
-    }
+    }*/
 }

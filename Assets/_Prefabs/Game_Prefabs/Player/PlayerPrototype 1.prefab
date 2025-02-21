@@ -985,7 +985,6 @@ MonoBehaviour:
   characterController: {fileID: 799090635031292760}
   playerAnimator: {fileID: 6890794485039700695}
   playerHealth: {fileID: 238444409830334391}
-  playerStuffing: {fileID: 3832547619375757892}
   attackScript: {fileID: 7865559701058627419}
   savedPlayerHealth: {fileID: 11400000, guid: f2889d2d8f6aa204f9dc06cec0712ac3, type: 2}
   crouching: 0
@@ -1014,19 +1013,7 @@ MonoBehaviour:
   onLadder: 0
   onDamage:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3832547619375757892}
-        m_TargetAssemblyTypeName: StuffingController, Assembly-CSharp
-        m_MethodName: SpawnStuffing
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   defaultSpeedModifier: 1
   speedModifier: 0
   playerSounds: {fileID: 11400000, guid: eecfab59a4315b9458d5b035d22b046e, type: 2}

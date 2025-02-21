@@ -6,7 +6,7 @@ public class DamageZone : MonoBehaviour
 {
     void OnTriggerEnter (Collider other)
     {
-        if(other.gameObject.GetComponent<IDamageable>() != null)
+        if(other.gameObject.GetComponent<IDamageable>() != null && other.gameObject.CompareTag("Player"))
         {
             other.gameObject.GetComponent<IDamageable>().Damage(1);
         }

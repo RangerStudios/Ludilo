@@ -12,6 +12,8 @@ public class RespawnManager : MonoBehaviour
 
     public Transform[] allCheckpoints; 
     public GameObject player;
+    public HealthController playerHealth;
+    public Animator fadeOut;
 
     void OnEnable()
     {
@@ -22,6 +24,8 @@ public class RespawnManager : MonoBehaviour
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        playerHealth = player.GetComponent<HealthController>();
+
         
         allCheckpoints = new Transform[transform.childCount];
         for (int i = 0; i < allCheckpoints.Length; i++)
@@ -46,7 +50,8 @@ public class RespawnManager : MonoBehaviour
                 RespawnAtCheckpoint(recentCheckpoint);
                 break;
             case RespawnCondition.DEATH:
-                RespawnAtSave();
+                playerHealth.health = 2;
+                RespawnAtCheckpoint(recentCheckpoint);
                 break;
             default:
                 Debug.Log("No Conditions Received, respawning at recent checkpoint.");
@@ -56,10 +61,12 @@ public class RespawnManager : MonoBehaviour
 
     public void RespawnAtCheckpoint(Transform checkpoint)
     {
-        CharacterController cc = player.GetComponent<CharacterController>();
-        cc.enabled = false;
-        cc.transform.position = checkpoint.position;
-        cc.enabled = true;
+        //CharacterController cc = player.GetComponent<CharacterController>();
+        //cc.enabled = false;
+        StartCoroutine(FadeOutAnimation(checkpoint));
+        //cc.transform.position = checkpoint.position;
+        //fadeOut.SetTrigger("Respawn");
+        //cc.enabled = true;
     }
 
     public void RespawnAtSave()
@@ -73,5 +80,15 @@ public class RespawnManager : MonoBehaviour
         // Needs further functionality for respawn at save point.
     }
 
+    public IEnumerator FadeOutAnimation(Transform checkpoint)
+    {
+        CharacterController cc = player.GetComponent<CharacterController>();
+        cc.enabled = false;
+        fadeOut.SetTrigger("Death");
+        yield return new WaitForSeconds(2);
+        cc.transform.position = checkpoint.position;
+        fadeOut.SetTrigger("Respawn");
+        cc.enabled = true;
+    }
     
 }

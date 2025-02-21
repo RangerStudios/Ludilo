@@ -41,12 +41,14 @@ public class GameManager : Singleton<GameManager>
         GamePause += PauseGame;
         GameUnpause += UnpauseGame;
         GameQuit += QuitGame;
+        PlayerController.OnDie += PlayerDied;
     }
     void OnDisable()
     {
         GamePause -= PauseGame;
         GameUnpause -= UnpauseGame;
         GameQuit -= QuitGame;
+        PlayerController.OnDie -= PlayerDied;
     }
 
     void Start()

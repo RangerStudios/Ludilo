@@ -1,5 +1,6 @@
 //Script by Anthony C.
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
@@ -17,13 +18,17 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
     public CharacterController characterController;
     public Animator playerAnimator;
     public HealthController playerHealth;
-    public StuffingController playerStuffing;
     public Attacker attackScript;
     public PlayerHealthScriptableObject savedPlayerHealth;
     private Vector3 inputDirection;
     private Vector3 movementDirection;
     private Camera mainCamera;
     Rigidbody rb;
+
+    [Space(10)]
+    [Header("Events")]
+    public static Action OnDie;
+
     [Space(10)]
     [Header("Booleans")]
     [SerializeField] bool crouching = false;
@@ -31,6 +36,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
     [SerializeField] public bool canAttack;
     [SerializeField] public bool canInteract;
     [SerializeField] bool attackCooldown;
+    //[SerializeField] bool injured;
     public bool canJump = true;
     public GameObject menuUI;
 
@@ -45,8 +51,12 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
     [SerializeField] private float jumpPower;
     private float downForce;
 
+    [Space(10)]
+    [Header("Timers")]
     public float dustTimer;
     public float currentDustTimer;
+    public float healTimer = 5f;
+    public float currentHealTimer;
 
     [SerializeField] PlayerMovementState currentState;
 
@@ -66,7 +76,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
     Ladder activeLadder;
     bool exitLadder;
 
-    public UnityEvent<int> onDamage;
+    //public UnityEvent<int> onDamage;
 
     public float defaultSpeedModifier = 1;
 
@@ -103,7 +113,6 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
         speedModifier = defaultSpeedModifier;
         characterController = GetComponent<CharacterController>();
         playerHealth = GetComponent<HealthController>();
-        playerStuffing = GetComponent<StuffingController>();
         mainCamera = Camera.main;
         rb = GetComponent<Rigidbody>();
         menuUI = GameObject.Find("Canvas");
@@ -112,7 +121,6 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
     private void Start()
     {
         playerHealth.health = savedPlayerHealth.currentHealth;
-        playerStuffing.stuffingCount = savedPlayerHealth.currentStuffing;
         gameObject.GetComponent<CapsuleCollider>().enabled = false;
         Debug.Log("Player Health is: " + playerHealth.health);
     }
@@ -127,6 +135,16 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
                 isDusted = false;
             }
         }
+        if (playerHealth.health == 1)
+        {
+            currentHealTimer += Time.deltaTime;
+            if (currentHealTimer >= healTimer)
+            {
+                playerHealth.health += 1;
+                currentHealTimer = 0f;
+            }
+        }
+        
         ApplyRotation();
         LedgeGrab();
 
@@ -274,7 +292,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
 
                     characterController.Move(playerVelocity * Time.fixedDeltaTime);
                     gameObject.GetComponent<CapsuleCollider>().enabled = false;
-                    characterController.enabled = true;
+                    //characterController.enabled = true;
                     GetComponent<Rigidbody>().isKinematic = true;
                     canCrouch = true;
                     speedModifier = 1f;
@@ -333,7 +351,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
         {
             gravity = -9.81f;
             hanging = false;
-            PlaySoundEffect(playerSounds.JumpSounds[Random.Range(0, playerSounds.JumpSounds.Count - 1)]);
+            PlaySoundEffect(playerSounds.JumpSounds[UnityEngine.Random.Range(0, playerSounds.JumpSounds.Count - 1)]);
             downForce += jumpPower;
             playerAnimator.SetBool("isHanging", false);
             playerAnimator.SetBool("isJumping", true);
@@ -342,7 +360,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
         else
         {
             if (!IsGrounded()) return;
-            PlaySoundEffect(playerSounds.JumpSounds[Random.Range(0, playerSounds.JumpSounds.Count - 1)]);
+            PlaySoundEffect(playerSounds.JumpSounds[UnityEngine.Random.Range(0, playerSounds.JumpSounds.Count - 1)]);
             downForce += jumpPower;
             playerAnimator.SetBool("isJumping", true);
         }
@@ -369,14 +387,14 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
     public void Damage(int damageValue)
     {
         playerHealth.Damage(damageValue);
-        onDamage.Invoke(damageValue);
-        PlaySoundEffect(playerSounds.HitSounds[Random.Range(0, playerSounds.HitSounds.Count - 1)]);
+        //onDamage.Invoke(damageValue);
+        PlaySoundEffect(playerSounds.HitSounds[UnityEngine.Random.Range(0, playerSounds.HitSounds.Count - 1)]);
     }
 
     public void Die()
     {
-        Debug.Log("Player Dies");
-        this.gameObject.SetActive(false);
+        currentHealTimer = 0f;
+        OnDie();
     }
     
 
@@ -427,7 +445,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
             {
                 attackCooldown = true;
                 playerAnimator.SetBool("isAttacking", true);
-                PlaySoundEffect(playerSounds.AttackSounds[Random.Range(0, playerSounds.AttackSounds.Count - 1)]);
+                PlaySoundEffect(playerSounds.AttackSounds[UnityEngine.Random.Range(0, playerSounds.AttackSounds.Count - 1)]);
                 StartCoroutine(AttackAnimDelay());
                 StartCoroutine(AttackCooldown());
             }
@@ -517,7 +535,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IPlaySounds
 
     public void PlayWalkSound()
     {
-        PlaySoundEffect(playerSounds.WalkSounds[Random.Range(0, playerSounds.WalkSounds.Count - 1)]);
+        PlaySoundEffect(playerSounds.WalkSounds[UnityEngine.Random.Range(0, playerSounds.WalkSounds.Count - 1)]);
     }
 }
 
